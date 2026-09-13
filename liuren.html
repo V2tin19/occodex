@@ -738,26 +738,32 @@ fetch('duanan-cases.json').then(r=>r.json()).then(cases=>{
   });
 });
 </script>
+<script src="js/lib/mystic-audio.js"></script>
+<script src="js/lib/mystic-ui.js"></script>
+<script src="js/lib/liuren.js"></script>
 <script src="occ-theme.js"></script>
 <script>
 /* ===== 章节切换器 ===== */
-var SECS=[].slice.call(document.querySelectorAll('section'));
-function lrShow(id){
-  var t=document.getElementById(id)||document.getElementById('ch1');
-  SECS.forEach(function(sec){sec.classList.toggle('on',sec===t);});
-  document.querySelectorAll('.topnav a').forEach(function(a){
-    a.classList.toggle('on',a.getAttribute('href')==='#'+t.id);
+(function(){
+  var SECS=[].slice.call(document.querySelectorAll('section'));
+  function lrShow(id){
+    var t=document.getElementById(id)||document.getElementById('ch1');
+    SECS.forEach(function(sec){sec.classList.toggle('on',sec===t);});
+    document.querySelectorAll('.topnav a').forEach(function(a){
+      a.classList.toggle('on',a.getAttribute('href')==='#'+t.id);
+    });
+    window.scrollTo(0,0);
+    if(window.MysticAudio) window.MysticAudio.tick(1100);
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[href^="#"]');
+    if(!a)return;
+    var id=a.getAttribute('href').slice(1);
+    if(document.getElementById(id)){e.preventDefault();location.hash=id;}
   });
-  window.scrollTo(0,0);
-}
-document.addEventListener('click',function(e){
-  var a=e.target.closest('a[href^="#"]');
-  if(!a)return;
-  var id=a.getAttribute('href').slice(1);
-  if(document.getElementById(id)){e.preventDefault();location.hash=id;}
-});
-window.addEventListener('hashchange',function(){lrShow(location.hash.slice(1));});
-lrShow(location.hash.slice(1)||'ch1');
+  window.addEventListener('hashchange',function(){lrShow(location.hash.slice(1));});
+  lrShow(location.hash.slice(1)||'ch1');
+})();
 </script>
 </body>
 </html>

@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="occ-theme.css">
 <style>
 /* ============================================================
    「9味」DESIGN TOKENS —— 沿用《9味-审美提取与交接文档.md》
@@ -615,12 +616,15 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
 <section id="portal" class="on">
   <div class="wrap">
     <div class="ch-head">
-      <div class="kick">MYSTERIUM HANDBOOK · 交互学习版</div>
+      <div class="kick">MYSTERIUM HANDBOOK · 逆流历书 · 交互学习版</div>
       <h1 style="letter-spacing:.1em">神秘学手册</h1>
       <p class="lede">一本可以交互学习的命理与神秘学教科书。每门课从零开始，配练习场、案例馆与古籍检索；学习进度保存在本机。</p>
       <div class="meta"><span>东玄（山·医·命·相·卜）</span><span>西玄（赫尔密斯传统）</span><span>课程制 · 陆续开设</span></div>
       <div class="rule">✦</div>
     </div>
+
+    <!-- 逆流时钟与实时时标终端 -->
+    <div id="portalChrono"></div>
 
     <div class="toc-group">
       <div class="toc-ghead"><span class="tg-title">东玄 · 命</span><span class="tg-sub">推命体系</span><span class="tg-stat">1 / 4 门课开放</span></div>
@@ -646,6 +650,26 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
         <a class="toc-row-static"><span class="tr-no">西玄</span><span class="tr-main"><span class="tr-tt">塔罗</span><span class="tr-ds">课程大纲调研中（22 张大阿卡纳为主线的结构草案已立）。</span></span><span class="st">筹备</span></a>
         <a class="toc-row-static"><span class="tr-no">西玄</span><span class="tr-main"><span class="tr-tt">炼金术</span><span class="tr-ds">规划中——偏知识科普形态，与推演体系课型不同。</span></span><span class="st">筹备</span></a>
       </div>
+    </div>
+
+    <!-- 演易交互台：六爻·三钱演易 -->
+    <div class="card crop-mark" style="margin-top:36px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <h3 style="margin-bottom:0"><span class="zh-no">演易</span>三钱演易 · 纳甲筮法交互台</h3>
+        <span class="tech-chip"><span class="dot"></span>I-CHING // SIMULATOR</span>
+      </div>
+      <p>以三枚开元通宝摇掷六次，自下而上建立初爻至上爻。老阳/老阴为动爻，自动演化变卦：</p>
+      <div class="coin-stage" id="lyCoinStage">
+        <div class="coin-item" id="lyCoin0"><div class="coin-hole"></div><span class="coin-char" style="top:4px">开</span><span class="coin-char" style="bottom:4px">元</span><span class="coin-char" style="left:4px">通</span><span class="coin-char" style="right:4px">宝</span></div>
+        <div class="coin-item" id="lyCoin1"><div class="coin-hole"></div><span class="coin-char" style="top:4px">开</span><span class="coin-char" style="bottom:4px">元</span><span class="coin-char" style="left:4px">通</span><span class="coin-char" style="right:4px">宝</span></div>
+        <div class="coin-item" id="lyCoin2"><div class="coin-hole"></div><span class="coin-char" style="top:4px">开</span><span class="coin-char" style="bottom:4px">元</span><span class="coin-char" style="left:4px">通</span><span class="coin-char" style="right:4px">宝</span></div>
+      </div>
+      <div style="display:flex;gap:12px;justify-content:center;margin-bottom:16px">
+        <button class="btn small" id="lyTossBtn"><span>掷钱起一爻（第 <span id="lyStepNum">1</span>/6 爻）</span></button>
+        <button class="btn small ghost" id="lyResetBtn"><span>重置卦盘</span></button>
+      </div>
+      <div id="lyVisualizer" class="hexagram-visualizer"></div>
+      <div id="lyResultBox" style="margin-top:14px"></div>
     </div>
 
     <div class="note tip" style="margin-top:30px">
@@ -762,13 +786,13 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
           <text class="fg" x="63" y="202" text-anchor="middle">拇指</text>
 
           <!-- 六宫 -->
-          <g text-anchor="middle">
-            <circle class="nd ji st" cx="150" cy="228" r="16"/><text class="nm" x="150" y="226">大安</text><text class="wx" x="150" y="239" fill="var(--wx-mu)">木</text>
-            <circle class="nd xiong" cx="141" cy="114" r="16"/><text class="nm" x="141" y="112">留连</text><text class="wx" x="141" y="125" fill="var(--wx-shui)">水</text>
-            <circle class="nd ji" cx="202" cy="102" r="16"/><text class="nm" x="202" y="100">速喜</text><text class="wx" x="202" y="113" fill="var(--wx-huo)">火</text>
-            <circle class="nd xiong" cx="259" cy="120" r="16"/><text class="nm" x="259" y="118">赤口</text><text class="wx" x="259" y="131" fill="var(--wx-jin)">金</text>
-            <circle class="nd ji" cx="253" cy="226" r="16"/><text class="nm" x="253" y="224">小吉</text><text class="wx" x="253" y="237" fill="var(--wx-shui)">水</text>
-            <circle class="nd xiong" cx="204" cy="228" r="16"/><text class="nm" x="204" y="226">空亡</text><text class="wx" x="204" y="239" fill="var(--wx-tu)">土</text>
+          <g text-anchor="middle" id="palmNodes">
+            <g id="palmNode0"><circle class="nd ji st" cx="150" cy="228" r="16"/><text class="nm" x="150" y="226">大安</text><text class="wx" x="150" y="239" fill="var(--wx-mu)">木</text></g>
+            <g id="palmNode1"><circle class="nd xiong" cx="141" cy="114" r="16"/><text class="nm" x="141" y="112">留连</text><text class="wx" x="141" y="125" fill="var(--wx-shui)">水</text></g>
+            <g id="palmNode2"><circle class="nd ji" cx="202" cy="102" r="16"/><text class="nm" x="202" y="100">速喜</text><text class="wx" x="202" y="113" fill="var(--wx-huo)">火</text></g>
+            <g id="palmNode3"><circle class="nd xiong" cx="259" cy="120" r="16"/><text class="nm" x="259" y="118">赤口</text><text class="wx" x="259" y="131" fill="var(--wx-jin)">金</text></g>
+            <g id="palmNode4"><circle class="nd ji" cx="253" cy="226" r="16"/><text class="nm" x="253" y="224">小吉</text><text class="wx" x="253" y="237" fill="var(--wx-shui)">水</text></g>
+            <g id="palmNode5"><circle class="nd xiong" cx="204" cy="228" r="16"/><text class="nm" x="204" y="226">空亡</text><text class="wx" x="204" y="239" fill="var(--wx-tu)">土</text></g>
           </g>
         </svg>
       </div>
@@ -2752,8 +2776,10 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
   <div class="drawer-foot">原文录自本机「古文_原文整理」文库：子平真诠 · 三命通会 · 渊海子平 · 滴天髓阐微 · 穷通宝鉴 · 命理探源。省略处以……标示；「疏」为教学注解，非原书内容。</div>
 </aside>
 
-<div class="toast" id="toast"></div>
-
+<script src="js/lib/mystic-audio.js"></script>
+<script src="js/lib/mystic-ui.js"></script>
+<script src="js/lib/liuyao.js"></script>
+<script src="occ-theme.js"></script>
 <script>
 /* ============================================================
    基础数据
@@ -4414,25 +4440,64 @@ function xlrPal(m,d,hIdx){
   return {mi:mi,di:di,hi:hi,pal:XLR_PAL[hi],trail:[XLR_PAL[mi],XLR_PAL[di],XLR_PAL[hi]]};
 }
 function xlrRun(m,d,hIdx){
-  const r=xlrPal(m,d,hIdx);
-  const info=XLR_DATA[r.pal];
-  const chips=XLR_PAL.map(p=>{
-    const step=r.trail.indexOf(p);
-    const marks=r.trail.map((t,i)=>t===p?['①','②','③'][i]:null).filter(Boolean).join('');
-    return '<span style="display:inline-block;padding:8px 14px;margin:4px 6px 0 0;border:var(--hair-soft);background:var(--cell-bg)'
-      +(p===r.pal?';border-color:var(--gold);color:var(--gold)':'')
-      +'"><b style="font-family:var(--serif)">'+p+'</b>'
-      +(marks?' <span style="color:var(--gold);font-size:11px">'+marks+'</span>':'')
-      +'</span>';
-  }).join('');
-  const zy=Object.keys(info.zy).map(k=>'<tr><td>'+k+'</td><td>'+info.zy[k]+'</td></tr>').join('');
-  $('#xlrBox').innerHTML='<p class="pp-note" style="margin-top:14px">数得轨迹：月宫 <strong style="color:var(--gold)">'+r.trail[0]
-    +'</strong> → 日宫 <strong style="color:var(--gold)">'+r.trail[1]
-    +'</strong> → 时宫（落宫）<strong style="color:var(--gold)">'+r.trail[2]+'</strong></p>'
-    +'<div style="margin:10px 0 4px">'+chips+'</div>'
-    +'<div class="note story" style="margin-top:14px"><span class="tag">落宫 · '+r.pal+'（'+info.jx+' · '+info.wx+' · '+info.sj+'）</span><br>'+info.desc+'</div>'
-    +'<div class="tbl-scroll"><table><tr><th>占类</th><th>通行释义（民间版）</th></tr>'+zy+'</table></div>';
-  box_scroll($('#xlrBox'));
+  const box=$('#xlrBox');
+  if(!box) return;
+  box.innerHTML='<div class="xlr-step-track" id="xlrTrack"><span class="xlr-step-badge">推演中</span><span>正在掐指顺数……</span></div>';
+  box_scroll(box);
+
+  document.querySelectorAll('#palmNodes g').forEach(g=>g.classList.remove('palm-node-active'));
+
+  if(window.MysticUI && typeof window.MysticUI.runXiaoLiuRenAnimation === 'function'){
+    window.MysticUI.runXiaoLiuRenAnimation(m, d, hIdx + 1, function(step){
+      const track=$('#xlrTrack');
+      if(track) track.innerHTML='<span class="xlr-step-badge">'+step.phase+'位</span><span>'+step.label+'</span>';
+      document.querySelectorAll('#palmNodes g').forEach(g=>g.classList.remove('palm-node-active'));
+      const activeNode=document.getElementById('palmNode'+step.palace);
+      if(activeNode) activeNode.classList.add('palm-node-active');
+    }, function(res){
+      const finalPalace = res.final;
+      const info = XLR_DATA[finalPalace.name];
+      document.querySelectorAll('#palmNodes g').forEach(g=>g.classList.remove('palm-node-active'));
+      const finalNode = document.getElementById('palmNode'+finalPalace.id);
+      if(finalNode) finalNode.classList.add('palm-node-active');
+
+      const zy = Object.keys(info.zy).map(k=>'<tr><td>'+k+'</td><td>'+info.zy[k]+'</td></tr>').join('');
+      box.innerHTML=`
+        <div class="xlr-result-seal-box stamp-animate">
+          <div class="xlr-seal-icon">
+            <span class="sn">${finalPalace.name}</span>
+            <span class="sw">${info.jx} · ${finalPalace.wx}</span>
+          </div>
+          <div class="xlr-result-info">
+            <h4>${finalPalace.name}（${info.jx} · ${finalPalace.wx} · ${finalPalace.beast}）</h4>
+            <p class="pp-note">推演轨迹：月宫 <strong>${res.monthPalace.name}</strong> → 日宫 <strong>${res.dayPalace.name}</strong> → 终落 <strong>${finalPalace.name}</strong>（${finalPalace.pos}）</p>
+            <p>${info.desc}</p>
+          </div>
+        </div>
+        <div class="tbl-scroll" style="margin-top:16px"><table><tr><th>占类</th><th>通行释义（民间版）</th></tr>${zy}</table></div>
+      `;
+      box_scroll(box);
+    });
+  } else {
+    const r=xlrPal(m,d,hIdx);
+    const info=XLR_DATA[r.pal];
+    const zy=Object.keys(info.zy).map(k=>'<tr><td>'+k+'</td><td>'+info.zy[k]+'</td></tr>').join('');
+    box.innerHTML=`
+      <div class="xlr-result-seal-box stamp-animate">
+        <div class="xlr-seal-icon">
+          <span class="sn">${r.pal}</span>
+          <span class="sw">${info.jx} · ${info.wx}</span>
+        </div>
+        <div class="xlr-result-info">
+          <h4>${r.pal}（${info.jx} · ${info.wx} · ${info.sj}）</h4>
+          <p class="pp-note">数得轨迹：月宫 <strong>${r.trail[0]}</strong> → 日宫 <strong>${r.trail[1]}</strong> → 时宫 <strong>${r.trail[2]}</strong></p>
+          <p>${info.desc}</p>
+        </div>
+      </div>
+      <div class="tbl-scroll" style="margin-top:16px"><table><tr><th>占类</th><th>通行释义（民间版）</th></tr>${zy}</table></div>
+    `;
+    box_scroll(box);
+  }
 }
 $('#xlrBtn').addEventListener('click',()=>{
   const m=+$('#xlrM').value,d=+$('#xlrD').value,h=+$('#xlrH').value;
@@ -4782,6 +4847,113 @@ tocFly.querySelectorAll('a[data-tf]').forEach(a=>a.addEventListener('click',()=>
 }));
 $('#tfClassics').addEventListener('click',()=>{openDrawer('all');toggleFly(false);});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer()});
+/* ============================================================
+   六爻三钱演易交互台
+   ============================================================ */
+let LY_YAOS = [];
+function initLiuYaoSandbox() {
+  const tossBtn = $('#lyTossBtn');
+  const resetBtn = $('#lyResetBtn');
+  const viz = $('#lyVisualizer');
+  const resBox = $('#lyResultBox');
+  const stepNum = $('#lyStepNum');
+  if(!tossBtn) return;
+
+  function renderHexagram() {
+    if(!viz) return;
+    viz.innerHTML = LY_YAOS.map((y, idx) => {
+      const isYang = (y.val === 7 || y.val === 9);
+      const isDong = (y.val === 6 || y.val === 9);
+      const barHtml = isYang 
+        ? '<div class="yao-bar-seg full"></div>'
+        : '<div class="yao-bar-seg half"></div><div class="yao-bar-seg half"></div>';
+      const posName = ['初爻','二爻','三爻','四爻','五爻','上爻'][idx];
+      return `
+        <div class="yao-row ${isDong ? 'is-dong' : ''}">
+          <span style="font-size:12px;color:var(--text3)">${posName}</span>
+          <div class="yao-bars">${barHtml}</div>
+          <span style="font-size:12px;color:${isDong?'var(--amber)':'var(--text)'}">${y.symbol} (${y.name})</span>
+        </div>
+      `;
+    }).join('');
+
+    if(stepNum) stepNum.textContent = Math.min(6, LY_YAOS.length + 1);
+
+    if (LY_YAOS.length === 6) {
+      tossBtn.setAttribute('disabled', '');
+      tossBtn.querySelector('span').textContent = '六爻已备，卦象已成';
+      if (window.Liuyao && typeof window.Liuyao.zhuanggua === 'function') {
+        const vals = LY_YAOS.map(y => y.val);
+        const zg = window.Liuyao.zhuanggua(vals, null);
+        const dongCount = LY_YAOS.filter(y => y.isDong).length;
+        resBox.innerHTML = `
+          <div class="card crop-mark stamp-animate" style="background:var(--bg-card);border:1.5px solid var(--gold)">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+              <h4 style="font-family:var(--serif);font-size:20px;color:var(--paper)">本卦：【${zg.name}】（${zg.gong}宫 · ${zg.gui||'正卦'}）</h4>
+              <span class="tech-chip">${dongCount > 0 ? '变卦：' + (zg.bianName || '无') : '静卦'}</span>
+            </div>
+            <p style="font-size:13.5px;color:var(--text2)">世应：世在第 ${zg.shi + 1} 爻，应在第 ${zg.ying + 1} 爻 · 动爻数：${dongCount} 处</p>
+            <div class="tbl-scroll" style="margin-top:10px">
+              <table>
+                <thead><tr><th>爻位</th><th>六亲</th><th>纳甲干支</th><th>爻象</th><th>变卦六亲</th></tr></thead>
+                <tbody>
+                  ${zg.gz.map((gz, i) => {
+                    const y = LY_YAOS[i];
+                    return `<tr>
+                      <td>${['初爻','二爻','三爻','四爻','五爻','上爻'][i]}</td>
+                      <td><b style="color:var(--gold)">${zg.lq[i]}</b></td>
+                      <td>${gz}</td>
+                      <td>${y.symbol}</td>
+                      <td>${zg.bianLq ? (zg.bianLq[i] || '—') : '—'}</td>
+                    </tr>`;
+                  }).reverse().join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        `;
+        if (window.MysticAudio) window.MysticAudio.stamp();
+      }
+    } else {
+      tossBtn.removeAttribute('disabled');
+      tossBtn.querySelector('span').textContent = '掷钱起一爻（第 ' + (LY_YAOS.length + 1) + '/6 爻）';
+      resBox.innerHTML = '';
+    }
+  }
+
+  tossBtn.addEventListener('click', function() {
+    if(LY_YAOS.length >= 6) return;
+    const coins = [$('#lyCoin0'), $('#lyCoin1'), $('#lyCoin2')];
+    coins.forEach(c => c && c.classList.add('tossing'));
+    if(window.MysticAudio) {
+      window.MysticAudio.coin(1.1);
+      setTimeout(() => window.MysticAudio.coin(0.9), 100);
+      setTimeout(() => window.MysticAudio.coin(1.3), 220);
+    }
+    setTimeout(() => {
+      coins.forEach(c => c && c.classList.remove('tossing'));
+      if(window.MysticUI && typeof window.MysticUI.castLiuYaoCoinToss === 'function') {
+        const toss = window.MysticUI.castLiuYaoCoinToss();
+        LY_YAOS.push(toss);
+        renderHexagram();
+      }
+    }, 450);
+  });
+
+  if(resetBtn) {
+    resetBtn.addEventListener('click', function() {
+      LY_YAOS = [];
+      if(window.MysticAudio) window.MysticAudio.paper();
+      renderHexagram();
+    });
+  }
+}
+
+if(window.MysticUI && typeof window.MysticUI.initChronoClock === 'function') {
+  window.MysticUI.initChronoClock('portalChrono');
+}
+initLiuYaoSandbox();
+
 SECTIONS.slice(1,5).forEach(ch=>{
   const head=document.querySelector('#'+ch+' .ch-head');
   if(!head)return;

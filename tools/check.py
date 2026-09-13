@@ -13,13 +13,17 @@ tools/check.py — 神秘学手册 · 一键验收
 """
 import io, os, re, subprocess, sys, urllib.request
 
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 fails = []
 oks = []
 
 def sh(cmd):
-    return subprocess.run(cmd, capture_output=True, text=True, shell=True)
+    return subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8', errors='replace', shell=True)
 
 # ---- 1. HTML 内联 script 语法 ----
 htmls = [f for f in os.listdir('.') if f.endswith('.html')]

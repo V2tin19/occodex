@@ -1,35 +1,641 @@
 /* ============================================================
-   神秘学手册 · 全局统一昼夜主题（跨课程共享）
-   夜 = 9味低长调（各课程默认）  昼 = 宣纸与墨（朱砂强调）
-   由 occ-theme.js 驱动：localStorage 键 occ_theme，body.daylight 切换。
+   occ-theme.css — 神秘学手册 · 视觉引擎与三套沉浸式主题系统
+   Theme 1: 1999 逆流低长调 (Reverse: 1999 Midnight - Default)
+   Theme 2: 炎国宣纸与朱砂 (Yan-Guo Rice Paper & Cinnabar - body.daylight)
+   Theme 3: 司岁战术终端 (Arknights Sui Tactical HUD - body.tactical)
    ============================================================ */
 
-/* —— 昼间模式：覆盖各课程页面的共享变量名 —— */
-body.daylight{
-  --bg:#f3eee3;            /* 宣纸米白 */
-  --paper:#3b3731;         /* 标题 浓墨 */
-  --text:#3e382e;          /* 正文 墨阶一 */
-  --text2:#5c5545;         /* 墨阶二 */
-  --text3:#867d67;         /* 墨阶三 */
-  --gold:#9e4030;          /* 主强调 朱砂 */
-  --gold-dim:#8a6d1d;      /* 赭金 */
-  --gold-rgb:158,64,48;
-  --hair:1px solid rgba(158,64,48,.25);
-  --hair-soft:1px solid rgba(59,55,49,.14);
-  --nav-bg:rgba(243,238,227,.9);
-  --card-grad:linear-gradient(180deg,rgba(255,252,244,.65),rgba(247,241,227,.4));
-}
-body.daylight ::selection{background:rgba(158,64,48,.18)}
-body.daylight .note.tip{border-left-color:rgba(63,122,67,.7)}
-body.daylight .note.tip .tag{color:#33632f}
-body.daylight .note.warn{border-left-color:rgba(158,64,48,.7)}
-body.daylight .ok,body.daylight .pass{color:#33632f}
-body.daylight .no,body.daylight .fail{color:#8f3b2c}
+/* ------------------------------------------------------------
+   1. THEME 1: 1999 逆流低长调 (默认)
+   ------------------------------------------------------------ */
+:root {
+  /* 基础暗色 */
+  --bg: #0d0f14;
+  --bg-subtle: #141720;
+  --bg-card: rgba(22, 26, 35, 0.72);
+  --bg-card-hover: rgba(30, 36, 48, 0.85);
+  --nav-bg: rgba(13, 15, 20, 0.92);
+  --card-grad: linear-gradient(180deg, rgba(27, 32, 43, 0.65), rgba(16, 19, 26, 0.85));
 
-/* —— 昼夜切换按钮（与 index.html .theme-btn 同款） —— */
-.occ-theme-btn{position:fixed;top:14px;right:16px;z-index:11;width:44px;height:44px;
-border-radius:50%;border:1px solid rgba(var(--gold-rgb),.4);background:var(--bg);
-color:var(--gold);font-size:14px;cursor:pointer;letter-spacing:.1em;
-box-shadow:0 2px 10px rgba(0,0,0,.25)}
-.occ-theme-btn:hover{border-color:var(--gold)}
-@media (max-width:640px){.occ-theme-btn{top:10px;right:10px;width:40px;height:40px}}
+  /* 墨阶与文字 */
+  --paper: #ece5d6;
+  --paper-2: #d6cdbc;
+  --text: #e2dcd0;
+  --text2: #aba494;
+  --text3: #827b6d;
+
+  /* 9味关键强调色 (低长调中的光) */
+  --gold: #c9a227;
+  --gold-dim: #8d7420;
+  --gold-glow: rgba(201, 162, 39, 0.35);
+  --gold-rgb: 201, 162, 39;
+  --lit-rgb: 226, 220, 208;
+  --amber: #d8722f;
+  --rust: #a84232;
+  --jade: #4e8265;
+  --celadon: #5b7f95;
+
+  /* 五行灵光色相 */
+  --wx-mu: #6aa872;
+  --wx-huo: #d46547;
+  --wx-tu: #b89255;
+  --wx-jin: #b0ada4;
+  --wx-shui: #5d8ab5;
+
+  /* 发丝线与边框 */
+  --hair: 1px solid rgba(201, 162, 39, 0.24);
+  --hair-soft: 1px solid rgba(226, 220, 208, 0.10);
+  --hair-bright: 1px solid rgba(201, 162, 39, 0.6);
+
+  /* 材质与动效 */
+  --grain-op: 0.055;
+  --grain-blend: overlay;
+  --ease-mystic: cubic-bezier(0.19, 1, 0.22, 1);
+  --font-serif: "Playfair Display", "Didot", "Noto Serif SC", "Songti SC", Georgia, serif;
+  --font-sans: "Noto Sans SC", "Source Han Sans CN", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+/* ------------------------------------------------------------
+   2. THEME 2: 炎国宣纸与朱砂 (body.daylight)
+   ------------------------------------------------------------ */
+body.daylight {
+  --bg: #f4efe4;
+  --bg-subtle: #eae3d2;
+  --bg-card: rgba(255, 252, 245, 0.75);
+  --bg-card-hover: rgba(255, 255, 255, 0.95);
+  --nav-bg: rgba(244, 239, 228, 0.93);
+  --card-grad: linear-gradient(180deg, rgba(255, 253, 248, 0.85), rgba(242, 235, 220, 0.65));
+
+  --paper: #28241e;
+  --paper-2: #484135;
+  --text: #383229;
+  --text2: #635b4c;
+  --text3: #8e8470;
+
+  --gold: #9e3626;       /* 主强调 朱砂古印 */
+  --gold-dim: #846820;   /* 赭石 */
+  --gold-glow: rgba(158, 54, 38, 0.25);
+  --gold-rgb: 158, 54, 38;
+  --lit-rgb: 56, 50, 41;
+  --amber: #b05c2a;
+  --rust: #8d281a;
+  --jade: #3b7454;
+  --celadon: #3c5b6b;
+
+  --wx-mu: #387b47;
+  --wx-huo: #ba4729;
+  --wx-tu: #926f2a;
+  --wx-jin: #6b665c;
+  --wx-shui: #37638c;
+
+  --hair: 1px solid rgba(158, 54, 38, 0.26);
+  --hair-soft: 1px solid rgba(56, 50, 41, 0.12);
+  --hair-bright: 1px solid rgba(158, 54, 38, 0.7);
+
+  --grain-op: 0.045;
+  --grain-blend: multiply;
+}
+
+/* ------------------------------------------------------------
+   3. THEME 3: 司岁战术终端 (body.tactical)
+   ------------------------------------------------------------ */
+body.tactical {
+  --bg: #06090e;
+  --bg-subtle: #0c1219;
+  --bg-card: rgba(13, 20, 29, 0.75);
+  --bg-card-hover: rgba(20, 31, 46, 0.9);
+  --nav-bg: rgba(6, 9, 14, 0.94);
+  --card-grad: linear-gradient(180deg, rgba(16, 26, 38, 0.7), rgba(9, 14, 21, 0.9));
+
+  --paper: #e9f5fc;
+  --paper-2: #c4dbe8;
+  --text: #d8ebf5;
+  --text2: #86a8bc;
+  --text3: #58798c;
+
+  --gold: #e5a928;       /* 战术金标 */
+  --gold-dim: #99701a;
+  --gold-glow: rgba(229, 169, 40, 0.4);
+  --gold-rgb: 229, 169, 40;
+  --lit-rgb: 216, 235, 245;
+  --amber: #ff6f26;
+  --rust: #f23d4c;
+  --jade: #00d68f;       /* 全息绿 */
+  --celadon: #00c3ff;    /* 战术晶蓝 */
+
+  --wx-mu: #00d68f;
+  --wx-huo: #ff5537;
+  --wx-tu: #e5a928;
+  --wx-jin: #c8e1ee;
+  --wx-shui: #00c3ff;
+
+  --hair: 1px solid rgba(229, 169, 40, 0.35);
+  --hair-soft: 1px solid rgba(0, 195, 255, 0.15);
+  --hair-bright: 1px solid rgba(0, 195, 255, 0.8);
+
+  --grain-op: 0.035;
+  --grain-blend: screen;
+}
+
+/* ------------------------------------------------------------
+   通用视觉组件与装饰类
+   ------------------------------------------------------------ */
+/* 战术/切角卡片 */
+.tactical-box {
+  position: relative;
+  background: var(--bg-card);
+  border: var(--hair-soft);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.35s var(--ease-mystic);
+}
+
+body.tactical .tactical-box,
+body.tactical .card {
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  border: none;
+  box-shadow: inset 0 0 0 1px rgba(0, 195, 255, 0.2);
+}
+body.tactical .tactical-box:hover,
+body.tactical .card:hover {
+  box-shadow: inset 0 0 0 1px rgba(229, 169, 40, 0.5), 0 8px 24px rgba(0, 195, 255, 0.1);
+}
+
+/* 1999 Art Deco 标角 (Crop Marks) */
+.crop-mark {
+  position: relative;
+}
+.crop-mark::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 14px;
+  height: 14px;
+  border-top: 1.5px solid var(--gold);
+  border-left: 1.5px solid var(--gold);
+  pointer-events: none;
+}
+.crop-mark::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 14px;
+  height: 14px;
+  border-bottom: 1.5px solid var(--gold);
+  border-right: 1.5px solid var(--gold);
+  pointer-events: none;
+}
+
+/* 朱砂古印 (Cinnabar Stamp) */
+.stamp-seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  padding: 4px 10px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  user-select: none;
+  box-shadow: inset 0 0 0 1px rgba(var(--gold-rgb), 0.2);
+}
+.stamp-seal.circular {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  padding: 0;
+  font-size: 12px;
+  line-height: 1.2;
+  text-align: center;
+}
+@keyframes stampThud {
+  0% { transform: scale(2.2) rotate(-8deg); opacity: 0; }
+  60% { transform: scale(0.92) rotate(2deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+.stamp-animate {
+  animation: stampThud 0.45s var(--ease-mystic) forwards;
+}
+
+/* 战术芯片与坐标标签 (Tactical Chips) */
+.tech-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  font-family: var(--font-sans);
+  color: var(--gold);
+  background: rgba(var(--gold-rgb), 0.08);
+  border: 1px solid rgba(var(--gold-rgb), 0.3);
+  padding: 2px 8px;
+  text-transform: uppercase;
+}
+.tech-chip.cyan {
+  color: var(--celadon);
+  background: rgba(0, 195, 255, 0.08);
+  border-color: rgba(0, 195, 255, 0.3);
+}
+.tech-chip .dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 6px currentColor;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.4; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* 五行灵气标签 (Elemental Aura Badges) */
+.wx-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  padding: 2px 7px;
+  border: 1px solid;
+  border-radius: 2px;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+.wx-badge.mu { color: var(--wx-mu); border-color: rgba(106, 168, 114, 0.4); background: rgba(106, 168, 114, 0.08); }
+.wx-badge.huo { color: var(--wx-huo); border-color: rgba(212, 101, 71, 0.4); background: rgba(212, 101, 71, 0.08); }
+.wx-badge.tu { color: var(--wx-tu); border-color: rgba(184, 146, 85, 0.4); background: rgba(184, 146, 85, 0.08); }
+.wx-badge.jin { color: var(--wx-jin); border-color: rgba(176, 173, 164, 0.4); background: rgba(176, 173, 164, 0.08); }
+.wx-badge.shui { color: var(--wx-shui); border-color: rgba(93, 138, 181, 0.4); background: rgba(93, 138, 181, 0.08); }
+
+/* 控制浮动面板 (Theme & Sound HUD Bar) */
+.occ-hud-bar {
+  position: fixed;
+  top: 14px;
+  right: 16px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: var(--hair);
+  padding: 4px 6px;
+  border-radius: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transition: border-color 0.3s ease;
+}
+.occ-hud-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: var(--hair-soft);
+  background: transparent;
+  color: var(--text2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all 0.25s var(--ease-mystic);
+}
+.occ-hud-btn:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+  transform: scale(1.08);
+}
+.occ-hud-btn.active {
+  color: var(--paper);
+  background: rgba(var(--gold-rgb), 0.2);
+  border-color: var(--gold);
+}
+.occ-hud-sep {
+  width: 1px;
+  height: 18px;
+  background: rgba(var(--lit-rgb), 0.15);
+}
+
+@media (max-width: 640px) {
+  .occ-hud-bar {
+    top: 10px;
+    right: 10px;
+    gap: 4px;
+    padding: 3px 4px;
+  }
+  .occ-hud-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+}
+
+/* ------------------------------------------------------------
+   逆流时钟卡片 (Chrono Clock)
+   ------------------------------------------------------------ */
+.chrono-clock-card {
+  border: var(--hair);
+  background: var(--card-grad);
+  padding: 22px 26px;
+  margin: 20px 0 28px;
+  position: relative;
+  overflow: hidden;
+}
+.chrono-clock-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gold);
+}
+.chrono-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.chrono-status {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  color: var(--text3);
+}
+.chrono-display {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.chrono-time {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 4.5vw, 44px);
+  color: var(--paper);
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  line-height: 1.1;
+}
+.chrono-date {
+  font-size: 14px;
+  color: var(--text2);
+  letter-spacing: 0.12em;
+}
+.chrono-date em {
+  font-style: normal;
+  color: var(--gold);
+  font-weight: 500;
+  margin-left: 6px;
+}
+.chrono-quote {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: var(--hair-soft);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 12.5px;
+  color: var(--text3);
+  letter-spacing: 0.04em;
+}
+
+/* ------------------------------------------------------------
+   小六壬掌诀图动态交互 (Xiao Liu Ren Interactive Palm)
+   ------------------------------------------------------------ */
+.palm-node-active circle {
+  fill: rgba(var(--gold-rgb), 0.35) !important;
+  stroke: var(--gold) !important;
+  stroke-width: 3 !important;
+  filter: drop-shadow(0 0 8px rgba(var(--gold-rgb), 0.8));
+  transition: all 0.15s ease;
+}
+.palm-node-active text {
+  font-weight: bold;
+}
+
+.xlr-step-track {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: rgba(var(--gold-rgb), 0.06);
+  border: var(--hair);
+  margin: 14px 0;
+  font-size: 13.5px;
+  color: var(--text);
+  min-height: 48px;
+  animation: fadeUp 0.3s ease;
+}
+.xlr-step-badge {
+  background: var(--gold);
+  color: var(--bg);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 2px;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.xlr-result-seal-box {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  align-items: center;
+  border: 1.5px solid var(--gold);
+  background: var(--card-grad);
+  padding: 22px 24px;
+  margin-top: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.xlr-seal-icon {
+  width: 72px;
+  height: 72px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  box-shadow: 0 0 16px rgba(var(--gold-rgb), 0.25);
+}
+.xlr-seal-icon .sn { font-size: 20px; font-family: var(--font-serif); font-weight: 600; line-height: 1.1; }
+.xlr-seal-icon .sw { font-size: 10px; letter-spacing: 0.15em; }
+
+.xlr-result-info h4 {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  color: var(--paper);
+  letter-spacing: 0.12em;
+  margin-bottom: 6px;
+}
+.xlr-result-info p {
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.7;
+  margin-top: 4px;
+}
+
+/* ------------------------------------------------------------
+   大六壬浑天仪交互 (Da Liu Ren Astrolabe)
+   ------------------------------------------------------------ */
+.astrolabe-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.astrolabe-svg {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  user-select: none;
+}
+.astro-ring {
+  fill: none;
+  stroke: rgba(var(--gold-rgb), 0.25);
+  stroke-width: 1;
+}
+.astro-ring.outer { stroke-dasharray: 4 4; }
+.astro-ring.middle { stroke: rgba(var(--gold-rgb), 0.45); stroke-width: 1.5; }
+.astro-ring.inner { stroke: rgba(var(--gold-rgb), 0.2); }
+.astro-center-title {
+  fill: var(--gold);
+  font-family: var(--font-serif);
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  text-anchor: middle;
+}
+.astro-center-sub {
+  fill: var(--text3);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-anchor: middle;
+}
+.astrolabe-node {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.astrolabe-node:hover circle {
+  fill: rgba(var(--gold-rgb), 0.3);
+}
+.di-circle {
+  fill: var(--bg);
+  stroke: rgba(var(--lit-rgb), 0.3);
+  stroke-width: 1;
+}
+.di-text {
+  fill: var(--text2);
+  font-size: 13px;
+  font-family: var(--font-serif);
+  text-anchor: middle;
+}
+.tian-circle {
+  fill: var(--bg);
+  stroke: var(--gold);
+  stroke-width: 1.5;
+}
+.tian-text {
+  fill: var(--paper);
+  font-size: 13px;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  text-anchor: middle;
+}
+.orbit-ray {
+  stroke: rgba(var(--gold-rgb), 0.2);
+  stroke-width: 1;
+  stroke-dasharray: 2 2;
+}
+
+/* ------------------------------------------------------------
+   六爻铜钱抛掷交互 (Liu Yao Coins)
+   ------------------------------------------------------------ */
+.coin-stage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+  background: rgba(var(--gold-rgb), 0.03);
+  border: var(--hair-soft);
+  margin: 16px 0;
+}
+.coin-item {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: radial-gradient(circle at 35% 35%, rgba(var(--gold-rgb), 0.5), rgba(var(--gold-rgb), 0.1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  user-select: none;
+}
+.coin-item .coin-hole {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--gold);
+  background: var(--bg);
+}
+.coin-item .coin-char {
+  position: absolute;
+  font-size: 11px;
+  color: var(--gold);
+  font-family: var(--font-serif);
+}
+.coin-item.tossing {
+  animation: coinFlip 0.6s cubic-bezier(0.2, 0.8, 0.3, 1.2) infinite;
+}
+@keyframes coinFlip {
+  0% { transform: translateY(0) rotateX(0) scale(1); }
+  50% { transform: translateY(-36px) rotateX(360deg) scale(1.15); }
+  100% { transform: translateY(0) rotateX(720deg) scale(1); }
+}
+
+.hexagram-visualizer {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 8px;
+  max-width: 320px;
+  margin: 16px auto;
+}
+.yao-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border: var(--hair-soft);
+  background: var(--bg-card);
+  font-size: 13px;
+}
+.yao-bars {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 120px;
+}
+.yao-bar-seg {
+  height: 8px;
+  background: var(--gold);
+  border-radius: 1px;
+}
+.yao-bar-seg.full { width: 100%; }
+.yao-bar-seg.half { width: calc(50% - 3px); }
+.yao-row.is-dong {
+  border-color: var(--amber);
+  background: rgba(216, 114, 47, 0.12);
+}
+.yao-row.is-dong .yao-bar-seg {
+  background: var(--amber);
+}
+

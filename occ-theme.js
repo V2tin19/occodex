@@ -1,32 +1,124 @@
-/* ============================================================
-   神秘学手册 · 全局昼夜主题驱动（各课程页共用）
-   - localStorage 键 occ_theme：'day' | 'night'（缺省跟随系统）
-   - 同源页面（含 iframe）通过 storage 事件互相同步
-   - index.html 的主题按钮写同一个键；本页无按钮时自动注入一枚
-   ============================================================ */
-(function(){
-  var KEY='occ_theme';
-  function cur(){try{return localStorage.getItem(KEY)}catch(e){return null}}
-  function sys(){try{return matchMedia('(prefers-color-scheme: light)').matches?'day':'night'}catch(e){return 'night'}}
-  function set(t){try{localStorage.setItem(KEY,t)}catch(e){} apply(t);}
-  function apply(t){
-    document.body.classList.toggle('daylight',t==='day');
-    var b=document.getElementById('occThemeBtn');
-    if(b){b.textContent=t==='day'?'夜':'昼';
-      b.title=t==='day'?'切换到夜间模式':'切换到昼间模式';}
+/**
+ * occ-theme.js — 跨页面统一多主题与 HUD 控制台
+ * 支持三套主题循环切换：'night' (1999) / 'day' (宣纸朱砂) / 'tactical' (司岁战术终端)
+ * 支持 Web Audio 微音效一键静音/开启动态指示
+ */
+(function(global) {
+  'use strict';
+
+  const STORAGE_KEY = 'occ_theme';
+  const THEMES = ['night', 'day', 'tactical'];
+  const THEME_NAMES = {
+    night: '1999 逆流低长调',
+    day: '炎国宣纸与朱砂',
+    tactical: '司岁战术终端'
+  };
+
+  function getTheme() {
+    return localStorage.getItem(STORAGE_KEY) || 'night';
   }
-  apply(cur()||sys());
-  window.addEventListener('storage',function(e){
-    if(e.key===KEY)apply(cur()||sys());
-  });
-  document.addEventListener('DOMContentLoaded',function(){
-    if(document.getElementById('occThemeBtn'))return;
-    var b=document.createElement('button');
-    b.id='occThemeBtn';b.className='occ-theme-btn';
-    b.addEventListener('click',function(){
-      set(document.body.classList.contains('daylight')?'night':'day');
+
+  function applyTheme(theme) {
+    if (!THEMES.includes(theme)) theme = 'night';
+    const body = document.body;
+    if (!body) return;
+
+    body.classList.remove('daylight', 'tactical');
+    if (theme === 'day') {
+      body.classList.add('daylight');
+    } else if (theme === 'tactical') {
+      body.classList.add('tactical');
+    }
+
+    localStorage.setItem(STORAGE_KEY, theme);
+    updateHudUI(theme);
+
+    // 触发全局主题变化事件供图表等重绘
+    window.dispatchEvent(new CustomEvent('occ-theme-change', { detail: { theme } }));
+  }
+
+  function cycleTheme() {
+    const cur = getTheme();
+    const idx = THEMES.indexOf(cur);
+    const next = THEMES[(idx + 1) % THEMES.length];
+    applyTheme(next);
+    if (window.MysticAudio) {
+      window.MysticAudio.click();
+    }
+    return next;
+  }
+
+  function updateHudUI(curTheme) {
+    const themeBtn = document.getElementById('occThemeBtn');
+    if (themeBtn) {
+      themeBtn.title = '当前主题：' + THEME_NAMES[curTheme] + ' (点击切换)';
+      if (curTheme === 'day') {
+        themeBtn.innerHTML = '☀';
+      } else if (curTheme === 'tactical') {
+        themeBtn.innerHTML = '⬡';
+      } else {
+        themeBtn.innerHTML = '☽';
+      }
+    }
+
+    const soundBtn = document.getElementById('occSoundBtn');
+    if (soundBtn && window.MysticAudio) {
+      const isMuted = window.MysticAudio.isMuted();
+      soundBtn.title = isMuted ? '音效已静音 (点击开启)' : '微质感音效开启中 (点击静音)';
+      soundBtn.innerHTML = isMuted ? '🔇' : '🔔';
+      soundBtn.classList.toggle('active', !isMuted);
+    }
+  }
+
+  function initHudBar() {
+    if (document.querySelector('.occ-hud-bar')) return;
+
+    const bar = document.createElement('div');
+    bar.className = 'occ-hud-bar';
+    bar.innerHTML = `
+      <button class="occ-hud-btn" id="occThemeBtn" title="切换视觉主题">☽</button>
+      <div class="occ-hud-sep"></div>
+      <button class="occ-hud-btn active" id="occSoundBtn" title="音效开关">🔔</button>
+    `;
+    document.body.appendChild(bar);
+
+    document.getElementById('occThemeBtn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      cycleTheme();
     });
-    document.body.appendChild(b);
-    apply(cur()||sys());
-  });
-})();
+
+    document.getElementById('occSoundBtn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (window.MysticAudio) {
+        const muted = window.MysticAudio.toggleMute();
+        if (!muted) {
+          window.MysticAudio.bell();
+        }
+        updateHudUI(getTheme());
+      }
+    });
+
+    updateHudUI(getTheme());
+  }
+
+  // 初始化
+  function init() {
+    const cur = getTheme();
+    applyTheme(cur);
+    initHudBar();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  global.OccTheme = {
+    getTheme,
+    applyTheme,
+    cycleTheme,
+    THEMES,
+    THEME_NAMES
+  };
+})(typeof window !== 'undefined' ? window : globalThis);
