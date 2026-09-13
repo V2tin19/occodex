@@ -1,0 +1,35 @@
+/* ============================================================
+   神秘学手册 · 全局统一昼夜主题（跨课程共享）
+   夜 = 9味低长调（各课程默认）  昼 = 宣纸与墨（朱砂强调）
+   由 occ-theme.js 驱动：localStorage 键 occ_theme，body.daylight 切换。
+   ============================================================ */
+
+/* —— 昼间模式：覆盖各课程页面的共享变量名 —— */
+body.daylight{
+  --bg:#f3eee3;            /* 宣纸米白 */
+  --paper:#3b3731;         /* 标题 浓墨 */
+  --text:#3e382e;          /* 正文 墨阶一 */
+  --text2:#5c5545;         /* 墨阶二 */
+  --text3:#867d67;         /* 墨阶三 */
+  --gold:#9e4030;          /* 主强调 朱砂 */
+  --gold-dim:#8a6d1d;      /* 赭金 */
+  --gold-rgb:158,64,48;
+  --hair:1px solid rgba(158,64,48,.25);
+  --hair-soft:1px solid rgba(59,55,49,.14);
+  --nav-bg:rgba(243,238,227,.9);
+  --card-grad:linear-gradient(180deg,rgba(255,252,244,.65),rgba(247,241,227,.4));
+}
+body.daylight ::selection{background:rgba(158,64,48,.18)}
+body.daylight .note.tip{border-left-color:rgba(63,122,67,.7)}
+body.daylight .note.tip .tag{color:#33632f}
+body.daylight .note.warn{border-left-color:rgba(158,64,48,.7)}
+body.daylight .ok,body.daylight .pass{color:#33632f}
+body.daylight .no,body.daylight .fail{color:#8f3b2c}
+
+/* —— 昼夜切换按钮（与 index.html .theme-btn 同款） —— */
+.occ-theme-btn{position:fixed;top:14px;right:16px;z-index:11;width:44px;height:44px;
+border-radius:50%;border:1px solid rgba(var(--gold-rgb),.4);background:var(--bg);
+color:var(--gold);font-size:14px;cursor:pointer;letter-spacing:.1em;
+box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.occ-theme-btn:hover{border-color:var(--gold)}
+@media (max-width:640px){.occ-theme-btn{top:10px;right:10px;width:40px;height:40px}}

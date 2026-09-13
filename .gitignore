@@ -1,0 +1,17 @@
+_chrprof/
+_edgeprof/
+_edgeprof2/
+_edgeprof3/
+.workbuddy/
+_dump2.html
+_mini.html
+_out.txt
+_test.html
+_test2.html
+_verify.js
+_verify2.js
+_scan.js
+_count.js
+_def.js
+*.tmp
+.DS_Store

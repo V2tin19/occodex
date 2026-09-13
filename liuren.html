@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>六壬学堂 · 大六壬基础 | LIU-REN ACADEMY</title>
+<link rel="stylesheet" href="occ-theme.css">
+<style>
+:root{--bg:#14161b;--paper:#e8e2d0;--text:#d8d2c0;--text2:#a8a294;--text3:#8a8494;
+--gold:#c9a227;--gold-dim:#8d7420;--gold-rgb:201,162,39;
+--hair:1px solid rgba(201,162,39,.2);--hair-soft:1px solid rgba(255,255,255,.07);
+--nav-bg:rgba(20,22,27,.92);--card-grad:linear-gradient(180deg,rgba(27,30,37,.5),rgba(20,22,27,.35))}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"Segoe UI",sans-serif;padding:24px;line-height:1.8;font-size:14px;letter-spacing:.02em}
+h2{font-family:Georgia,serif;color:var(--gold);font-size:15px;letter-spacing:.25em;margin:26px 0 10px}
+p{font-size:13.5px;max-width:900px}
+.ch-head{padding:60px 0 30px;border-bottom:var(--hair);margin-bottom:30px}
+.ch-head .kick{font-size:10px;letter-spacing:.4em;color:var(--gold-dim);margin-bottom:16px}
+.ch-head h2{font-family:Georgia,serif;font-size:clamp(26px,5vw,38px);color:var(--paper);letter-spacing:.15em;line-height:1.4}
+.ch-head .sub{margin-top:16px;color:var(--text2);font-size:14px;max-width:640px}
+.ch-head .rule{text-align:center;color:var(--gold);margin-top:24px;font-size:12px}
+.card{border:var(--hair-soft);background:var(--card-grad);padding:26px 24px;margin:22px 0}
+.card h3{font-family:Georgia,serif;font-size:16px;color:var(--paper);letter-spacing:.15em;margin-bottom:14px;padding-bottom:10px;border-bottom:var(--hair-soft)}
+.zh-no{font-size:10px;color:var(--gold-dim);letter-spacing:.3em;margin-right:10px}
+.card p{font-size:14px;margin:8px 0}
+.card strong{color:var(--gold)}
+.note{border:var(--hair-soft);padding:14px 18px;margin:16px 0;font-size:13px;color:var(--text)}
+.note .tag{display:inline-block;font-size:10px;letter-spacing:.3em;padding:3px 10px;margin-bottom:8px}
+.note.tip{border-left:2px solid rgba(111,158,111,.6)}.note.tip .tag{color:#8fbf8f}
+.note.story{border-left:2px solid rgba(var(--gold-rgb),.75)}.note.story .tag{color:var(--gold)}
+.note.story .src-line{display:block;margin-top:10px;font-size:11px;color:var(--text3)}
+.keypoints{border:1px solid rgba(var(--gold-rgb),.3);padding:18px 22px;margin:22px 0;background:rgba(var(--gold-rgb),.04)}
+.kp-title{font-size:11px;letter-spacing:.34em;color:var(--gold);margin-bottom:14px}
+.keypoints li{font-size:13.5px;margin:6px 0;list-style:none;padding-left:18px;position:relative}
+.keypoints li::before{content:"✦";position:absolute;left:0;color:var(--gold);font-size:10px}
+.btn{display:inline-block;border:1px solid rgba(201,162,39,.35);background:transparent;color:var(--gold);
+font-size:13px;letter-spacing:.3em;padding:13px 30px;cursor:pointer;text-decoration:none}
+.btn:hover{color:var(--paper)}
+.btn-row{margin-top:22px;display:flex;gap:14px;flex-wrap:wrap}
+.topnav{position:sticky;top:0;z-index:7;background:var(--nav-bg);backdrop-filter:blur(8px);
+border-bottom:1px solid rgba(201,162,39,.15);display:flex;align-items:stretch}
+.topnav .wrap{flex:1 1 auto;min-width:0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:0 10px}
+.topnav a{flex:none;padding:15px 15px;font-size:12.5px;letter-spacing:.2em;color:var(--text2);
+text-decoration:none;border-bottom:1px solid transparent;white-space:nowrap}
+.topnav a:hover{color:var(--text)}
+.topnav a.on{color:var(--gold);border-bottom-color:var(--gold)}
+section{display:none}section.on{display:block}
+iframe{width:100%;border:var(--hair-soft);background:var(--bg);min-height:600px;border-radius:0}
+.back-link{font-size:11px;color:var(--gold);text-decoration:none;letter-spacing:.2em}
+</style>
+</head>
+<body>
+
+<nav class="topnav"><div class="wrap">
+<a href="#ch1" class="on">第壹章 · 源流</a>
+<a href="#ch2">第贰章 · 起课基础</a>
+<a href="#ch3">第叁章 · 四课</a>
+<a href="#ch4">第肆章 · 三传</a>
+<a href="#ch5">第伍章 · 天将</a>
+<a href="#ch6">第陆章 · 课体</a>
+<a href="#ch7">第柒章 · 毕法</a>
+<a href="#ch8">第捌章 · 占类</a>
+<a href="#keti">课例馆</a>
+<a href="#bifa">毕法卡片</a>
+<a href="#daily">每日一占</a>
+<a href="/index.html#portal" class="back-link">← 手册</a>
+</div></nav>
+
+<section id="ch1" class="on">
+<div class="wrap" style="max-width:860px;margin:0 auto;padding:0 20px">
+<div class="ch-head">
+<div class="kick">CAPUT · I · 源流与三式定位</div>
+<h2>三式之中，六壬问人事</h2>
+<p class="sub">太乙测天、奇门测地、六壬测人——古称"三式"。六壬专攻人事：婚姻、求财、官司、出行……凡是人有疑问的事，都是六壬的领地。</p>
+<div class="rule">✦</div>
+</div>
+
+<div class="card">
+<h3>壹 · 一　什么是六壬</h3>
+<p>六壬与八字同属术数，但解决的问题不同：<strong>八字回答"这个人的一生怎么样"</strong>（静态），六壬回答"<strong>此时此刻这件事会怎样</strong>"（动态）。你问的是一事一占——比如"这次出行顺利吗？""这笔买卖能不能做？"——六壬取你发问的那一刻，起一课来看局面的吉凶与走向。</p>
+<p>六壬分大小：<strong>大六壬</strong>是三式之一，体系庞大（720 课式 × 12 天将 × 各类神煞），本课程教的就是大六壬。<strong>小六壬</strong>（马前课）是它的极简版，只有六宫，已在手册另有体验课。</p>
+</div>
+
+<div class="card">
+<h3>壹 · 二　源流与经典</h3>
+<p>六壬源流极古，相传为黄帝所创（《六壬粹言》："六壬受于黄帝，而太公传之"）。宋代大盛，明清著述极丰。核心经典：</p>
+<ul>
+<li><strong>《六壬断案》</strong>（宋·邵彦和）——数百则真实占例，六壬版的"医案集"。本课程以它为案例库。</li>
+<li><strong>《大六壬指南》</strong>（明·陈公献）——心印赋 + 指掌赋注释，入门口诀体系最凝练。</li>
+<li><strong>《六壬粹言》</strong>（清·刘赤江）——毕法赋系课例，法则精读。</li>
+<li><strong>《六壬大全》</strong>——御定体系最全，工具书。</li>
+</ul>
+<p>以上底本均已收入本站古籍库，可全文检索。</p>
+</div>
+
+<div class="card">
+<h3>壹 · 三　本课程学什么</h3>
+<p>六壬学堂第壹册教四件事：<strong>① 起课</strong>——从一个时刻推演出一张盘（第贰章）；<strong>② 四课</strong>——盘面上的四层信息（后续章节）；<strong>③ 三传</strong>——事情的发展过程（后续章节）；<strong>④ 天将</strong>——十二神的吉凶属性（后续章节）。学完第壹册，你能从任何时刻起一张六壬盘并读出基本局势。</p>
+</div>
+
+<div class="keypoints">
+<div class="kp-title">本课要点</div>
+<ul>
+<li>三式：太乙测天、奇门测地、六壬测人。</li>
+<li>八字是静态的人生全景，六壬是动态的一事一占。</li>
+<li>第壹册目标：起课 → 四课 → 三传 → 天将。</li>
+</ul>
+</div>
+<div class="btn-row"><a class="btn" href="#ch2"><span>下一章 · 起课基础 →</span></a></div>
+</div>
+</section>
+
+<section id="ch2">
+<div class="wrap" style="max-width:860px;margin:0 auto;padding:0 20px">
+<div class="ch-head">
+<div class="kick">CAPUT · II · 起课基础</div>
+<h2>月将加时：天地盘</h2>
+<p class="sub">起课的第一步：月将加在时辰之上，展开天地盘。这是六壬一切推演的地基——学完你能从任何时刻展开一张盘。</p>
+<div class="rule">✦</div>
+</div>
+
+<div class="card">
+<h3>贰 · 一　月将：太阳的位置</h3>
+<p>月将不是月支，是<strong>太阳所在的宫位</strong>——每月中气后换将。正月雨水后太阳入亥宫，故正月将 = 亥（登明）。实际起课不需要背——查表或用工具。关键是理解：<strong>月将代表起课那一刻太阳的位置，是"天时"的坐标</strong>。</p>
+</div>
+
+<div class="card">
+<h3>贰 · 二　月将加时：天地盘展开</h3>
+<p>"月将加时"四个字的操作：<strong>把月将这个字，放在地盘时支的位置上</strong>，然后从那里顺时针读出整个天地盘。例如：十一月将 = 寅，问课时辰 = 酉——就把天盘的寅放在地盘的酉上，天盘卯放在地盘戌上……依次顺布十二支。</p>
+<p>天地盘展开后，<strong>每一层都是"天盘字在地盘位上"的叠加</strong>——一个字坐着另一个字，坐的关系就是生克冲合。整个六壬的分析，就是读这些"坐"的关系。</p>
+</div>
+
+<div class="card">
+<h3>贰 · 三　起课推演室</h3>
+<p>选一个月将和一个时辰，展开天地盘，然后推导四课和三传：</p>
+<iframe src="liuren-proto.html?v=3" style="width:100%;min-height:800px;border:1px solid rgba(201,162,39,.2)"></iframe>
+</div>
+
+<div class="keypoints">
+<div class="kp-title">本课要点</div>
+<ul>
+<li>月将 = 太阳所在宫位，每月中气后更换。</li>
+<li>月将加时 = 把月将字放在地盘时支位上，顺布十二支展开天地盘。</li>
+<li>天地盘展开后，每个天盘字"坐"在一个地盘字上——坐的关系就是分析的原料。</li>
+</ul>
+</div>
+<div class="btn-row"><a class="btn" href="#ch1"><span>← 上一章</span></a></div>
+</div>
+</section>
+
+<section id="ch3">
+<div class="wrap" style="max-width:860px;margin:0 auto;padding:0 20px">
+<div class="ch-head">
+<div class="kick">CAPUT · III · 四课</div>
+<h2>四层信息</h2>
+<p class="sub">天地盘展开后，从日干和日支出发，各查两层"上神"——这就是四课。四课是六壬盘面的核心结构，一切分析从这里开始。</p>
+<div class="rule">✦</div>
+</div>
+
+<div class="card">
+<h3>叁 · 一　四课的推导</h3>
+<p>四课的推导规则极其简洁：<b>每一课 = 一个"地盘字" + 它头顶的"天盘字"</b>。从日干和日支出发：</p>
+<ul>
+<li><b>第一课</b>：日干寄宫的地盘位上的天盘字——如日干甲寄在地盘寅上，看寅的天盘字是什么。</li>
+<li><b>第二课</b>：第一课的天盘字作为新的地盘字，再看它头顶的天盘。</li>
+<li><b>第三课</b>：日支的地盘位上的天盘字。</li>
+<li><b>第四课</b>：第三课的天盘字作为新的地盘字，再看它头顶的天盘。</li>
+</ul>
+<p>四课排出来后，习惯从右往左写：第一课在最右，第四课在最左。</p>
+</div>
+
+<div class="card">
+<h3>叁 · 二　十干寄宫表</h3>
+<p>日干不直接对应地盘，而是"寄"在一个固定的地盘位上。十干寄宫口诀：</p>
+<div class="tbl-scroll"><table>
+<thead><tr><th>日干</th><th>寄宫</th><th>记忆</th></tr></thead>
+<tbody>
+<tr><td>甲</td><td>寅</td><td>甲禄在寅</td></tr>
+<tr><td>乙</td><td>辰</td><td>乙寄辰宫</td></tr>
+<tr><td>丙</td><td>巳</td><td>丙禄在巳</td></tr>
+<tr><td>丁</td><td>未</td><td>丁寄未宫</td></tr>
+<tr><td>戊</td><td>巳</td><td>戊禄在巳</td></tr>
+<tr><td>己</td><td>未</td><td>己寄未宫</td></tr>
+<tr><td>庚</td><td>申</td><td>庚禄在申</td></tr>
+<tr><td>辛</td><td>戌</td><td>辛寄戌宫</td></tr>
+<tr><td>壬</td><td>亥</td><td>壬禄在亥</td></tr>
+<tr><td>癸</td><td>丑</td><td>癸寄丑宫</td></tr>
+</tbody>
+</table></div>
+<p class="dim">阳干寄禄位（甲禄寅/丙禄巳/庚禄申/壬禄亥），阴干寄辰戌丑未（乙辰/丁未/己未/辛戌/癸丑）。</p>
+</div>
+
+<div class="card">
+<h3>叁 · 三　完整示例：逐步推演四课</h3>
+<p>以己卯日、寅将、酉时为例（即《六壬断案》韩太守占祈雪同一时刻），逐步推导：</p>
+<p><b>已知</b>：月将=寅，时支=酉，日干=己，日支=卯。</p>
+<p><b>天地盘</b>：月将寅加在地盘酉上。偏移 = 寅(2) - 酉(9) = -7 ≡ +5。所以地盘 X 上的天盘 = X+5。</p>
+<div class="tbl-scroll"><table>
+<thead><tr><th>课</th><th>地盘字</th><th>天盘字（上神）</th><th>来源</th></tr></thead>
+<tbody>
+<tr><td>第一课</td><td>未（己寄宫）</td><td>子</td><td>日干己寄未，看未位天盘=子</td></tr>
+<tr><td>第二课</td><td>子（第一课天盘）</td><td>巳</td><td>子位天盘=巳</td></tr>
+<tr><td>第三课</td><td>卯（日支）</td><td>申</td><td>日支卯，看卯位天盘=申</td></tr>
+<tr><td>第四课</td><td>申（第三课天盘）</td><td>丑</td><td>申位天盘=丑</td></tr>
+</tbody>
+</table></div>
+<p><b>四课结果</b>（从右往左）：未子 / 子巳 / 卯申 / 申丑。</p>
+<p>邵公从此四课中取三传：巳（初传）→ 戌（中传）→ 卯（末传），遁干辛/甲/己，天将玄武/朱雀/白虎——占得大雪七寸，次应。</p>
+</div>
+
+<div class="card">
+<h3>叁 · 四　六亲映射</h3>
+<p>四课的信息不只关乎"事"，也关乎"人"。通过十神六亲映射（第肆册·六亲总纲的框架在六壬中同样适用）：</p>
+<ul>
+<li><b>第一课</b>（日干）：求测人自己。</li>
+<li><b>第二课</b>：日干的阴神——内心、暗中的自己。</li>
+<li><b>第三课</b>：日支——对方、家中、事之起点。</li>
+<li><b>第四课</b>：对方之阴神——对方的情况与暗线。</li>
+</ul>
+<p>四课结构本质上是<b>"我"与"对方"各带表里两层</b>——四层信息互相生克冲合，构成判断的原材料。</p>
+</div>
+
+<div class="note story">
+<span class="tag">引文 · 六壬粹言</span><br>
+四课，名支上阴神，而四课于是备矣。三传初中立法推。四课既布，则三传宜立矣。立传之法有九：一克贼，二比用，三涉害，四遥克，五昴星，六别责，七八专，八伏吟，九返吟。……初传为发端，中传为转移，末传为归结。
+<div class="src-line">——清·刘赤江《六壬粹言》（classics/ 六壬粹言全文可检索）</div>
+</div>
+
+<div class="note tip">
+<span class="tag">推演室复核</span><br>
+打开第贰章的起课推演室（或 liuren-proto.html），选择己卯日、寅将、酉时——四课结果应与本页示例完全一致。如不一致，说明算法有误，请反馈。</div>
+
+<div class="card">
+<h3>叁 · 二</h3>
+<p>四课不是四个独立的格子，而是一个<b>递归链</b>：第一课的天盘字成为第二课的地盘字，第三课的天盘字成为第四课的地盘字。这个"递"的结构正是六壬的信息流——从日主出发，经过两层映射，到达事情的核心。</p>
+<div class="note tip"><span class="tag">记忆法</span><br>四课 = "日干两问 + 日支两问"。前两课问"我是谁、我遇到了什么"，后两课问"事情的目标物处于什么状态"。两组信息合看，就是问事的完整图景。</div>
+</div>
+
+<div class="keypoints">
+<div class="kp-title">本课要点</div>
+<ul>
+<li>四课 = 干两课 + 支两课，每课一个地盘字加一个天盘字。</li>
+<li>递归链：一课天盘字→二课地盘字；三课天盘字→四课地盘字。</li>
+<li>习惯从右往左写（一课最右）。</li>
+</ul>
+</div>
+<div class="btn-row"><a class="btn" href="#ch4"><span>下一章 · 三传 →</span></a></div>
+</div>
+</section>
+
+<section id="ch4">
+<div class="wrap" style="max-width:860px;margin:0 auto;padding:0 20px">
+<div class="ch-head">
+<div class="kick">CAPUT · IV · 三传</div>
+<h2>事情的发展过程</h2>
+<p class="sub">四课是"现状"，三传是"走向"——开始、中间、结果。三传的取法有九种规则（九宗门），按优先级依次判断。</p>
+<div class="rule">✦</div>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">肆 · 一</span>九宗门：三传的取法次序</h3>
+<p>《六壬指南》《六壬大全·课经》把三传的取法总结为九种（九宗门），按优先级依次判断：</p>
+<div class="tbl-scroll"><table>
+<thead><tr><th>门</th><th>名称</th><th>适用条件</th><th>取法</th></tr></thead>
+<tbody>
+<tr><td>一</td><td>贼克</td><td>四课中有且仅有一课"下贼上"或"上克下"</td><td>被克/克他的天盘字为初传</td></tr>
+<tr><td>二</td><td>比用</td><td>多课克，取与日干阴阳俱比者</td><td>比者为初传</td></tr>
+<tr><td>三</td><td>涉害</td><td>俱比或俱不比</td><td>涉地盘归本家受克深处为用</td></tr>
+<tr><td>四</td><td>遥克</td><td>四课无克</td><td>天盘字遥克日干（蒿矢）或日干遥克天盘（弹射）</td></tr>
+<tr><td>五</td><td>昴星</td><td>无遥无克</td><td>阳日取酉位天盘，阴日取酉位地盘</td></tr>
+<tr><td>六</td><td>别责</td><td>四课不全三课备，无遥无克</td><td>取合神为用</td></tr>
+<tr><td>七</td><td>八专</td><td>干支同位，只有两课</td><td>特殊取法</td></tr>
+<tr><td>八</td><td>伏吟</td><td>天地盘相同</td><td>有克取克，无克取刑/日上神</td></tr>
+<tr><td>九</td><td>返吟</td><td>天地盘对冲</td><td>有克取克，无克取驿马</td></tr>
+</tbody>
+</table></div>
+<p>大多数盘走到第一门（贼克）就能定三传。越往后越罕见——但正是这些特殊情况，考验你对整个体系的理解深度。</p>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">肆 · 二</span>中传与末传：递归上神</h3>
+<p>初传定下后，中传和末传的规则极其简洁：<b>中传 = 初传这个天盘字所坐的地盘位上的天盘字</b>。末传同理递推。用术语说就是"取初传之上神为中传，中传之上神为末传"。</p>
+<p>这个递归结构意味着：三传不是三个独立的信号，而是一条<b>因果链</b>——事的起因（初传）→发展（中传）→结果（末传），沿着天盘的位置关系层层推进。</p>
+</div>
+
+<div class="card">
+<h3>肆 · 三　贼克门：重审与元首</h3>
+<p>贼克门分两种：<b>下克上为"贼"（重审课）</b>——卑犯尊，须重复审详；<b>上克下为"克"（元首课）</b>——尊制卑，理顺自然。四课中有下贼上，优先于上克下。</p>
+</div>
+
+<div class="card">
+<h3>肆 · 四　比用门：知一课</h3>
+<p>多个克出现时，取与日干<b>阴阳相同</b>的（阳日取阳支，阴日取阴支），叫"知一"。韩太守占祈雪例用的正是比用门。</p>
+</div>
+
+<div class="card">
+<h3>肆 · 五　涉害门：见机课</h3>
+<p>比用也无法取舍时，用<b>涉害法</b>：让候选字"涉历"地盘回归本家，数它一路上受多少克——受克深者为用。若深浅相同，取<b>四孟（寅申巳亥）</b>位上之神；又同，阳日取干上神、阴日取支上神。（本站起课推演室已按此法实现，并以《毕法》丁卯日"丑加卯、亥加丑，取亥"之例回归验证。）</p>
+</div>
+
+<div class="card">
+<h3>肆 · 六　遥克门：蒿矢与弹射</h3>
+<p>四课完全无克时，退而求<b>遥</b>：<b>蒿矢</b>=天盘字遥克日干（对方伤我）；<b>弹射</b>=日干遥克天盘字（我伤对方）。力轻如蒿箭弹丸。</p>
+</div>
+
+<div class="card">
+<h3>肆 · 七　昴星门</h3>
+<p>无克无遥时，看地盘酉位：<b>阳日取酉上的天盘字发用</b>（仰首），<b>阴日取酉下的地盘字发用</b>（俯首）。</p>
+</div>
+
+<div class="card">
+<h3>肆 · 八</h3>
+<p><b>别责</b>：四课不全三课备，无遥无克——阳日取干合寄宫之上神为初传，阴日取支前三合（三合顺行下一位）上神，中末俱用干上神。<b>八专</b>：干支同位只有两课，无克不取遥——阳日从干上神顺数三神（连本位）、阴日从第四课上神逆数三神为初传，中末俱干上神；三传归一曰独足。<b>伏吟</b>：天地盘相同，有克（神克日干）取为初传，无克刚日取干上神（自任）、柔日取支上神（自信），中末以三刑递推——初传自刑刚日取支上神、柔日取干上神为中传，中传自刑取冲。<b>返吟</b>：天地盘对冲，有克取克为初传，中末递冲、初末同字（无依格）；无克（丁己辛之丑未六日）取驿马发用，中传支上、末传干上（井栏射格）。</p>
+</div>
+
+<div class="card">
+<h3>肆 · 九　天将贵人</h3>
+<p><b>贵人起法</b>：甲戊庚昼丑夜未；乙己昼子夜申；丙丁昼亥夜酉；壬癸昼卯夜巳；辛昼午夜寅。<b>顺逆</b>：贵人天盘字所坐的地盘位在亥~辰区间→顺行；在巳~戌区间→逆行。</p>
+<p>韩太守例复核：己卯日酉时=夜→贵人=申（夜贵）。天盘申坐地盘卯（顺行区）→顺数十二天将，初传巳乘玄武、中传戌乘朱雀、末传卯乘白虎——与断案原批完全吻合。</p>
+</div>
+
+<div class="keypoints">
+<div class="kp-title">本课要点</div>
+<ul>
+<li>九宗门按优先级：贼克 → 比用 → 涉害 → 遥克 → 昴星 → 别责 → 八专 → 伏吟 → 返吟。</li>
+<li>中末传 = 初传上神递推——三传是一条因果链。</li>
+<li>多数盘走第一门（贼克）即可定三传。</li>
+</ul>
+</div>
+<div class="btn-row"><a class="btn" href="#ch2"><span>← 回到起课基础</span></a></div>
+</div>
+</section>
+<section id="ch5">
+<div class="wrap" style="max-width:860px;margin:0 auto;padding:0 20px">
+<div class="ch-head">
+<div class="kick">CAPUT V - 天将十二神</div>
+<h2>十二神的吉凶属性</h2>
+<p class="sub">天将十二神乘在天盘十二支上，给每个字叠加一层"人事属性"——青龙主财喜、白虎主病丧、玄武主盗失。学会读天将，判断就有了温度。</p>
+<div class="rule">&#10022;</div>
+</div>
+
+<div class="card">
+<h3>伍 - 一　十二天将总表</h3>
+<div class="tbl-scroll"><table>
+<thead><tr><th>序</th><th>天将</th><th>五行</th><th>属性</th><th>一句话象意</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>贵人</td><td>土</td><td>吉</td><td>尊贵之神，统驭十二天将；主贵人相助、官长提携</td></tr>
+<tr><td>2</td><td>螣蛇</td><td>火</td><td>凶</td><td>惊疑扰乱，怪异忧惊；主虚惊、怪事、纠缠</td></tr>
+<tr><td>3</td><td>朱雀</td><td>火</td><td>半</td><td>文书信息、口舌刑戮；主文章、词讼、音信</td></tr>
+<tr><td>4</td><td>六合</td><td>木</td><td>吉</td><td>婚姻合和、合作中介；主私门、和合之事</td></tr>
+<tr><td>5</td><td>勾陈</td><td>土</td><td>凶</td><td>迟滞勾连、田土争讼；主狱讼、田土、纠缠</td></tr>
+<tr><td>6</td><td>青龙</td><td>木</td><td>吉</td><td>财帛恩宠；主财富、喜庆、文官恩荣</td></tr>
+<tr><td>7</td><td>天空</td><td>土</td><td>凶</td><td>虚诈不实；主奴婢妄诞、事多虚夸</td></tr>
+<tr><td>8</td><td>白虎</td><td>金</td><td>凶</td><td>道路、疾病、死亡、官灾；凶中最烈</td></tr>
+<tr><td>9</td><td>太常</td><td>土</td><td>吉</td><td>酒食衣裳、武职擢任；主宴会、衣冠、晋升</td></tr>
+<tr><td>10</td><td>玄武</td><td>水</td><td>凶</td><td>盗贼虚耗、失物暗昧；主遗失、欺诈</td></tr>
+<tr><td>11</td><td>太阴</td><td>金</td><td>半</td><td>暗昧不明、蔽匿护佑；主暗中之事、妇人之助</td></tr>
+<tr><td>12</td><td>天后</td><td>水</td><td>吉</td><td>妇人恩泽；主庇护、婚姻之喜</td></tr>
+</tbody>
+</table></div>
+<p class="dim">前五位（贵蛇朱合勾龙）偏吉，后六位（空虎常玄阴后）偏凶——配合旺衰与所乘之支定强弱。</p>
+</div>
+
+<div class="card">
+<h3>伍 - 二　贵人与顺逆</h3>
+<p><b>贵人起法口诀</b>：甲戊庚牛羊（昼丑夜未），乙己鼠猴乡（昼子夜申），丙丁猪鸡位（昼亥夜酉），壬癸兔蛇藏（昼卯夜巳），六辛逢马虎（昼午夜寅）。</p>
+<p><b>顺逆</b>：贵人天盘字所坐的地盘位，在亥至辰区间则顺行十二天将；在巳至戌区间则逆行。</p>
+<p>贵人统驭十二天将如君统臣——贵人得地则诸将听命，贵人失陷则诸将叛乱。这是六壬判断的"权力结构"。</p>
+</div>
+
+<div class="card">
+<h3>伍 - 三　贵人十二宫位</h3>
+<p>贵人自身在不同地盘位上，也有吉凶之分（《大六壬指南》详列）：</p>
+<div class="tbl-scroll"><table>
+<thead><tr><th>地盘位</th><th>居所名</th><th>含义</th></tr></thead>
+<tbody>
+<tr><td>子</td><td>解纷</td><td>必嘱事于童仆</td></tr>
+<tr><td>丑</td><td>升堂</td><td>宜投书于公府</td></tr>
+<tr><td>寅</td><td>凭几</td><td>可谒见于家</td></tr>
+<tr><td>卯</td><td>登车</td><td>宜诉词于路</td></tr>
+<tr><td>巳午</td><td>受贡</td><td>君喜臣欢</td></tr>
+<tr><td>辰戌</td><td>怀怒</td><td>下忧上辱</td></tr>
+<tr><td>申</td><td>移途</td><td>有求干之荣</td></tr>
+<tr><td>未</td><td>列席</td><td>有酒筵之娱</td></tr>
+<tr><td>亥</td><td>还绛宫</td><td>坦然安居</td></tr>
+<tr><td>酉</td><td>入私室</td><td>不惶宁处</td></tr>
+</tbody>
+</table></div>
+<p class="dim">源：《大六壬指南- 天将贵人》（classics/ 可检索）</p>
+</div>
+
+<div class="card">
+<h3>伍 - 四　各神属性详释（引自六壬粹言）</h3>
+<p style="font-size:13.5px">"螣蛇为贱之神，旺相怪异，休囚亦主忧惊。朱雀文书亦主刑戮奸谗口舌。白虎道路又为官灾疾病死亡。勾陈主迟滞勾连之事，囚主讼而旺主生。玄武为盗贼虚耗之神，休失人而旺失物。六合为婚姻合和，妇女得之则为私门。太常主酒食衣裳，武职占之则为擢任。青龙所主财物，文官见之光为恩宠。天后虽为妇人，庶人得之亦主亨佳。天空奴婢妄诞，太阴暗昧不明。"</p>
+<p class="dim">源：清- 刘赤江《六壬粹言》（classics/ 可检索）</p>
+</div>
+
+<div class="keypoints">
+<div class="kp-title">本课要点</div>
+<ul>
+<li>十二天将乘在天盘支上，叠加人事属性。</li>
+<li>贵人起法按昼夜，顺逆看贵人天盘字所坐地盘位的区间。</li>
+<li>贵人得地则诸将听命——权力结构是六壬判断的核心隐喻。</li>
+<li>吉凶参半：天将的吉凶要配合旺衰与所乘之支定强弱。</li>
+</ul>
+</div>
+<div class="btn-row"><a class="btn" href="#ch4"><span>← 上一章</span></a></div>
+</div>
+</section>
+
+
+
+
+<section id="ch6">
+<div class="wrap" style="max-width:860px;margin:0 auto;padding:0 20px">
+<div class="ch-head">
+<div class="kick">CAPUT VI - 课体</div>
+<h2>课体的含义与断法</h2>
+<p class="sub">第肆章讲的是"怎么取三传"（机制），本章讲的是"取出来叫什么、意味着什么"（判断）。同一个名字在两章出现：第肆章是规则，本章是解读。</p>
+<div class="rule">&#10022;</div>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">陆 · 一</span>九宗门课体总览</h3>
+<div class="tbl-scroll"><table>
+<thead><tr><th>课体</th><th>成课条件</th><th>断课要领</th></tr></thead>
+<tbody>
+<tr><td>元首课</td><td>四课仅一课上克下</td><td>尊制卑、顺理成章，事从外来，先起者为主，多主吉顺。占事主明动，得时则速成。</td></tr>
+<tr><td>重审课</td><td>四课仅一课下贼上</td><td>卑犯尊、以下逆上，须"重复审详"——事有隐情，防下谋上、内起之象。吉凶多波折而后定。</td></tr>
+<tr><td>知一课</td><td>两课以上克赋，取与日干阴阳俱比者</td><td>"比者近也"——事在同类、近身之人，择比而用。占人有熟人居间之象。</td></tr>
+<tr><td>涉害课</td><td>俱比俱不比，涉害深者为用</td><td>如涉水过河，受害深者先动——事历艰难、两难取一。占事必经周折，见机而作。</td></tr>
+<tr><td>蒿矢课</td><td>四课无克，神遥克日</td><td>箭无镞、力微而事远——他人暗伤我，祸自外来且轻。</td></tr>
+<tr><td>弹射课</td><td>四课无克，日遥克神</td><td>弹丸射鸟、力更微——我欲图彼而力不足，事难遂。</td></tr>
+<tr><td>昴星课</td><td>无克无遥</td><td>阳日"虎视转蓬"取酉上神，阴日"冬蛇掩目"取酉下神——事隐伏不明，静观其变。</td></tr>
+<tr><td>别责课</td><td>四课不全三课备，无遥无克</td><td>"事有附带之责"——借合神为用，主事假手于人、别有所指。</td></tr>
+<tr><td>八专课</td><td>干支同位只两课</td><td>阴阳不分、专一而昧——事由内部而起，牵涉亲密之人。</td></tr>
+<tr><td>伏吟课</td><td>天地盘相同</td><td>静而不动、呻吟之象——事伏而不发，宜静不宜动；中末以三刑递推，主内变。</td></tr>
+<tr><td>返吟课</td><td>天地盘对冲</td><td>往复颠倒、事必反复——有克取克，无克取驿马，主远动、反复乃成。</td></tr>
+</tbody>
+</table></div>
+<p class="dim">源：《大六壬指南》《六壬粹言》课体门（classics/ 可检索）</p>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">陆 · 二</span>三合五行课体：曲直、炎上、稼穑、从革、润下</h3>
+<p>三传全是同一五行（三合局）时，以该五行的"德性"命名：<b>曲直</b>（寅卯辰，木）、<b>炎上</b>（巳午未，火）、<b>稼穑</b>（辰戌丑未，土）、<b>从革</b>（申酉戌，金）、<b>润下</b>（亥子丑，水）。</p>
+<p>断法：课体五行与所占之事相生则吉、相克则难。如占文书见炎上（火主文明）、占财帛见润下（水主流通）各随类取象。这是"以体定性"的思路——先定课体之气，再配六亲天将细断。</p>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">陆 · 三</span>课体是"定性"，天将是"定象"</h3>
+<p>正确的判断次序：<b>第一步</b>看课体——决定事的总体性质（顺/逆、动/静、明/暗）；<b>第二步</b>看三传六亲——定人事框架；<b>第三步</b>看天将——给每个字着色（吉凶温度）；<b>第四步</b>看旺衰空亡——定力量与时应。</p>
+<p>初学者最容易犯的错误是跳过课体直接抠天将吉凶——如同看病只看脸色不问病程。课体是"病名"，天将是"症状"。</p>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">陆 · 四</span>韩太守占祈雪：课体复盘</h3>
+<p>己卯日寅将酉时——比用知一课：两课克赋（巳克亥？），取与日干（己，阴）俱比的阴支为用，初传巳、中传戌、末传卯。邵公断"雪必大降"：<b>知一课主"事在同类"</b>——雪与己日同类相应，三传生合日干，故应之速而大。</p>
+<p>去课例馆找这一则，对照本章的"定性四步"重新走一遍判断流程。</p>
+</div>
+
+<div class="keypoints">
+<div class="kp-title">本课要点</div>
+<ul>
+<li>第肆章的九宗门是"取法规则"，本章的课体是"判断含义"——一体两面。</li>
+<li>元首顺而重审逆，知一近而涉害艰，蒿矢弹射力微，伏吟静而返吟动。</li>
+<li>三合课体（曲直炎上稼穑从革润下）以气定性，随所占之事取象。</li>
+<li>判断四步：课体定性 → 六亲定框架 → 天将定吉凶 → 旺衰空亡定时。</li>
+</ul>
+</div>
+<div class="btn-row">
+<a class="btn" href="#ch5"><span>&larr; 上一章</span></a>
+<a class="btn" href="#keti"><span>去课例馆复盘 &rarr;</span></a>
+</div>
+</div>
+</section>
+
+
+<section id="ch7">
+<div class="wrap" style="max-width:860px;margin:0 auto;padding:0 20px">
+<div class="ch-head">
+<div class="kick">CAPUT VII - 毕法赋</div>
+<h2>毕法精读：判断口诀逐条拆解</h2>
+<p class="sub">毕法赋是六壬判断口诀的集大成——每一句都是一条可检验的判断规则。本章从《六壬粹言·毕法补谈》与《大六壬指南》引文中选十一诀，逐条拆解：诀文、白话释义、底本实例。</p>
+<div class="rule">&#10022;</div>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">柒 · 一</span>毕法赋其书</h3>
+<p>毕法赋以七言韵语总结六壬判断法则，历代视为"断课总纲"。各家传本条目多寡不一，注释角度也不同。</p>
+<div class="note tip"><span class="tag">边界声明</span>毕法赋的成书与传承，诸家说法不一（有托名凌福之据邵彦和遗法撰者，有以《大六壬大全》所载为正统者）。本课程不采信单一传承说，引文以本地可检索的《六壬粹言·毕法补谈》（清·刘赤江）与《大六壬指南》（明·陈公献）引毕法文字为准。</div>
+<p>学习方法：<b>一诀一验证</b>。每读一诀，到课例馆按占类筛选真实断例，或用起课推演室复现底本实例的课式——口诀只有落在具体课式上才算学会。</p>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">柒 · 二</span>立课诸诀</h3>
+<p><b>诀一：涉害行来本家止，多克便将为用起。</b></p>
+<p>涉害课的取法：候选之神从地盘历数归于本家，一路上受克深者为用。如涉害俱深，古法取孟位（寅申巳亥）上神，孟位无则取仲位。刘赤江特别提醒：近来诸家已不用古法，但原委不可不知。<b>底本实例</b>：丁卯日丑加卯与亥加丑两下克上——丑前行历乙木一重归本家丑位，亥前行历辰戌丑未土五重归本家亥位，五重较一重为深，故取亥为用。</p>
+<p><b>诀二：递生助生举动宜。</b></p>
+<p>三传递互相生生其日干，或支神、天将助干之生，凡事亨通。<b>递生格</b>：六丙日三传申亥寅，初生中、中生末、末生日干，主"隔三隔四有人在中帮扶"，事得始终成就；庚午日三传戌午寅则反序，末生中、中生初。陈公献引毕法："三传递生人举荐，重下生上不重上生下"——惟末传生上传才专益于我，若初传就把气泄了，"益我之气薄矣，所以事久陵夷"。<b>助生格</b>：壬戌日干上申生日干；六癸日三传酉丑巳，昼占贵勾常土神助传之生。</p>
+<p><b>诀三：合中犯煞蜜中砒。</b></p>
+<p>三合课最忌干支上有一字与将神作刑、害、冲——三合本主成合，犯煞则"恩中变冤，合中有破"，如蜜中藏砒。刘赤江引经诀："三合犯煞少人知，惟防好里定相欺，笑里有刀谁会得，事将成合失便宜。"<b>底本实例</b>：乙亥日三传未卯亥，干上子为三刑；丙寅日三传戌午寅，干上丑为六害；甲子日三传辰申子，干上午为六冲。成事须待犯煞被冲去之日；若犯煞值空亡、或占人年命上神克制犯煞，亦可用。</p>
+<p><b>诀四：阳课不足女争夫，阴课不备男竞女；三六相呼朱陈许。</b></p>
+<p>四课阴阳不备（二阴一阳、二阳一阴）主家内争竞——阳课不足女争夫，阴课不备男竞女。反之，三合课干支上有一字与将神六合，名"三六相呼"，谋事必成。<b>底本实例</b>：乙酉日三传申子辰，支上丑与子六合是也。</p>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">柒 · 三</span>凶煞诸诀</h3>
+<p><b>诀五：蛇虎乘遁鬼，至凶至怪。</b></p>
+<p>遁干与凶将同克日干，是毕法体系中至凶之格。<b>虎乘遁鬼</b>：六甲日旬遁庚金乘白虎克甲木——甲子日昼贵逆行见午、甲寅日昼贵顺行见申、甲午日夜贵逆行见子、甲申日夜贵逆行见寅。<b>蛇乘遁鬼</b>：六辛日遁丁乘蛇。刘赤江断语极重："皆至凶至怪，纵空亡不能解救"——庚为虎之本家、丁为蛇之本家，故甲辛二干忌之。<b>普通蛇鬼虎鬼</b>：六己日干上卯夜占虎鬼，病必危、讼必受刑；六戊日干上寅昼占蛇鬼，主惊危。课传年命上有神冲克可解。</p>
+<p><b>诀六：夜贵居命必归田，龙伤太岁返林泉；盗立干支凶可解，鬼临三四祸谁怜。</b></p>
+<p>四句四格：幕贵（夜贵）临年命主休官退职；青龙伤太岁，人君之象被伤，不宜；"盗"谓伤官之气立于干支，有神制之可解；<b>鬼临三四</b>——日鬼加临三四课，讼灾随之。<b>底本实例</b>：辛未日干上酉，三课午、四课巳，鬼临三四。</p>
+<p><b>诀七：无处逃生最不吉，同类相争难为力。</b></p>
+<p>"无处逃生"：课传处处受制、无一字可倚。<b>底本实例</b>：丁亥日昴星三传午戌寅——初传禄神旬空，中传日墓加干，末传虽是长生，奈日上乘蛇夜乘虎，惊危盗窃，无逃生之处。"同类相争"：干支同争一财，如戊辰日三传亥寅巳，两造争一物，财何能有？</p>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">柒 · 四</span>帮扶诸诀</h3>
+<p><b>诀八：末助初传分三种。</b></p>
+<p>末传回过头来作用于初传，有三种格局，吉凶迥异：<b>末助初生</b>——辛酉日三传未子巳，末传助初传生干，主有人暗地帮助以致亨旺，忌空亡，吉凶反复名"成败萧何"；<b>末助初财</b>——甲辰日三传戌午申，末传午火助初传戌土之财，主暗地有人以财相助，占婚姻尤验；<b>末助初鬼</b>——庚午日三传午辰寅，末传表面是财，实则助鬼克干，"如取财必有祸出"，须占人年命上神克制末传方可无害。</p>
+<p><b>诀九：交车相加彼我益。</b></p>
+<p>交车：干上神与支上神交互作合或互为财——我得其财、彼得我财，彼此两益。<b>底本实例</b>：辛丑日，干上子为支之财、支上卯为干之财。交车若带刑冲克害墓脱，仍凶。</p>
+<p><b>诀十：干财支墓旅程苦，病符遇生旧更新；两贵夹拱生涯遂，禄神乘旺莫纷更。</b></p>
+<p>干作财支作墓，贩商失本、在路阻程（甲子日三传辰午申）；病符（旧年太岁）若乘日干长生，主旧事再新（壬申日酉年占干上申）；两贵夹拱干支，仕进遂意；<b>禄神乘旺只宜静守</b>——六乙日干上卯为旺禄，春占又得旺气，若妄动则"变为罗网煞而有凶"。</p>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">柒 · 五</span>用毕法读断案</h3>
+<p>毕法与断案是"法"与"案"的关系——毕法给规则，断案给实证。《六壬断案》中邵彦和的判断思路，大量可还原为毕法条目。如邵公断词中的"干支上各自刑，宾主不投"（四胜杀课例），正是毕法"宾主不投刑在上"一诀的实证；《大六壬指南》亦引"六爻现卦防其克""乐里悲"诸诀入案语。</p>
+<p><b>练习路径</b>：到课例馆任选一则断例 → 先辨课体（第陆章）→ 再找三传与干支的关系对应到本章诸诀 → 最后看天将旺衰定应期。每日一占的抽例也可用同一流程。</p>
+</div>
+
+<div class="keypoints">
+<div class="kp-title">本课要点</div>
+<ul>
+<li>毕法赋是判断口诀集：立课四诀定格局，凶煞诸诀防祸端，帮扶诸诀识助力。</li>
+<li>最重三诀：合中犯煞蜜中砒（好里藏凶）、蛇虎乘遁鬼（纵空亡难解）、末助初鬼（财后有祸）。</li>
+<li>递生重"末生上传"——初传就泄气则事久陵夷。</li>
+<li>一诀一验证：每诀都到课例馆/推演室落一次地，口诀才算学会。</li>
+</ul>
+</div>
+<div class="btn-row">
+<a class="btn" href="#ch6"><span>&larr; 上一章</span></a>
+<a class="btn" href="#keti"><span>去课例馆验证 &rarr;</span></a>
+</div>
+</div>
+</section>
+
+
+<section id="ch8">
+<div class="wrap" style="max-width:860px;margin:0 auto;padding:0 20px">
+<div class="ch-head">
+<div class="kick">CAPUT VIII - 占类分科</div>
+<h2>占类手册：八大类事的读法</h2>
+<p class="sub">同一张课盘，占天时看龙虎、占家宅看干支、占婚姻看财官——占什么事，就换哪副"眼镜"。本章从《六壬粹言·指南汇笺》十六门中选八大门类，每类一诀一断法一实例。</p>
+<div class="rule">&#10022;</div>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">捌 · 一</span>分科占法总纲</h3>
+<p>《六壬粹言》卷九至卷十二"指南汇笺"把占法分为十六门：婚姻、孕产、考试、仕宦、经商、求财、出行、行人、趋谒、捕亡、疾病、公讼、盗贼、阳宅、阴地、晴雨。每门都是一套<b>"类神 + 断法"</b>的组合：类神是这一类事最要紧看的符号（占财看青龙、占宅看支辰），断法是该类事特有的吉凶规则。</p>
+<div class="note tip"><span class="tag">边界声明</span>各派对类神的取舍与权重不尽相同（如占婚有重财官者、有重天后青龙者），本课以《六壬粹言·指南汇笺》为纲。另：本章教的是<b>读课的方法</b>，本课程不提供占卜服务，所有练习只用历史占例与推演室的固定时刻。</div>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">捌 · 二</span>天时（晴雨门）</h3>
+<p><b>诀</b>："天象先占蛟角星，指阴主雨指阳晴。贵登绛宫时雨沛，明堂位上亦同评。""龙入庙晴升天雨，虎出山林有烈风。"</p>
+<p><b>断法</b>：斗罡（辰）加六阳位主晴、加六阴位主雨；贵人登亥（绛宫）子（明堂）二宫有行雨之象。青龙是雨神——乘旺升天（加巳午未申）主大雨，临子丑"游乐江湖"则无雨；白虎是风神——在东方为"出林"主风，乘小吉（未，风伯）愈烈。<b>风雨来方</b>看龙虎所临之宫：六戊日昼占午乘龙加申，雨从西南方来。<b>实例</b>：六丙日子加申，主庚辛日雨——"未下为风起，子下为雨起"，以落宫之支定应期之干支。</p>
+<p class="dim">课例馆对应：筛选"祈雪"——韩太守占祈雪即天时类。</p>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">捌 · 三</span>家宅（阳宅门）</h3>
+<p><b>诀</b>："支来干上宅就人，干来支上人入宅。干支克害人宅伤，互相生旺方有益。"</p>
+<p><b>断法</b>：干为人、支为宅。支来干上（宅来就人）求宅不费力；干来支上（身已入宅）求宅必得。若干加支而被支克墓脱——目下虽得其屋，后总无益（壬辰日亥加辰是入墓，甲午日寅加午是受脱泄）。再看三传与干支的生克关系定人宅盛衰：<b>三传脱支生日干</b>，人多屋少（甲申日三传辰子申）；<b>三传盗干生支</b>，屋广人衰（甲戌日三传寅午戌）；<b>三传生干克支</b>，人旺而无己屋；<b>三传生支克干</b>，卖屋偿债。干支上神互脱，主防窃防偷。</p>
+<p class="dim">课例馆对应：筛选"宅""家宅""宅基""进屋"——邵彦和宅类占例二十余则。</p>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">捌 · 四</span>婚姻（婚姻门）</h3>
+<p><b>诀</b>："夫卜妻姻成不成，财居旬后总无情。""传将生合百年配，干支刑克朝夕背。"</p>
+<p><b>断法</b>：财为妻、官鬼为夫，财官值空亡（旬后、天中）则无情。成不成看三组关系：<b>传将与干支生合</b>（长生、六合）则吉——甲申日干上巳为支之长生、支上亥为干之长生，互得长生故吉；<b>干支刑克</b>则凶——丙寅伏吟干支相刑、丁丑日干支互害；<b>男女年命上神</b>的生合刑克是最后一票：辛丑日占，男行年在午上乘未、女命行年在巳上乘旺，午未又六合，则吉；另一例行年上神作三刑且相克，则凶。<b>应期</b>："末传合处验成期"——末传为亥，亥与寅合，主寅日成事。递生干神主有人从中吹嘘成其事。</p>
+<p class="dim">课例馆对应：筛选"婚""成亲"。</p>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">捌 · 五</span>求财（求财门 + 经商门）</h3>
+<p><b>诀</b>："求财最要视青龙，旺相相生在六宫。斯神入庙喜愈喜，折足逢时财帛空。""求财又要视三财，命上干支仔细排。"</p>
+<p><b>断法</b>：青龙为财帛之神，看它是否乘旺相气、与日辰相生、入课传年命"六宫"——"入庙"（入课）喜愈喜；"折足"（龙乘申酉发用）则财帛空。第二层看<b>三财</b>：干财、支财、命财俱备最吉（戊申日亥命人春占，干上子、支上卯、命上午，木火旺相，大获）。<b>方向</b>："日财临支为外财入内主获财；支财临日主出财。"天将伤财（财乘天后玄武）则财物退。<b>凶格</b>要记三句："传财生鬼最堪忧"、"财乘遁鬼有灾殃"（详见第柒章毕法）、"贪他一米米，失却半年粮"（用多生寡）。<b>应期与数目</b>：成期在末传合处；数目以甲己子午九起数，旺相倍进、休囚减半——古法仅作体例了解，不必实用于今。</p>
+<p class="dim">课例馆对应：筛选"求财""买卖""生意""开店""远方买卖""与罗氏交易"。</p>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">捌 · 六</span>官司（公讼门）</h3>
+<p><b>诀</b>："占讼日辰分主客，课传官鬼断输赢。""子孙制鬼患有救，父母化官祸无伤。"</p>
+<p><b>断法</b>：日为客（先动者）、辰为主（后应者）——支克干客输，干克支主输；初克末主输，末克初客输。课传官鬼定输赢的大局。<b>救神</b>两条路：子孙爻制鬼则"患有救"，父母爻化鬼则"祸无伤"；鬼逢六合则讼解（"冤仇宜解不宜结"），逢六害则讼愈结。<b>贵人履狱</b>反是吉象——贵人临辰（天牢）戌（地狱）为"履狱录囚"，事可解释；贵人临干入宅，必得贵人照扶。<b>凶象</b>：朱雀临辰作鬼（雀入勾乡）必多是非；朱雀勾陈克日"莫兴词"——妄动兴讼等于自投死；二将若生日干，则"勘官昭雪人忻喜"。</p>
+<p class="dim">课例馆对应：筛选"讼""官事""役事"。</p>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">捌 · 七</span>出行与行人（出行门 + 行人门）</h3>
+<p><b>诀</b>："出行先看天干踪，五成为吉七战凶。"</p>
+<p><b>断法</b>：出行重干与道路之神。得<b>斩关</b>（辰戌加干支）而传见寅卯未、子乘贵龙阴合，为"天地独通"——寅为天梁、卯为六合、未为玉女、子为华盖，得此数神庇佑最利出行；得传送、白虎亦吉（二神皆道路之神）。卯为舟楫，忌水神加之——丙午日子加卯发用，舟行不宜。<b>行人</b>看归期：干神归支（不备课）主"利静不利动"；日德发用与支神作六合，主"人自来"；三传顺行的斩关"主居者必行"，三传逆行的斩关"主行人立至"（癸未日三传戌未辰）。会神乘旺入课传，必得相见而成事。</p>
+<p class="dim">课例馆对应：筛选"出行""行人""访僧见否""往宜兴谒县尹杨公"。</p>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">捌 · 八</span>疾病（疾病门）</h3>
+<p><b>诀</b>："占病专视日之禄神，如作闭口，加临绝乡，必绝食而死。"</p>
+<p><b>断法</b>：先看<b>日之禄神</b>——作闭口、加临绝乡为凶中最凶（辛未日三传酉辰亥，酉为日禄，遁癸作闭口加寅之绝乡）。再看墓：元武乘日墓发用为"收魂煞"，两蛇夹墓、虎乘日墓加干支年命，皆主沉疴；"冢墓门开"——岁后五墓之墓神乘蛇虎临卯酉、加年命上，不得生。<b>身入鬼门</b>：六庚日反吟，申（身）加寅（鬼户），占病必危。可救之象：课传年命上有神制鬼、冲克蛇虎者可解；乘生气则"在床而示愈"。<b>血症</b>：虎乘病符克干，年命上又见血忌血支，必有血症。</p>
+<p class="dim">课例馆对应：筛选"病""父病""妻病""子病""自身不安"。疾病类占例涉及生死断语，读者重在理解推演逻辑，占例结论属历史文本，不代表本课程立场。</p>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">捌 · 九</span>失脱（盗贼门 + 捕亡门）</h3>
+<p><b>诀</b>："占盗贼，须看日鬼。"</p>
+<p><b>断法</b>：失脱以<b>元武</b>为盗神、日鬼为贼身。可获的条件：鬼遇刑冲克害；勾陈能制元武（六庚日夜占卯乘勾陈，克戌之元武）；勾神作日德、羊刃、天罡或临日干，俱可获。"本家制贼"——元武本家上神自能制元武。"官克武"——日之官星克元武（六癸日干上辰，克子之元武）。<b>不可获</b>之象：勾陈生元武（捕者受贼贿）；元武反生勾陈同论；财爻空亡或脱气，则物不可追——"如财物坐长生之上，乃不失脱也"。</p>
+<p class="dim">课例馆对应：筛选"失盗""失马""失金耳环""失脱"。</p>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">捌 · 十</span>分科读课的统一流程</h3>
+<p>八大门类读下来，会发现同一套骨架：<b>第一步</b>定类神（这类事的"主角符号"是谁）；<b>第二步</b>看类神与日干支课传的生克旺衰（主角的处境）；<b>第三步</b>套用该门特有格法（如婚姻看年命、求财看三财、讼看主客）；<b>第四步</b>以末传合处、类神落宫定应期。断案 149 则就是这套流程的完整示范——去课例馆任选一则，用四步走一遍，比读十遍口诀有用。</p>
+</div>
+
+<div class="keypoints">
+<div class="kp-title">本课要点</div>
+<ul>
+<li>占类分科 = 类神 + 断法：占什么事，换哪副"眼镜"。</li>
+<li>天时看龙虎贵人，家宅看干支脱墓，婚姻看财官年命，求财看青龙三财。</li>
+<li>官司分主客定输赢，出行认道路之神，疾病先看禄神，失脱以勾陈制元武为纲。</li>
+<li>应期通例：末传合处、类神落宫所值干支。</li>
+<li>边界：本课程只教读法，不提供占卜服务；练习一律用历史占例。</li>
+</ul>
+</div>
+<div class="btn-row">
+<a class="btn" href="#ch7"><span>&larr; 上一章</span></a>
+<a class="btn" href="#keti"><span>去课例馆练习 &rarr;</span></a>
+</div>
+</div>
+</section>
+
+<section id="keti">
+<div class="wrap" style="max-width:860px;margin:0 auto;padding:0 20px">
+<div class="ch-head">
+<div class="kick">课例馆 · 六壬断案</div>
+<h2>邵彦和的真实占例</h2>
+<p class="sub">宋·邵彦和《六壬断案》149 则占例。每则含干支、课式、邵公曰与应验记录——六壬版的"医案集"。点选查看详情。</p>
+<div class="rule">✦</div>
+</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px" id="ktFilter"></div>
+<div id="ktList"></div>
+</div>
+</section>
+
+<section id="bifa">
+<div class="wrap" style="max-width:860px;margin:0 auto;padding:0 20px">
+<div class="ch-head">
+<div class="kick">毕法赋 · 背诵卡片</div>
+<h2>毕法要诀</h2>
+<p class="sub">《毕法赋》是六壬判断法则的总结，每条一卡片。点击翻转看释义。</p>
+<div class="rule">✦</div>
+</div>
+<div id="bfList"></div>
+</div>
+</section>
+
+<script>
+/* ===== 课例馆 ===== */
+fetch('duanan-cases.json').then(r=>r.json()).then(cases=>{
+  const list=document.getElementById('ktList');
+  const filt=document.getElementById('ktFilter');
+  const topics=[...new Set(cases.map(c=>c.topic))];
+  filt.innerHTML='<button data-t="all" style="color:var(--gold)">全部</button>'+topics.map(t=>'<button data-t="'+t+'">'+t+'</button>').join('');
+  function render(t){
+    const show=t==='all'?cases:cases.filter(c=>c.topic===t);
+    list.innerHTML=show.map(c=>
+      '<div class="card" style="margin:10px 0"><h3>'+c.num+'. '+c.person+' 占'+c.topic+'</h3>'
+      +'<p class="dim">'+c.meta+'</p>'
+      +'<p style="font-size:13px;margin-top:8px">'+c.yueyan.slice(0,200)+(c.yueyan.length>200?'……':'')+'</p></div>'
+    ).join('');
+  }
+  filt.addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(b)render(b.dataset.t);});
+  render('all');
+});
+
+/* ===== 毕法卡片 ===== */
+const BIFA=[
+ {rule:'涉害行者深',mean:'多课上克下或下贼上，俱比俱不比，取涉害深者为用。比喻涉水过河，受害深者先动。'},
+ {rule:'蒿矢格',mean:'四课无克，取神遥克日干为用。如箭无镞，力弱而事远。'},
+ {rule:'弹射格',mean:'日干遥克四课之神为用。如弹射鸟，力更微。'},
+ {rule:'元首课',mean:'四课只有一课上克下，以克神为用。上克下，尊制卑，理顺。'},
+ {rule:'重审课',mean:'四课只有一课下贼上，以下贼上者为用。下贼上，卑犯尊，须再审。'},
+ {rule:'知一课',mean:'两课上克下或下贼上，择与日干阴阳俱比者用之。比者近也，事在同类。'},
+ {rule:'涉害课',mean:'俱比俱不比，以涉害深者为用。如涉水过河，受害深者先动。'},
+ {rule:'昴星课',mean:'四课无克又无遥，取昴星（酉）俯仰之位为用。虎视转蓬，各有所指。'}
+];
+const bfList=document.getElementById('bfList');
+BIFA.forEach(b=>{
+  const card=document.createElement('div');
+  card.className='card';card.style.cursor='pointer';
+  card.innerHTML='<p style="color:var(--gold);font-family:Georgia,serif;font-size:15px">'+b.rule+'</p>'
+    +'<p style="font-size:12px;color:var(--text2);display:none;margin-top:8px">'+b.mean+'</p>';
+  card.addEventListener('click',()=>{
+    const p=card.querySelectorAll('p')[1];
+    p.style.display=p.style.display==='none'?'block':'none';
+  });
+  bfList.appendChild(card);
+});
+</script>
+<section id="daily">
+<div class="wrap" style="max-width:860px;margin:0 auto;padding:0 20px">
+<div class="ch-head">
+<div class="kick">每日一占</div>
+<h2>今日你断，明日对邵公</h2>
+<p class="sub">每天从《六壬断案》随机抽一则真实占例。先自己判断，再点开看邵公原批。</p>
+</div>
+<div id="dailyBox"><p style="text-align:center;color:var(--text3)">加载中……</p></div>
+</div>
+</section>
+<script>
+fetch('duanan-cases.json').then(r=>r.json()).then(cases=>{
+  var t=new Date();
+  var seed=t.getFullYear()*372+t.getMonth()*31+t.getDate();
+  var c=cases[seed%cases.length];
+  var sha=c.yueyan.indexOf('\u90B5\u5148\u751F\u66F0');
+  var meta=sha>0?c.yueyan.slice(0,sha):c.meta;
+  var shaYue=sha>=0?c.yueyan.slice(sha):c.yueyan.slice(0,300);
+  var box=document.getElementById('dailyBox');
+  box.innerHTML='<div class="card"><h3>'+c.num+'. '+c.person+' \u5360'+c.topic+'</h3>'
+    +'<p class="dim">'+c.meta+'</p>'
+    +(sha>0?'<div style="margin-top:14px"><p style="color:var(--gold)">'+meta.slice(0,200)+'</p></div>':'')
+    +'<button class="btn small" id="revealBtn" style="margin-top:14px"><span>\u90B5\u516C \u00B7 \u5C55\u5F00\u539F\u6279</span></button>'
+    +'<div id="revealArea" style="display:none;margin-top:14px"><div class="note story">'+shaYue+'</div></div></div>';
+  document.getElementById('revealBtn').addEventListener('click',function(){
+    var a=document.getElementById('revealArea');
+    a.style.display=a.style.display==='none'?'block':'none';
+    this.style.display='none';
+  });
+});
+</script>
+<script src="occ-theme.js"></script>
+<script>
+/* ===== 章节切换器 ===== */
+var SECS=[].slice.call(document.querySelectorAll('section'));
+function lrShow(id){
+  var t=document.getElementById(id)||document.getElementById('ch1');
+  SECS.forEach(function(sec){sec.classList.toggle('on',sec===t);});
+  document.querySelectorAll('.topnav a').forEach(function(a){
+    a.classList.toggle('on',a.getAttribute('href')==='#'+t.id);
+  });
+  window.scrollTo(0,0);
+}
+document.addEventListener('click',function(e){
+  var a=e.target.closest('a[href^="#"]');
+  if(!a)return;
+  var id=a.getAttribute('href').slice(1);
+  if(document.getElementById(id)){e.preventDefault();location.hash=id;}
+});
+window.addEventListener('hashchange',function(){lrShow(location.hash.slice(1));});
+lrShow(location.hash.slice(1)||'ch1');
+</script>
+</body>
+</html>

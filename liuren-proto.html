@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>六壬起课推演器 · 算法原型（LR-M0）</title>
+<link rel="stylesheet" href="occ-theme.css">
+<style>
+:root{--bg:#14161b;--paper:#e8e2d0;--text:#d8d2c0;--text2:#a8a294;--text3:#8a8494;
+--gold:#c9a227;--gold-dim:#8d7420;--gold-rgb:201,162,39;
+--hair:1px solid rgba(201,162,39,.2);--hair-soft:1px solid rgba(255,255,255,.07)}
+body{background:var(--bg);color:var(--text);font-family:"Segoe UI",sans-serif;padding:24px;line-height:1.8;font-size:14px}
+h1{font-family:Georgia,serif;color:var(--paper);letter-spacing:.2em;font-size:22px}
+h1 small{color:var(--gold);font-size:12px;letter-spacing:.4em;display:block;margin-bottom:6px}
+h2{font-family:Georgia,serif;color:var(--gold);font-size:15px;letter-spacing:.25em;margin:26px 0 10px}
+p{font-size:13.5px;max-width:900px}
+select,button{font-size:14px;background:var(--bg);color:var(--text);border:var(--hair-soft);padding:6px 10px;margin-right:8px}
+button{cursor:pointer;color:var(--gold);border:1px solid rgba(var(--gold-rgb),.35)}
+table{border-collapse:collapse;margin:10px 0}
+td,th{border:var(--hair-soft);padding:6px 12px;text-align:center;font-size:13.5px}
+th{color:var(--gold)}
+.big{font-family:Georgia,serif;font-size:26px;color:var(--gold)}
+.dim{color:var(--text3);font-size:11px}
+.ok{color:#8fbf8f}.no{color:#c9705f}
+</style>
+</head>
+<body>
+<h1><small>LR-M0 · 算法原型</small>六壬起课推演器</h1>
+<p>月将加时 → 天地盘 → 四课 → 三传（九宗门）→ 遁干 → 天将</p>
+<div>
+<label>日干支</label><select id="inDay"></select>
+<label>月将</label><select id="inJiang"></select>
+<label>时支</label><select id="inShi"></select>
+<label>昼夜</label><select id="inYY">
+  <option value="auto">自动（酉后·卯前为夜）</option>
+  <option value="day">昼</option>
+  <option value="night">夜</option>
+</select>
+<button id="goBtn">起课</button>
+</div>
+<div id="outMain"></div>
+<h2>回归测试</h2>
+<p>韩太守占祈雪（己卯日寅将酉时）</p>
+<button id="testBtn">运行回归</button>
+<div id="outTest"></div>
+<div id="errBox" class="dim" style="color:#c9705f"></div>
+<script>
+/* 自检：任何脚本错误写入 errBox（DOM 可见，供自动验收读取） */
+window.addEventListener('error',function(e){
+  var b=document.getElementById('errBox');
+  if(b)b.textContent='脚本错误: '+(e.message||'?')+' @'+(e.filename||'').split('/').pop()+':'+(e.lineno||'?');
+});
+</script>
+<script src="js/lib/liuren.js?v=1"></script>
+<script>
+/* UI 层：IIFE 包裹，禁止顶层裸声明（验收清单第 3 条） */
+(function(){
+"use strict";
+const {liuren:lr,GAN,ZHI,GZ60}=window.Liuren;
+/* ================= UI 部分（与算法同一作用域，避免跨块重复声明） ================= */
+const inDay=document.getElementById('inDay'),inJiang=document.getElementById('inJiang'),
+      inShi=document.getElementById('inShi'),inYY=document.getElementById('inYY');
+const JIANG_NOTE={亥:'大雨水后',子:'大雪冬至后',丑:'小寒后',寅:'立春雨水后',卯:'春分后',辰:'谷雨后',巳:'小满后',午:'夏至后',未:'大暑后',申:'处暑后',酉:'秋分后',戌:'霜降后'};
+inDay.innerHTML=GZ60.map(x=>'<option>'+x+'</option>').join('');
+inJiang.innerHTML=ZHI.map(x=>'<option value="'+x+'">'+x+'将 · '+JIANG_NOTE[x]+'</option>').join('');
+inShi.innerHTML=ZHI.map(x=>'<option value="'+x+'">'+x+'时</option>').join('');
+inDay.value='己卯';inJiang.value='寅';inShi.value='酉';
+document.getElementById('goBtn').addEventListener('click',()=>{
+  const r=lr(inDay.value,inJiang.value,inShi.value,inYY.value);
+  const keHtml=r.ke.map((k,i)=>'<div style="border:var(--hair-soft);padding:8px;text-align:center"><div class="dim">'+['一课','二课','三课','四课'][i]+'</div><b style="font-size:22px;color:var(--gold)">'+k.tian+'</b><div class="dim">坐 '+k.di+'</div></div>').join('');
+  document.getElementById('outMain').innerHTML=
+    '<div style="display:flex;gap:8px;margin-top:14px;max-width:560px">'+keHtml+'</div>'
+    +'<h2>三传（'+r.men+'）</h2>'
+    +'<table><tr><th></th><th>初传</th><th>中传</th><th>末传</th></tr>'
+    +'<tr><td class="dim">支</td><td class="big">'+r.chuan[0]+'</td><td class="big">'+r.chuan[1]+'</td><td class="big">'+r.chuan[2]+'</td></tr>'
+    +'<tr><td class="dim">遁干</td><td>'+r.dun[0]||'—'+'</td><td>'+r.dun[1]||'—'+'</td><td>'+r.dun[2]||'—'+'</td></tr>'
+    +'<tr><td class="dim">天将</td><td colspan="3">'+r.tjiang.join(' / ')+'</td></tr></table>'
+    +'<p class="dim" style="margin-top:10px">'+r.note+'</p>'
+    +'<p class="dim">空亡：'+r.kongwang.join('、')+' ｜ 贵人：'+r.gui+'（'+(r.isNight?'夜':'昼')+'贵）坐 '+r.guiSeat+' · '+(r.shun?'顺':'逆')+'行</p>';
+});
+document.getElementById('testBtn').addEventListener('click',()=>{
+  const r=lr('己卯','寅','酉','night');
+  const exp={chuan:['巳','戌','卯'],dun:['辛','甲','己'],tjiang:['玄','朱','虎'],kw:['申','酉']};
+  const rows=[
+    ['三传',JSON.stringify(r.chuan)===JSON.stringify(exp.chuan),JSON.stringify(r.chuan)+' / 应 '+JSON.stringify(exp.chuan)],
+    ['宗门',r.men.indexOf('比用')===0,r.men+' / 应 比用（知一）'],
+    ['遁干',JSON.stringify(r.dun)===JSON.stringify(exp.dun),JSON.stringify(r.dun)+' / 应 '+JSON.stringify(exp.dun)],
+    ['天将',JSON.stringify(r.tjiang)===JSON.stringify(exp.tjiang),JSON.stringify(r.tjiang)+' / 应 '+JSON.stringify(exp.tjiang)],
+    ['空亡',JSON.stringify(r.kongwang)===JSON.stringify(exp.kw),JSON.stringify(r.kongwang)+' / 应 '+JSON.stringify(exp.kw)]
+  ];
+  const all=rows.every(x=>x[1]);
+  document.getElementById('outTest').innerHTML='<div style="border:var(--hair-soft);padding:12px;margin:10px 0">'
+    +rows.map(x=>'<div class="'+(x[1]?'ok':'no')+'">'+(x[1]?'✓':'✗')+' '+x[0]+'：'+x[2]+'</div>').join('')
+    +'<b class="'+(all?'ok':'no')+'">'+(all?'全部通过':'存在失败项')+'</b></div>';
+});
+document.getElementById('goBtn').click();
+document.getElementById('testBtn').click();
+
+})();
+</script>
+<script src="occ-theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>六爻装卦推演器 · 原型（LY2）</title>
+<link rel="stylesheet" href="occ-theme.css">
+<style>
+:root{--bg:#14161b;--paper:#e8e2d0;--text:#d8d2c0;--text2:#a8a294;--text3:#8a8494;
+--gold:#c9a227;--gold-dim:#8d7420;--gold-rgb:201,162,39;
+--hair:1px solid rgba(201,162,39,.2);--hair-soft:1px solid rgba(255,255,255,.07)}
+body{background:var(--bg);color:var(--text);font-family:"Segoe UI",sans-serif;padding:24px;line-height:1.8;font-size:14px}
+h1{font-family:Georgia,serif;color:var(--paper);letter-spacing:.2em;font-size:22px}
+h1 small{color:var(--gold);font-size:12px;letter-spacing:.4em;display:block;margin-bottom:6px}
+h2{font-family:Georgia,serif;color:var(--gold);font-size:15px;letter-spacing:.25em;margin:26px 0 10px}
+p{font-size:13.5px;max-width:900px}
+select,button{font-size:14px;background:var(--bg);color:var(--text);border:var(--hair-soft);padding:6px 10px;margin-right:8px}
+button{cursor:pointer;color:var(--gold);border:1px solid rgba(var(--gold-rgb),.35)}
+table{border-collapse:collapse;margin:10px 0}
+td,th{border:var(--hair-soft);padding:6px 14px;text-align:center;font-size:13.5px}
+th{color:var(--gold)}
+.dim{color:var(--text3);font-size:11px}
+.ok{color:#8fbf8f}.no{color:#c9705f}
+.shi{color:var(--gold);font-weight:bold}
+.yao{font-size:20px;letter-spacing:4px}
+</style>
+</head>
+<body>
+<h1><small>LY2 · 装卦原型</small>六爻起卦推演器</h1>
+<p>三枚铜钱六掷 → 本卦与动爻 → 纳甲装卦（八宫/世应/六亲/六兽）。教学演示用：随机由页面掷出，也可手动指定每一爻。<span class="dim">（不提供占卜服务）</span></p>
+<div id="errBox" class="dim" style="color:#c9705f"></div>
+<div>
+<label>日干支</label><select id="inDay"></select>
+<button id="coinBtn">铜钱起卦（教学随机）</button>
+<span class="dim">或逐爻指定：</span>
+<span id="lineInputs"></span>
+<button id="goBtn">装卦</button>
+</div>
+<div id="outMain"></div>
+<h2>回归测试</h2>
+<p>天风姤装卦（底本浑天甲子章示例）· 乾为天 · 动爻变卦 · 八宫 64 卦覆盖</p>
+<button id="testBtn">运行回归</button>
+<div id="outTest"></div>
+<script src="js/lib/liuyao.js?v=1"></script>
+<script>
+/* UI 层：IIFE 包裹，禁止顶层裸声明（验收清单第 3 条） */
+(function(){
+"use strict";
+window.addEventListener('error',function(e){
+  var b=document.getElementById('errBox');
+  if(b)b.textContent='脚本错误: '+(e.message||'?')+' @'+(e.filename||'').split('/').pop()+':'+(e.lineno||'?');
+});
+const {zhuanggua,fromCoins,GZ60,GAN,ZHI}=window.Liuyao;
+const $=id=>document.getElementById(id);
+
+/* 日干支下拉 */
+const inDay=$('inDay');
+inDay.innerHTML=GZ60.map(x=>'<option>'+x+'</option>').join('');
+inDay.value='甲子';
+
+/* 逐爻输入：六行（显示自上而下，存自下而上），每爻选老少阴阳 */
+const LINE_NAMES=['上爻','五爻','四爻','三爻','二爻','初爻'];
+const OPTS=[[6,'老阴 ▅▅ ▅▅ 动'],[8,'少阴 ▅▅ ▅▅'],[7,'少阳 ▅▅▅▅▅'],[9,'老阳 ▅▅▅▅▅ 动']];
+$('lineInputs').innerHTML=LINE_NAMES.map((n,i)=>
+  '<label class="dim">'+n+'</label><select id="line'+i+'">'+OPTS.map(o=>'<option value="'+o[0]+'">'+o[1]+'</option>').join('')+'</select>'
+).join('<br>');
+for(let i=0;i<6;i++)$('line'+i).value=[8,7,7,7,7,7][i]; /* 默认天风姤 */
+
+function render(r){
+  const rows=[].concat(r.rows).reverse(); /* 显示：上爻在前 */
+  const table='<table><tr><th>六兽</th><th>爻</th><th>纳甲</th><th>六亲</th><th>象</th><th></th></tr>'
+    +rows.map(x=>{
+      const img=x.yinYang===1?(x.dong?'▅▅▅▅▅ ○':'▅▅▅▅▅'):(x.dong?'▅▅ ▅▅ ×':'▅▅ ▅▅');
+      const tag=x.shi?'<span class="shi">世</span>':x.ying?'<span class="shi">应</span>':'';
+      const bian=x.dong?'<span class="dim">→ '+x.bianYinYang+'</span>':'';
+      return '<tr><td>'+(x.beast||'—')+'</td><td>'+LINE_NAMES[5-x.pos]+'</td><td>'+x.gz
+        +(x.kong?'<span class="no"> 空</span>':'')+'</td><td>'+x.liuqin+'</td><td class="yao">'+img+'</td><td>'+tag+bian+'</td></tr>';
+    }).join('')+'</table>';
+  const info='<p>本卦：<b class="shi">'+r.ben.name+'</b>（'+r.ben.gong+'宫，'+r.ben.wx+'）　世在第'+(r.ben.shi+1)+'爻 · 应在第'+(r.ben.ying+1)+'爻</p>'
+    +(r.bian?'<p>变卦：<b class="shi">'+r.bian.name+'</b>（'+r.bian.gong+'宫）</p>':'<p class="dim">无动爻，不变</p>')
+    +(r.kong?'<p class="dim">日空：'+r.kong.join('、')+'</p>':'');
+  $('outMain').innerHTML=info+table;
+}
+$('coinBtn').addEventListener('click',()=>{
+  const toss=[];const names=['交(0背)','单(1背)','拆(2背)','重(3背)'];
+  const detail=[];
+  for(let i=0;i<6;i++){const b=Math.floor(Math.random()*4);toss.push(b);detail.push(names[b]);}
+  const lines=fromCoins(toss);
+  render(zhuanggua(lines,inDay.value));
+  $('outMain').insertAdjacentHTML('afterbegin','<p class="dim">掷币记录（初爻→上爻）：'+detail.join('、')+'</p>');
+});
+$('goBtn').addEventListener('click',()=>{
+  const lines=[0,1,2,3,4,5].map(i=>parseInt($('line'+i).value,10));
+  render(zhuanggua(lines,inDay.value));
+});
+$('testBtn').addEventListener('click',()=>{
+  const a=zhuanggua([8,7,7,7,7,7],'甲子');  /* 天风姤 */
+  const b=zhuanggua([7,7,7,7,7,7],'壬子');  /* 乾为天 */
+  const c=zhuanggua([9,7,7,7,7,7],null);    /* 乾初九动 → 姤 */
+  const rows=[
+    ['姤·纳甲',JSON.stringify(a.rows.map(x=>x.gz))===JSON.stringify(['辛丑','辛亥','辛酉','壬午','壬申','壬戌'])],
+    ['姤·六亲',JSON.stringify(a.rows.map(x=>x.liuqin))===JSON.stringify(['父母','子孙','兄弟','官鬼','兄弟','父母'])],
+    ['姤·世应',a.ben.shi===0&&a.ben.ying===3],
+    ['乾·六兽',JSON.stringify(b.rows.map(x=>x.beast))===JSON.stringify(['玄武','青龙','朱雀','勾陈','螣蛇','白虎'])],
+    ['动爻变卦',c.bian&&c.bian.name==='天风姤'&&c.bian.gong==='乾'],
+    ['八宫64卦',Object.keys(window.Liuyao.NAME64).length===64]
+  ];
+  const all=rows.every(x=>x[1]);
+  $('outTest').innerHTML='<div style="border:var(--hair-soft);padding:12px;margin:10px 0">'
+    +rows.map(x=>'<div class="'+(x[1]?'ok':'no')+'">'+(x[1]?'✓':'✗')+' '+x[0]+'</div>').join('')
+    +'<b class="'+(all?'ok':'no')+'">'+(all?'全部通过':'存在失败项')+'</b></div>';
+});
+$('goBtn').click();
+$('testBtn').click();
+})();
+</script>
+<script src="occ-theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d0e11">
+<title>逆流历书 · ALMANAC OF THE REVERSE HOUR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   「9味」DESIGN TOKENS
+   依据：低长调影调 / 低饱和 80% + 高饱和点缀 10-20% / 暖黄色偏
+   疏密 8:2 / 拼贴 + 酸性细线 / 低材质归纳度 + 油墨噪点
+   ============================================================ */
+:root{
+  /* —— 色：主色深灰 60% / 辅助灰绿灰橙 30% / 重点金橙 10% —— */
+  --ink:      #0d0e11;   /* 主色 深灰 60% */
+  --ink-2:    #14161b;
+  --ink-3:    #1b1e25;
+  --ink-4:    #23262e;
+  --moss:     #4c5648;   /* 辅助 灰绿 30% */
+  --umber:    #6b5942;   /* 辅助 灰橙 30% */
+  --gold:     #c9a227;   /* 重点 金 10% */
+  --gold-dim: #8d7420;
+  --amber:    #d8722f;   /* 重点 橙 10% */
+  --rust:     #8f3b2c;   /* 逆位 / 警示 */
+  --paper:    #e6dfcf;   /* 弹窗 浅黄灰 */
+  --paper-2:  #cfc7b4;
+  --text:     #d7d1c4;   /* 亮灰 */
+  --text-2:   #a49e91;
+  --text-3:   #7a7468;
+
+  /* —— 字：华文中宋 / Didot 系的衬线标题 + 思源黑体正文 —— */
+  --serif: "Playfair Display","Didot","Noto Serif SC","Songti SC","STSong","SimSun",Georgia,serif;
+  --sans:  "Noto Sans SC","Source Han Sans CN","PingFang SC","Microsoft YaHei",-apple-system,sans-serif;
+
+  --hair: 1px solid rgba(201,162,39,.22);
+  --hair-soft: 1px solid rgba(215,209,196,.10);
+  --gut: 22px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--ink);
+  color:var(--text);
+  font-family:var(--sans);
+  font-weight:300;
+  line-height:1.85;
+  letter-spacing:.02em;
+  min-height:100vh;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* —— 材质：油墨噪点 + 暗角（低材质归纳度，带绘画感笔触）—— */
+.grain{position:fixed;inset:0;z-index:9;pointer-events:none;opacity:.055;mix-blend-mode:overlay}
+.vignette{position:fixed;inset:0;z-index:8;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 8%,transparent 30%,rgba(0,0,0,.55) 100%)}
+
+/* —— 背景装饰：细线圈 / 星芒 / 公式涂鸦（8:2 疏密，大量留白）—— */
+.ornament{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.ring{position:absolute;border:1px solid rgba(201,162,39,.10);border-radius:50%}
+.ring.a{width:640px;height:640px;left:50%;top:-190px;margin-left:-320px;animation:spin 150s linear infinite}
+.ring.b{width:430px;height:430px;left:50%;top:-90px;margin-left:-215px;border-style:dashed;
+  border-color:rgba(215,209,196,.055);animation:spin 210s linear infinite reverse}
+.ring.c{width:900px;height:900px;left:50%;bottom:-560px;margin-left:-450px;border-color:rgba(201,162,39,.05)}
+.ring.a::before,.ring.a::after{content:"";position:absolute;font-family:var(--serif);
+  color:rgba(201,162,39,.30);font-size:11px;letter-spacing:.1em}
+.ring.a::before{content:"✦";top:-7px;left:50%;margin-left:-6px}
+.ring.a::after{content:"✧";bottom:-7px;left:50%;margin-left:-6px}
+.formula{position:absolute;font-family:var(--serif);font-style:italic;
+  color:rgba(215,209,196,.055);font-size:13px;letter-spacing:.06em;white-space:nowrap}
+.f1{top:16%;right:-10px;transform:rotate(90deg);transform-origin:right top}
+.f2{bottom:22%;left:-6px;transform:rotate(-90deg);transform-origin:left top}
+.f3{top:52%;right:6px;font-size:11px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ============ LAYOUT ============ */
+.wrap{position:relative;z-index:3;max-width:560px;margin:0 auto;padding:0 var(--gut) 96px}
+
+/* ============ HEADER ============ */
+header{padding:74px 0 46px;text-align:center}
+.eyebrow{font-family:var(--serif);font-size:10px;letter-spacing:.46em;text-transform:uppercase;
+  color:var(--gold-dim);margin-bottom:26px}
+.mark{width:66px;height:66px;margin:0 auto 30px;position:relative}
+.mark svg{width:100%;height:100%;display:block}
+h1{font-family:var(--serif);font-weight:400;font-size:47px;line-height:1.06;
+  letter-spacing:.16em;margin-left:.16em;color:var(--paper)}
+.sub-en{font-family:var(--serif);font-style:italic;font-size:12.5px;letter-spacing:.2em;
+  color:var(--text-3);margin-top:16px}
+.rule{display:flex;align-items:center;gap:12px;margin:30px auto;max-width:210px}
+.rule i{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(201,162,39,.5),transparent)}
+.rule b{font-family:var(--serif);font-size:11px;color:var(--gold-dim);letter-spacing:.1em}
+.lede{font-size:13.5px;line-height:2.1;color:var(--text-2);max-width:400px;margin:0 auto;text-align:justify}
+.lede em{font-style:normal;color:var(--text)}
+
+/* ============ SECTION ============ */
+section{margin-top:74px}
+.sec-head{margin-bottom:26px}
+.sec-num{font-family:var(--serif);font-size:10px;letter-spacing:.4em;color:var(--gold-dim);display:block;margin-bottom:10px}
+.sec-title{font-family:var(--serif);font-size:25px;letter-spacing:.13em;color:var(--paper);font-weight:400}
+.sec-title small{display:block;font-family:var(--serif);font-style:italic;font-size:11px;
+  letter-spacing:.16em;color:var(--text-3);margin-top:8px;font-weight:400}
+.sec-note{font-size:12.5px;color:var(--text-2);margin-top:16px;line-height:2.05;text-align:justify}
+
+/* ============ CARD：拼贴感纸页 ============ */
+.card{position:relative;background:linear-gradient(160deg,var(--ink-3),var(--ink-2));
+  border:var(--hair);padding:26px 22px;margin-top:22px}
+.card::before,.card::after{content:"";position:absolute;width:9px;height:9px;pointer-events:none}
+.card::before{top:-1px;left:-1px;border-top:1px solid var(--gold);border-left:1px solid var(--gold)}
+.card::after{bottom:-1px;right:-1px;border-bottom:1px solid var(--gold);border-right:1px solid var(--gold)}
+.card.plain::before,.card.plain::after{display:none}
+
+/* ============ FORM ============ */
+.field{margin-bottom:20px}
+.field:last-child{margin-bottom:0}
+label{display:block;font-size:10.5px;letter-spacing:.26em;color:var(--text-3);
+  margin-bottom:9px;font-family:var(--serif)}
+.row{display:flex;gap:10px}
+select,input{
+  width:100%;background:var(--ink);color:var(--text);
+  border:var(--hair-soft);border-radius:0;padding:12px 13px;
+  font-family:var(--serif);font-size:16px;letter-spacing:.06em;
+  appearance:none;-webkit-appearance:none;outline:none;transition:border-color .35s}
+select:focus,input:focus{border-color:rgba(201,162,39,.55)}
+select{
+  background-image:linear-gradient(45deg,transparent 50%,var(--gold-dim) 50%),
+                   linear-gradient(135deg,var(--gold-dim) 50%,transparent 50%);
+  background-position:calc(100% - 17px) 50%,calc(100% - 12px) 50%;
+  background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:34px}
+
+/* ============ BUTTON ============ */
+.btn{
+  display:block;width:100%;margin-top:26px;padding:15px;
+  background:transparent;border:1px solid var(--gold);color:var(--gold);
+  font-family:var(--serif);font-size:13px;letter-spacing:.38em;text-indent:.38em;
+  cursor:pointer;position:relative;overflow:hidden;transition:color .5s,letter-spacing .5s}
+.btn span{position:relative;z-index:2}
+.btn::before{content:"";position:absolute;inset:0;background:var(--gold);
+  transform:scaleX(0);transform-origin:left;transition:transform .55s cubic-bezier(.19,1,.22,1);z-index:1}
+.btn:hover{color:var(--ink);letter-spacing:.46em}
+.btn:hover::before{transform:scaleX(1)}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{border-color:rgba(215,209,196,.18);color:var(--text-2);font-size:11.5px;padding:11px;letter-spacing:.3em}
+.btn.ghost::before{background:var(--ink-4)}
+.btn.ghost:hover{color:var(--text);letter-spacing:.34em}
+.btn[disabled]{opacity:.4;cursor:default}
+
+/* ============ 六壬 三宫 ============ */
+.palace{display:flex;gap:12px;margin-top:20px}
+.palace-item{flex:1;text-align:center;padding:18px 6px;border:var(--hair-soft);
+  background:rgba(0,0,0,.22);opacity:0;transform:translateY(14px)}
+.palace-item.in{opacity:1;transform:none;transition:opacity .8s,transform .8s cubic-bezier(.19,1,.22,1)}
+.palace-item.main{border-color:rgba(201,162,39,.5);background:rgba(201,162,39,.045)}
+.palace-item .tag{font-family:var(--serif);font-size:9px;letter-spacing:.28em;color:var(--text-3);display:block}
+.palace-item .glyph{width:38px;height:38px;margin:12px auto 10px}
+.palace-item .glyph svg{width:100%;height:100%}
+.palace-item .nm{font-family:var(--serif);font-size:17px;letter-spacing:.16em;color:var(--paper)}
+.palace-item.main .nm{color:var(--gold)}
+.palace-item .py{font-family:var(--serif);font-size:8.5px;letter-spacing:.22em;color:var(--text-3);margin-top:5px}
+
+.verdict{margin-top:20px;opacity:0;transform:translateY(14px)}
+.verdict.in{opacity:1;transform:none;transition:opacity .9s .3s,transform .9s .3s}
+.verdict .v-line{font-family:var(--serif);font-size:19px;letter-spacing:.1em;color:var(--gold);
+  line-height:1.9;margin-bottom:14px}
+.verdict .v-body{font-size:13px;color:var(--text-2);line-height:2.15;text-align:justify}
+.verdict .v-advice{margin-top:18px;padding:15px 16px;border-left:1px solid var(--gold);
+  background:rgba(201,162,39,.04);font-family:var(--serif);font-size:13.5px;
+  line-height:2;color:var(--text);font-style:italic}
+.meta{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hair-soft);
+  margin-top:20px;border:var(--hair-soft)}
+.meta div{background:var(--ink-2);padding:13px 4px;text-align:center}
+.meta dt{font-family:var(--serif);font-size:8.5px;letter-spacing:.2em;color:var(--text-3);margin-bottom:6px}
+.meta dd{font-family:var(--serif);font-size:13px;color:var(--text);letter-spacing:.06em}
+
+/* ============ 塔罗 ============ */
+.spread{display:flex;gap:11px;margin-top:22px}
+.slot{flex:1;aspect-ratio:100/160;perspective:1200px;cursor:default}
+.slot.pickable{cursor:pointer}
+.flip{position:relative;width:100%;height:100%;transform-style:preserve-3d;
+  transition:transform 1.05s cubic-bezier(.19,1,.22,1)}
+.slot.open .flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  border:1px solid rgba(201,162,39,.24);overflow:hidden}
+.back{background:linear-gradient(150deg,#191b21,#0f1114);display:flex;align-items:center;justify-content:center}
+.back svg{width:64%;height:64%;opacity:.85}
+.front{transform:rotateY(180deg);background:linear-gradient(158deg,#1e2128,#101216);padding:9px 6px;
+  display:flex;flex-direction:column;align-items:center;justify-content:space-between}
+.slot.pos- .front{filter:saturate(.55) brightness(.86)}
+.front .num{font-family:var(--serif);font-size:8px;letter-spacing:.2em;color:var(--gold-dim)}
+.front .art{width:100%;flex:1;display:flex;align-items:center;justify-content:center;padding:3px 0}
+.front .art svg{width:100%;height:100%;max-height:150px}
+.front .nm{font-family:var(--serif);font-size:11.5px;letter-spacing:.1em;color:var(--paper);
+  text-align:center;line-height:1.5}
+.front .rm{font-family:var(--serif);font-size:8px;letter-spacing:.18em;color:var(--text-3);margin-top:2px}
+.slot.pos- .front .nm{color:var(--text-2)}
+.slot.pos- .front{border-color:rgba(143,59,44,.42)}
+.slot.pos- .front .num{color:var(--rust)}
+.slot-label{text-align:center;margin-top:11px}
+.slot-label .l1{font-family:var(--serif);font-size:9.5px;letter-spacing:.3em;color:var(--gold-dim)}
+.slot-label .l2{font-family:var(--serif);font-style:italic;font-size:10px;color:var(--text-3);margin-top:3px}
+.spread-labels{display:flex;gap:11px;margin-top:0}
+.spread-labels>div{flex:1;text-align:center}
+
+.reading{margin-top:22px;opacity:0;transform:translateY(14px)}
+.reading.in{opacity:1;transform:none;transition:opacity .9s,transform .9s}
+.r-card{position:relative;background:var(--ink-3);border:var(--hair-soft);padding:20px 18px;margin-top:12px}
+.r-card.main{border-color:rgba(201,162,39,.34)}
+.r-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.r-head .rn{font-family:var(--serif);font-size:9px;letter-spacing:.3em;color:var(--gold-dim)}
+.r-head .rt{font-family:var(--serif);font-size:17px;letter-spacing:.1em;color:var(--paper)}
+.r-head .rp{font-family:var(--serif);font-size:10px;letter-spacing:.16em;padding:2px 9px;
+  border:1px solid rgba(201,162,39,.4);color:var(--gold)}
+.r-head .rp.rev{border-color:rgba(143,59,44,.6);color:#c07a68}
+.r-head .ra{margin-left:auto;font-family:var(--serif);font-size:9.5px;letter-spacing:.14em;color:var(--text-3)}
+.r-kw{font-family:var(--serif);font-size:14.5px;letter-spacing:.08em;color:var(--gold);
+  line-height:2;margin-bottom:10px}
+.r-card.pos- .r-kw{color:#c07a68}
+.r-text{font-size:12.8px;color:var(--text-2);line-height:2.15;text-align:justify}
+.r-synth{margin-top:20px;padding:20px 18px;border:1px solid rgba(201,162,39,.3);
+  background:linear-gradient(160deg,rgba(201,162,39,.055),transparent)}
+.r-synth h4{font-family:var(--serif);font-size:10px;letter-spacing:.34em;color:var(--gold-dim);
+  font-weight:400;margin-bottom:14px}
+.r-synth p{font-family:var(--serif);font-size:14.5px;line-height:2.2;color:var(--text);
+  font-style:italic;text-align:justify}
+
+/* ============ 揭示动画通用 ============ */
+.reveal{opacity:0;transform:translateY(22px)}
+.reveal.in{opacity:1;transform:none;transition:opacity 1s cubic-bezier(.19,1,.22,1),transform 1s cubic-bezier(.19,1,.22,1)}
+
+/* ============ FOOTER ============ */
+footer{margin-top:88px;padding-top:34px;border-top:var(--hair-soft)}
+.colophon{font-family:var(--serif);font-style:italic;font-size:11px;color:var(--text-3);
+  text-align:center;line-height:2.1;letter-spacing:.06em}
+.disclaimer{margin-top:30px;background:rgba(0,0,0,.3);border:var(--hair-soft);padding:20px 18px}
+.disclaimer h5{font-family:var(--serif);font-size:9.5px;letter-spacing:.3em;color:var(--gold-dim);
+  font-weight:400;margin-bottom:12px}
+.disclaimer p{font-size:11.5px;line-height:2;color:var(--text-3);text-align:justify}
+.disclaimer p+p{margin-top:9px}
+
+.hint{font-size:11.5px;color:var(--text-3);margin-top:14px;line-height:1.95;text-align:center}
+.hint b{color:var(--amber);font-weight:400}
+
+@media (max-width:359px){
+  h1{font-size:38px}
+  .meta{grid-template-columns:repeat(2,1fr)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal,.verdict,.reading,.palace-item{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- 材质层 -->
+<svg class="grain" aria-hidden="true"><filter id="gF"><feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#gF)"/></svg>
+<div class="vignette" aria-hidden="true"></div>
+
+<!-- 装饰层 -->
+<div class="ornament" aria-hidden="true">
+  <div class="ring c"></div><div class="ring b"></div><div class="ring a"></div>
+  <div class="formula f1">p + (n−1)d ·   √1423 ·   23:59:59</div>
+  <div class="formula f2">∂t/∂τ &lt; 0 ·   e<sup>iπ</sup> + 1 = 0</div>
+  <div class="formula f3">1999 · XII · XXXI</div>
+</div>
+
+<div class="wrap">
+
+  <!-- ================= HERO ================= -->
+  <header>
+    <div class="eyebrow">Almanac · No. 1999</div>
+    <div class="mark" aria-hidden="true">
+      <svg viewBox="0 0 100 100" fill="none" stroke="#c9a227" stroke-width="1">
+        <circle cx="50" cy="50" r="47" stroke-opacity=".22"/>
+        <circle cx="50" cy="50" r="35" stroke-opacity=".4" stroke-dasharray="2 5"/>
+        <circle cx="50" cy="50" r="20" stroke-opacity=".65"/>
+        <path d="M50 3 L50 97 M3 50 L97 50" stroke-opacity=".14"/>
+        <path d="M50 22 L68 62 L32 62 Z" stroke-opacity=".8"/>
+        <path d="M50 78 L32 38 L68 38 Z" stroke-opacity=".35"/>
+        <circle cx="50" cy="50" r="3.5" fill="#c9a227" stroke="none"/>
+        <path d="M50 3 l2.6 6 -2.6 6 -2.6 -6 Z" fill="#c9a227" stroke="none"/>
+        <path d="M50 97 l-2.6 -6 2.6 -6 2.6 6 Z" fill="#c9a227" stroke="none" opacity=".5"/>
+      </svg>
+    </div>
+    <h1>逆流历书</h1>
+    <div class="sub-en">Almanac of the Reverse Hour</div>
+    <div class="rule"><i></i><b>✦</b><i></i></div>
+    <p class="lede">
+      1999 年最后一个夜晚，二十三时五十九分。<br>
+      据说那场雨是<em>向上</em>落的——行人与墙壁在雨中剥落溶解，
+      世界退回一个崭新的旧时代。<br><br>
+      此后所有的钟表都走得比正确的时间慢半拍。<br>
+      而<em>慢掉的这半拍</em>，正是我们要读的东西。
+    </p>
+  </header>
+
+  <!-- ================= 一 · 六壬 ================= -->
+  <section id="sec-liuren">
+    <div class="sec-head reveal">
+      <span class="sec-num">CAPUT · I</span>
+      <h2 class="sec-title">六壬 · 马前课
+        <small>The Six Palaces · On the Saddlebow</small>
+      </h2>
+      <p class="sec-note">
+        旧时行军，不及焚香沐浴，只在马背上以指节掐算，故曰「马前课」。
+        取农历月、日、时三相，自大安起正月，月上起日，日上起时，
+        落于六神之一：大安、留连、速喜、赤口、小吉、空亡。
+      </p>
+    </div>
+
+    <div class="card plain reveal">
+      <div class="field">
+        <label for="lMonth">农历 · 月</label>
+        <div class="row">
+          <select id="lMonth"></select>
+          <select id="lDay"></select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="lHour">时辰</label>
+        <select id="lHour"></select>
+      </div>
+      <div class="field" style="margin-top:16px">
+        <button class="btn ghost" id="btnNow"><span>以此时此刻起课</span></button>
+      </div>
+      <button class="btn" id="btnLiu"><span>起 课</span></button>
+      <p class="hint" id="liuHint">默认取当前时刻。若农历有误，请手动校准。</p>
+    </div>
+
+    <div id="liuOut" hidden>
+      <div class="card reveal">
+        <div class="palace" id="palace"></div>
+        <div class="verdict" id="verdict"></div>
+        <dl class="meta" id="liuMeta"></dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 二 · 塔罗 ================= -->
+  <section id="sec-tarot">
+    <div class="sec-head reveal">
+      <span class="sec-num">CAPUT · II</span>
+      <h2 class="sec-title">塔罗 · 三时之镜
+        <small>Three Mirrors · Past · Present · Yet-to-Come</small>
+      </h2>
+      <p class="sec-note">
+        二十二张大阿卡纳，是愚者从出发到归来的全部路程。
+        依次翻开三张：一照已成之事，一照方今之局，一照尚未落定之事。
+        牌有正逆，逆非反义，只是同一束光被转了个面。
+      </p>
+    </div>
+
+    <div class="card plain reveal">
+      <div class="spread" id="spread"></div>
+      <div class="spread-labels">
+        <div><div class="slot-label"><div class="l1">I</div><div class="l2">已成之事</div></div></div>
+        <div><div class="slot-label"><div class="l1">II</div><div class="l2">方今之局</div></div></div>
+        <div><div class="slot-label"><div class="l1">III</div><div class="l2">未落定者</div></div></div>
+      </div>
+      <button class="btn" id="btnShuffle"><span>洗 牌</span></button>
+      <p class="hint" id="tarotHint">洗牌后，依次点开三张。</p>
+    </div>
+
+    <div id="tarotOut" hidden>
+      <div class="reading" id="reading"></div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <p class="colophon">
+      Set in Didot &amp; Noto Serif · Printed on the last day of the century<br>
+      「所有钟表都在倒着走，但我们仍然需要知道现在几点。」
+    </p>
+    <div class="disclaimer">
+      <h5>NOTAM · 关于本书的性质</h5>
+      <p>本页所载六壬、塔罗之推演，皆为<strong style="color:var(--text-2);font-weight:400">象征系统的文学化呈现</strong>，源自民俗与图像志传统，<strong style="color:var(--text-2);font-weight:400">不具备任何预测效力</strong>。</p>
+      <p>它们不预言，只映照——把你已经模糊感知到、却尚未组织成语言的东西，摆成一个可以看的形状。真正的判断权，始终在你自己手上。</p>
+      <p style="color:var(--text-3)">请勿用于医疗、法律、财务、择业等重大决策。若正处在持续的情绪低谷，请优先寻求专业帮助。</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+/* ============================================================
+   工具
+   ============================================================ */
+const $  = (s,r=document)=>r.querySelector(s);
+const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
+const rnd = n => Math.floor(Math.random()*n);
+
+/* SVG 基元（用于牌面几何绘制，全部原创，不引用任何既有塔罗图像） */
+const C=(x,y,r,op)=>`<circle cx="${x}" cy="${y}" r="${r}"${op?` stroke-opacity="${op}"`:''}/>`;
+const L=(a,b,c,d,op)=>`<line x1="${a}" y1="${b}" x2="${c}" y2="${d}"${op?` stroke-opacity="${op}"`:''}/>`;
+const P=(d,op)=>`<path d="${d}"${op?` stroke-opacity="${op}"`:''}/>`;
+const G=(pts,op)=>`<polygon points="${pts}"${op?` stroke-opacity="${op}"`:''}/>`;
+const E=(x,y,rx,ry,op)=>`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}"${op?` stroke-opacity="${op}"`:''}/>`;
+const rays=(cx,cy,r1,r2,n,off=0)=>Array.from({length:n},(_,i)=>{
+  const a=(i/n)*Math.PI*2+off;
+  return L(cx+Math.cos(a)*r1, cy+Math.sin(a)*r1, cx+Math.cos(a)*r2, cy+Math.sin(a)*r2);
+}).join('');
+
+/* ============================================================
+   一 · 小六壬（马前课）
+   起法：大安起正月 → 月上起日 → 日上起时
+   ============================================================ */
+const PALACE = [
+  {name:'大安', py:'DA AN',  en:'Great Peace', wu:'木', dir:'东方', shen:'青龙', hour:'身不动时', num:'五 · 七',
+   line:'事事安泰，宜守不宜进。',
+   body:'所谋者顺，求者得，失物不出近处，行人当归。此为六神之首，其性主静。静则吉，妄动则生变。',
+   advice:'此刻不必催促。让水自己澄清。'},
+  {name:'留连', py:'LIU LIAN', en:'Lingering', wu:'水', dir:'北方', shen:'玄武', hour:'卒未归时', num:'二 · 八 · 十',
+   line:'事多迟滞，往复难成。',
+   body:'所求者缓，所问者迟。旧事未了，新事难起。失物陷于暗处，音信受阻于中途。',
+   advice:'不是被拒绝，是被推迟。别把等待当成判决。'},
+  {name:'速喜', py:'SU XI', en:'Swift Joy', wu:'火', dir:'南方', shen:'朱雀', hour:'人来喜时', num:'三 · 六 · 九',
+   line:'喜事将至，其来也速。',
+   body:'行人即至，音信即来，交易可成，所谋顺遂。然其去也亦速——得之须趁时，迟则无。',
+   advice:'门开了。趁它开着的时候走进去。'},
+  {name:'赤口', py:'CHI KOU', en:'Red Mouth', wu:'金', dir:'西方', shen:'白虎', hour:'官事凶时', num:'四 · 七 · 十',
+   line:'主口舌是非，宜慎其言。',
+   body:'争讼易起，言语招尤。防小人，忌签约，尤忌在气头上做任何决定。',
+   advice:'先闭上嘴，事情会自己缩小一半。'},
+  {name:'小吉', py:'XIAO JI', en:'Small Fortune', wu:'木', dir:'东南', shen:'六合', hour:'人来喜时', num:'一 · 五 · 七',
+   line:'人来报喜，交易可成。',
+   body:'谋事可成，求财有得，行人将至。吉，然非大吉——宜见好即收，勿贪其后。',
+   advice:'已经够好了。别为了更多，把到手的弄丢。'},
+  {name:'空亡', py:'KONG WANG', en:'The Void', wu:'土', dir:'中央', shen:'勾陈', hour:'音信稀时', num:'三 · 六 · 九',
+   line:'诸事落空，音信稀疏。',
+   body:'所谋不成，所问无果，失物难寻。此宫非凶，只是一个「无」字。',
+   advice:'空不是坏消息。空是还没有东西填进去。'}
+];
+
+/* 六神徽记：几何化的六壬符号 */
+const PALACE_GLYPH = [
+  // 大安 · 青龙：安定的方形 + 内部横平
+  `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.6">${G("18,24 82,24 82,76 18,76")}${L(18,42,82,42,.6)}${L(18,58,82,58,.6)}${C(50,50,4,1)}</svg>`,
+  // 留连 · 玄武：回环缠绕
+  `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.6">${C(50,50,34,.55)}${P("M22 62 a26 26 0 1 1 40 -34 a20 20 0 1 0 -32 26",1)}</svg>`,
+  // 速喜 · 朱雀：向上的三羽
+  `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.6">${P("M50 84 L50 26",1)}${P("M50 40 C34 34 26 48 22 62",.75)}${P("M50 40 C66 34 74 48 78 62",.75)}${P("M50 58 C40 56 36 64 34 72",.55)}${P("M50 58 C60 56 64 64 66 72",.55)}</svg>`,
+  // 赤口 · 白虎：锐角 + 断线
+  `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.6">${G("22,76 78,76 50,22")}${L(30,64,70,64,.6)}${L(38,52,62,52,.45)}${L(50,84,50,92,.7)}</svg>`,
+  // 小吉 · 六合：六边形
+  `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.6">${G("50,18 78,34 78,66 50,82 22,66 22,34")}${C(50,50,13,.6)}${C(50,50,4,1)}</svg>`,
+  // 空亡 · 勾陈：虚线圆 + 中心空
+  `<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="4 5">${C(50,50,34)}</svg>`
+];
+
+/* 农历：优先用 ICU 中国历，失败则回落手动 */
+const CN = {零:0,一:1,二:2,三:3,四:4,五:5,六:6,七:7,八:8,九:9,十:10};
+function cn2num(s){
+  if(s==null) return NaN;
+  s = String(s).replace(/[初正]/g,'');
+  if(/^\d+$/.test(s)) return parseInt(s,10);
+  if(s==='十') return 10;
+  if(s==='廿') return 20;
+  const m20 = s.match(/^廿(.)/); if(m20) return 20+(CN[m20[1]]||0);
+  const m30 = s.match(/^三十(.)?/); if(m30) return 30+(m30[1]?(CN[m30[1]]||0):0);
+  const m1  = s.match(/^十(.)/); if(m1) return 10+(CN[m1[1]]||0);
+  const m2  = s.match(/^二十(.)/); if(m2) return 20+(CN[m2[1]]||0);
+  return CN[s[0]] ?? NaN;
+}
+function lunarOf(date){
+  try{
+    const parts = new Intl.DateTimeFormat('zh-CN-u-ca-chinese',
+      {month:'numeric',day:'numeric'}).formatToParts(date);
+    const g = k => (parts.find(p=>p.type===k)||{}).value;
+    const m = cn2num(g('month')), d = cn2num(g('day'));
+    if(m>=1&&m<=12 && d>=1&&d<=30) return {m,d,ok:true};
+  }catch(e){/* noop */}
+  return {m:NaN,d:NaN,ok:false};
+}
+
+const HOURS = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+const HOUR_RANGE = ['23–01','01–03','03–05','05–07','07–09','09–11','11–13','13–15','15–17','17–19','19–21','21–23'];
+function hourIndex(date){
+  const h = date.getHours();
+  return Math.floor(((h+1)%24)/2); // 23:00 起为子时
+}
+
+/* 起课 */
+function cast(m,d,hi){
+  const pM = (m-1)%6;
+  const pD = (pM + d - 1)%6;
+  const pH = (pD + hi)%6;
+  return [pM,pD,pH];
+}
+
+/* 渲染 */
+const selM=$('#lMonth'), selD=$('#lDay'), selH=$('#lHour');
+const CN_M = ['正','二','三','四','五','六','七','八','九','十','冬','腊'];
+CN_M.forEach((v,i)=>selM.add(new Option(`${v}月`,i+1)));
+for(let i=1;i<=30;i++) selD.add(new Option(`${i}日`,i));
+HOURS.forEach((v,i)=>selH.add(new Option(`${v}时 · ${HOUR_RANGE[i]}`,i)));
+
+$('#btnNow').onclick = ()=>{
+  const now = new Date();
+  const lu = lunarOf(now);
+  if(lu.ok){ selM.value=lu.m; selD.value=lu.d;
+    $('#liuHint').innerHTML = `已取当前时刻 · 农历 <b>${CN_M[lu.m-1]}月${lu.d}日</b> · ${HOURS[hourIndex(now)]}时`;
+  }else{
+    $('#liuHint').innerHTML = `未能自动识别农历，请<b>手动</b>选择月日。`;
+  }
+  selH.value = hourIndex(now);
+};
+$('#btnNow').onclick();
+
+function castLiu(silent){
+  const m=+selM.value, d=+selD.value, hi=+selH.value;
+  const [pM,pD,pH] = cast(m,d,hi);
+  const out = $('#liuOut'); out.hidden=false;
+
+  const box = $('#palace'); box.innerHTML='';
+  [['月 落',pM],['日 落',pD],['时 落 · 主',pH]].forEach(([tag,idx],i)=>{
+    const p = PALACE[idx];
+    const el = document.createElement('div');
+    el.className = 'palace-item'+(i===2?' main':'');
+    el.innerHTML = `<span class="tag">${tag}</span>
+      <div class="glyph" style="color:${i===2?'var(--gold)':'var(--text-3)'}">${PALACE_GLYPH[idx]}</div>
+      <div class="nm">${p.name}</div><div class="py">${p.py}</div>`;
+    box.appendChild(el);
+    setTimeout(()=>el.classList.add('in'), 120+i*260);
+  });
+
+  const p = PALACE[pH];
+  $('#verdict').classList.remove('in');
+  $('#verdict').innerHTML =
+    `<div class="v-line">「${p.name}」· ${p.hour}　${p.line}</div>
+     <div class="v-body">${p.body}</div>
+     <div class="v-advice">${p.advice}</div>`;
+
+  $('#liuMeta').innerHTML = [
+    ['六 神',p.shen],['五 行',p.wu],['方 位',p.dir],['应 期',p.num]
+  ].map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join('');
+
+  if(!silent) out.scrollIntoView({behavior:'smooth',block:'nearest'});
+  requestAnimationFrame(()=>{
+    $('#verdict').classList.add('in');
+    $$('#liuOut .reveal').forEach(e=>e.classList.add('in'));
+  });
+}
+$('#btnLiu').onclick = ()=>castLiu(false);
+castLiu(true);
+
+/* ============================================================
+   二 · 塔罗（22 大阿卡纳）
+   牌面为原创几何构图，不采用任何既有塔罗牌图像
+   ============================================================ */
+const INF = "M28 80 C28 64 44 64 50 80 C56 96 72 96 72 80 C72 64 56 64 50 80 C44 96 28 96 28 80";
+
+const TAROT = [
+ {n:0,r:'0',cn:'愚者',en:'The Fool',astro:'风 · 天王星',
+  up:'启程 · 天真 · 未写下的可能',rev:'轻率 · 逃避 · 准备不足',
+  upT:'你正站在还没被命名的那一页之前。它看起来像悬崖，其实只是地图尚未画完。带上你的天真——它是此刻唯一不会骗你的东西。',
+  revT:'自由与轻率是同一种举动的两种写法。区别只在于：你有没有看过脚下。此刻更适合补完准备，而不是纵身。',
+  g:()=>C(74,36,12)+rays(74,36,17,26,8,.4)+P("M4 142 H44 V118 L80 118")+L(58,118,74,86)+C(80,78,9)+L(20,142,20,128,.5)},
+
+ {n:1,r:'I',cn:'魔术师',en:'The Magician',astro:'水星',
+  up:'意志 · 创造 · 工具已备',rev:'欺瞒 · 力未施 · 自我怀疑',
+  upT:'所需的物件已经全在桌面上了，缺的只是那句"开始"。一与万物之间，隔着的不是资源，是意愿。',
+  revT:'你拥有这套工具，却在怀疑自己配不配拿。或者更糟——你在用它们表演。把戏收起来，力量才回来。',
+  g:()=>P(INF)+L(50,18,50,142)+C(50,16,5)+L(24,142,76,142,.45)},
+
+ {n:2,r:'II',cn:'女祭司',en:'The High Priestess',astro:'月亮',
+  up:'直觉 · 静默 · 未言之知',rev:'忽视内在之声 · 秘密外泄',
+  upT:'答案不藏在更多的信息里，它一直挂在你和沉默之间那道帘子上。别问，去听。',
+  revT:'你已经听见了，只是不愿意承认那是答案。又或者，你把本该守着的东西说了出去。',
+  g:()=>L(20,40,20,144)+L(80,40,80,144)+L(11,40,29,40)+L(71,40,89,40)+P("M58 48 A26 26 0 1 0 58 100 A20 20 0 1 1 58 48")+C(50,124,3,1)+C(50,134,2,.6)},
+
+ {n:3,r:'III',cn:'皇后',en:'The Empress',astro:'金星',
+  up:'丰饶 · 孕育 · 感官的满足',rev:'依赖 · 过度庇护 · 创造力停滞',
+  upT:'有些东西只能靠长出来。给它时间、温度和不被打扰的土壤，它自己会找到形状。',
+  revT:'照顾变成了占有，滋养变成了淹没。你在替别人活，或者让别人替你活——两条路都长不出东西。',
+  g:()=>C(50,52,23)+L(50,75,50,134)+L(31,113,69,113)+P("M16 146 Q26 120 16 100",.5)+P("M84 146 Q74 120 84 100",.5)},
+
+ {n:4,r:'IV',cn:'皇帝',en:'The Emperor',astro:'白羊座',
+  up:'秩序 · 结构 · 权威的确立',rev:'专断 · 僵化 · 失控的掌控',
+  upT:'在自由之前先要有边界。你需要的是一套自己立下的规矩，而不是等别人来宣布。',
+  revT:'结构一旦不再服务于人，就变成了一座自己维持自己的建筑。检查一下：你在治理，还是在僵持？',
+  g:()=>G("20,146 80,146 80,66 20,66")+L(20,96,80,96,.55)+P("M22 66 C6 48 8 28 26 22")+P("M78 66 C94 48 92 28 74 22")+C(50,42,8,.7)},
+
+ {n:5,r:'V',cn:'教皇',en:'The Hierophant',astro:'金牛座',
+  up:'传承 · 规范 · 被引领的学习',rev:'教条 · 盲从 · 打破陈规',
+  upT:'有些路已经有人走过了。承认这一点不是示弱，是省力。去找那位愿意把钥匙递给你的人。',
+  revT:'你跪得太久了，忘了问一句"凭什么"。反叛在这里不是缺点——但请确认你反对的是规则，而不是学习本身。',
+  g:()=>G("32,58 68,58 68,42 32,42")+G("26,74 74,74 74,58 26,58")+G("20,90 80,90 80,74 20,74")+L(50,20,50,42)+L(41,29,59,29)+L(36,106,64,146)+L(64,106,36,146)+C(36,104,5)+C(64,104,5)},
+
+ {n:6,r:'VI',cn:'恋人',en:'The Lovers',astro:'双子座',
+  up:'结合 · 抉择 · 价值的确认',rev:'失衡 · 犹疑 · 错位的吸引',
+  upT:'这不是在两个人之间选，是在两个版本的自己之间选。选完，另外那个就会安静下来。',
+  revT:'吸引仍在，但镜子已经照不出同一张脸。犹豫本身就是答案，只是你还不想签收。',
+  g:()=>C(36,78,26)+C(64,78,26)+C(36,78,17,.5)+C(64,78,17,.5)+P("M8 46 Q50 12 92 46",.6)+L(50,12,50,30,.5)},
+
+ {n:7,r:'VII',cn:'战车',en:'The Chariot',astro:'巨蟹座',
+  up:'前进 · 掌控 · 意志的胜出',rev:'方向失控 · 内耗 · 莽撞',
+  upT:'两股力量往相反方向拉，而你握着缰绳。不是要它们停，是要它们同时往一个方向去。',
+  revT:'车还在跑，但没人握缰。或者更累的情况：你在往前冲，只是忘了要去哪儿。',
+  g:()=>P("M14 62 Q50 30 86 62")+G("14,62 86,62 86,106 14,106")+C(28,126,15)+C(72,126,15)+rays(28,126,3,12,6,0)+rays(72,126,3,12,6,0)+G("50,72 55,86 45,86",.7)+G("50,92 55,78 45,78",.7)},
+
+ {n:8,r:'VIII',cn:'力量',en:'Strength',astro:'狮子座',
+  up:'柔韧 · 耐心 · 以温驯服',rev:'自我怀疑 · 暴躁 · 力量错用',
+  upT:'真正的力量是那只按在狮头上的手，不是拳头。按住，而不是打倒——这需要比发火更多的勇气。',
+  revT:'你把力气用在了自己身上。愤怒通常不是太强，而是怕自己不够强。',
+  g:()=>P(INF)+G("26,146 74,146 50,112")+C(50,112,18,.4)+rays(50,112,20,28,8,.3)},
+
+ {n:9,r:'IX',cn:'隐者',en:'The Hermit',astro:'处女座',
+  up:'独处 · 内省 · 提灯自照',rev:'孤僻 · 逃避 · 拒绝被看见',
+  upT:'灯只能照亮脚下三步。够了——你不需要看清整条路，只需要看清下一步落在哪里。',
+  revT:'独处已经变成了藏身。你不是在看路，是在躲开所有可能叫你名字的人。',
+  g:()=>G("50,16 58,36 42,36",.8)+G("50,46 42,26 58,26",.8)+P("M33 68 H67 L60 114 H40 Z")+L(50,52,50,68)+C(50,91,8)+rays(50,91,10,20,6,.35)+L(16,146,24,40,.55)+L(24,40,34,40,.55)},
+
+ {n:10,r:'X',cn:'命运之轮',en:'Wheel of Fortune',astro:'木星',
+  up:'转机 · 循环 · 时机已至',rev:'停滞 · 厄运 · 抗拒变化',
+  upT:'轮子在动了。上去的那一段和下沉的那一段，本来就是同一段。此刻只需做一件事：别抓着不放。',
+  revT:'不是轮子停了，是你死死扳着它。松开手，它才会继续转。',
+  g:()=>C(50,80,40)+C(50,80,27,.6)+C(50,80,6)+rays(50,80,6,40,8,0)+rays(50,80,40,46,16,.25)},
+
+ {n:11,r:'XI',cn:'正义',en:'Justice',astro:'天秤座',
+  up:'公正 · 权衡 · 因果的清算',rev:'偏颇 · 逃避责任 · 不公',
+  upT:'天平不看你是谁，只看你放了什么上去。此刻宜结账——把所有未清的账目一次摆平。',
+  revT:'有一样东西你一直没放上去。天平歪着，而你假装没看见。',
+  g:()=>L(50,24,50,138)+L(12,62,88,62)+C(14,80,11)+C(86,80,11)+L(14,62,14,70,.7)+L(86,62,86,70,.7)+L(30,138,70,138)+L(38,130,62,130,.5)},
+
+ {n:12,r:'XII',cn:'倒吊人',en:'The Hanged Man',astro:'海王星',
+  up:'悬置 · 换位 · 甘愿的等待',rev:'无谓牺牲 · 拖延 · 徒劳',
+  upT:'倒过来看，世界并没有变，只是你终于看懂了它原本的样子。此刻的暂停不是惩罚。',
+  revT:'你已经倒挂很久了，姿势很像牺牲，实际上只是不敢下来。没有人在要求你留在这里。',
+  g:()=>L(10,38,90,38)+L(50,38,50,72)+C(50,84,11)+C(50,84,21,.4)+L(50,95,50,112)+P("M50 112 L28 146")+P("M50 112 L72 146")+rays(50,84,24,31,8,.25)},
+
+ {n:13,r:'XIII',cn:'死神',en:'Death',astro:'天蝎座',
+  up:'终结 · 转化 · 彻底的告别',rev:'停滞于旧事 · 不肯放手',
+  upT:'结束不是失败，是格式转换。有些门必须关上，后面的房间才会有光。',
+  revT:'告别拖成了拖延。你守着已经停止呼吸的东西，管这叫忠诚。',
+  g:()=>P("M22 142 C66 132 84 82 66 32")+P("M66 32 C46 26 32 38 24 58",.8)+C(38,144,9)+C(38,144,4)+P("M8 22 L20 34",.45)+P("M92 22 L80 34",.45)},
+
+ {n:14,r:'XIV',cn:'节制',en:'Temperance',astro:'射手座',
+  up:'调和 · 中道 · 缓慢的融合',rev:'失衡 · 极端 · 急躁',
+  upT:'两杯之间那道水流，是全部的要义。不急着倒完，也不急着喝。慢，在这里就是方法本身。',
+  revT:'你不是在调和，是在两种极端之间来回撞。中间那条路一直都在，只是不够刺激。',
+  g:()=>P("M16 76 H48 L41 120 H23 Z")+P("M52 62 H84 L77 106 H59 Z")+P("M34 72 C48 36 54 36 68 58")+P("M20 132 Q50 122 80 132",.45)+P("M20 142 Q50 132 80 142",.3)},
+
+ {n:15,r:'XV',cn:'恶魔',en:'The Devil',astro:'摩羯座',
+  up:'束缚 · 欲望 · 自设的牢笼',rev:'觉察 · 松绑 · 挣脱',
+  upT:'锁是开的。你只是蹲在里面太久，习惯了那圈阴影的形状。看清它是什么，它就少了一半。',
+  revT:'绳子正在松开。真正的解脱往往很安静——不是挣断，是发现它本来就系得很松。',
+  g:()=>C(50,84,44,.6)+G("50,134 21,48 93,102 7,102 79,48")+C(50,84,5,1)+L(50,18,50,34,.5)+L(50,134,50,146,.5)},
+
+ {n:16,r:'XVI',cn:'塔',en:'The Tower',astro:'火星',
+  up:'崩塌 · 顿悟 · 旧结构瓦解',rev:'延宕的崩解 · 勉强维系',
+  upT:'闪电是一种恩典：它替你拆掉了你一直不敢拆的东西。塌下来的都是已经空了的。',
+  revT:'你知道它要塌，所以每天都在加固。延期的崩塌不会更轻，只会拖得更久。',
+  g:()=>G("35,146 65,146 65,58 35,58")+L(28,58,72,58)+L(35,86,65,86,.5)+P("M60 10 L38 52 H56 L42 84")+C(16,116,4,.6)+C(86,128,5,.6)+C(24,142,3,.5)},
+
+ {n:17,r:'XVII',cn:'星星',en:'The Star',astro:'水瓶座',
+  up:'希望 · 疗愈 · 长远的微光',rev:'信心动摇 · 悲观 · 灵感枯竭',
+  upT:'它不是篝火，是星光——不够暖，但足够远、足够久。把尺度拉长一点，眼下的暗就只是暗。',
+  revT:'星星还在，是你不再抬头了。灵感枯竭通常是疲惫的另一种说法。',
+  g:()=>C(50,72,8)+rays(50,72,12,36,8,0)+rays(6,26,3,9,4,.5)+rays(94,26,3,9,4,.5)+rays(20,110,2,7,4,.45)+rays(82,110,2,7,4,.45)+P("M8 134 Q30 126 50 134 T92 134",.5)+P("M8 146 Q30 138 50 146 T92 146",.35)},
+
+ {n:18,r:'XVIII',cn:'月亮',en:'The Moon',astro:'双鱼座',
+  up:'迷雾 · 潜意识 · 未被证实的不安',rev:'真相浮出 · 错觉消散',
+  upT:'月光会把绳子看成蛇。此刻你的判断没错，只是光照不够。先别下结论，等天亮。',
+  revT:'雾在散。之前让你恐惧的那个东西，会比你想象的小，也比你想象的普通。',
+  g:()=>G("12,146 30,146 30,64 12,64")+G("70,146 88,146 88,64 70,64")+L(12,76,30,76,.5)+L(70,76,88,76,.5)+C(50,42,17)+P("M58 30 A20 20 0 1 0 58 56 A16 16 0 1 1 58 30")+rays(50,42,22,31,8,.3)+P("M34 146 Q50 108 66 146",.55)},
+
+ {n:19,r:'XIX',cn:'太阳',en:'The Sun',astro:'太阳',
+  up:'明朗 · 成就 · 无所遮蔽的喜悦',rev:'暂时的阴翳 · 过度乐观',
+  upT:'不需要解释，也不需要谦虚。此刻你被允许直接高兴，并且说出口。',
+  revT:'太阳还在，只是有云——或者你戴了墨镜。检查一下是哪一个。',
+  g:()=>C(50,78,27)+C(50,78,15,.5)+rays(50,78,33,49,12,0)+rays(50,78,33,43,12,Math.PI/12)+P("M10 140 H90",.4)},
+
+ {n:20,r:'XX',cn:'审判',en:'Judgement',astro:'冥王星',
+  up:'召唤 · 清算 · 旧事的回应',rev:'自我批判 · 错失召唤',
+  upT:'有人在叫你的名字，而且叫了很久。回应它不需要你准备好，只需要你承认听见了。',
+  revT:'你听见了，然后判自己不够格。审判这张牌真正的反面，从来不是别人，是你自己。',
+  g:()=>G("14,92 62,68 62,116")+L(62,74,90,64)+L(62,110,90,122)+L(50,16,50,50)+L(38,30,62,30)+rays(50,80,44,58,10,.22)+P("M6 138 H94",.35)},
+
+ {n:21,r:'XXI',cn:'世界',en:'The World',astro:'土星',
+  up:'完成 · 圆融 · 循环的终点',rev:'未竟 · 收尾不彻底',
+  upT:'这一段可以画句号了。不是结束一切，是这一段结束了。允许自己站定一下，再启程。',
+  revT:'只差最后一点，而那一点正是最难的部分。别在这时候转身去开新的坑。',
+  g:()=>E(50,80,32,45)+E(50,80,25,38,.45)+G("50,56 62,100 38,100",.75)+C(50,80,7,.5)+C(14,26,3.5,.55)+C(86,26,3.5,.55)+C(14,134,3.5,.55)+C(86,134,3.5,.55)}
+];
+
+const BACK_SVG = `<svg viewBox="0 0 100 160" fill="none" stroke="#8d7420" stroke-width=".9">
+  <rect x="7" y="7" width="86" height="146" stroke-opacity=".35"/>
+  <rect x="12" y="12" width="76" height="136" stroke-opacity=".18"/>
+  <circle cx="50" cy="80" r="30" stroke-opacity=".4"/>
+  <circle cx="50" cy="80" r="21" stroke-opacity=".28" stroke-dasharray="2 4"/>
+  <circle cx="50" cy="80" r="9" stroke-opacity=".55"/>
+  <path d="M50 40 L66 92 L34 92 Z" stroke-opacity=".45"/>
+  <path d="M50 120 L34 68 L66 68 Z" stroke-opacity=".22"/>
+  <path d="M50 7 L50 153" stroke-opacity=".1"/>
+  <path d="M7 80 L93 80" stroke-opacity=".1"/>
+  <circle cx="50" cy="80" r="2.6" fill="#c9a227" stroke="none"/>
+</svg>`;
+
+const SPREAD_LABEL = ['已成之事','方今之局','未落定者'];
+const spread=$('#spread'), reading=$('#reading');
+let deck=[], picks=[], opened=0;
+
+function buildSlots(){
+  spread.innerHTML='';
+  for(let i=0;i<3;i++){
+    const s=document.createElement('div');
+    s.className='slot';
+    s.innerHTML=`<div class="flip">
+      <div class="face back">${BACK_SVG}</div>
+      <div class="face front"></div>
+    </div>`;
+    s.onclick=()=>openSlot(s,i);
+    spread.appendChild(s);
+  }
+}
+buildSlots();
+
+$('#btnShuffle').onclick=()=>{
+  deck=[...TAROT.keys()];
+  for(let i=deck.length-1;i>0;i--){const j=rnd(i+1);[deck[i],deck[j]]=[deck[j],deck[i]];}
+  picks=deck.slice(0,3);
+  opened=0;
+  buildSlots();
+  $('#tarotOut').hidden=true; reading.innerHTML='';
+  $$('#spread .slot').forEach((s,i)=>{
+    s.classList.add('pickable');
+    s.style.opacity='0'; s.style.transform='translateY(18px)';
+    setTimeout(()=>{s.style.transition='opacity .7s,transform .7s cubic-bezier(.19,1,.22,1)';
+                    s.style.opacity='1';s.style.transform='none';}, i*110);
+  });
+  $('#tarotHint').innerHTML='牌已洗过。<b>依次点开三张。</b>';
+};
+
+function openSlot(slot,i){
+  if(!picks.length || slot.classList.contains('open')) return;
+  if(i!==opened) return;
+  const card=TAROT[picks[i]];
+  const rev=Math.random()<0.38;                 // 逆位概率
+  picks[i]={n:picks[i],rev};
+  opened++;
+  slot.classList.add('open');
+  slot.classList.remove('pickable');
+  slot.classList.add(rev?'pos-':'pos+');
+  $('.front',slot).innerHTML=
+    `<div class="num">${card.r}</div>
+     <div class="art"><svg viewBox="0 0 100 160" fill="none"
+        stroke="${rev?'#c07a68':'#c9a227'}" stroke-width="1.15"
+        stroke-linecap="round" stroke-linejoin="round"
+        style="transform:${rev?'rotate(180deg)':'none'};transform-origin:50% 50%">${card.g()}</svg></div>
+     <div class="nm">${card.cn}</div>
+     <div class="rm">${rev?'REVERSED':card.en.toUpperCase()}</div>`;
+  if(opened===3) setTimeout(renderReading, 950);
+}
+
+function renderReading(){
+  const [a,b,c]=picks;
+  const mk=(p,idx)=>{
+    const card=TAROT[p.n], rev=p.rev;
+    return `<div class="r-card ${rev?'pos-':''}" ${idx===1?'style="border-color:rgba(201,162,39,.34)"':''}>
+      <div class="r-head">
+        <span class="rn">${['I','II','III'][idx]}</span>
+        <span class="rt">${card.cn}</span>
+        <span class="rp ${rev?'rev':''}">${rev?'逆位':'正位'}</span>
+        <span class="ra">${card.astro}</span>
+      </div>
+      <div class="r-kw">${rev?card.rev:card.up}</div>
+      <div class="r-text">${rev?card.revT:card.upT}</div>
+    </div>`;
+  };
+  const titles=['已成之事','方今之局','未落定者'];
+  const three=picks.map((p,i)=>({...p,card:TAROT[p.n]}));
+  const nRev=three.filter(p=>p.rev).length;
+
+  const synth =
+    nRev===0 ? '三张皆正。这不是说事情会顺利，而是说——<b style="color:var(--gold);font-weight:400">这三股力量朝向一致</b>。此刻的阻力不在外部，只在你是否愿意顺着它走下去。'
+  : nRev===3 ? '三张皆逆。整副牌都在提示同一件事：<b style="color:var(--gold);font-weight:400">方向可能需要重新校准</b>。逆位不是反义，是同一束光被转了个面——先别急着动，先看清楚。'
+  : nRev===1 ? (three[1].rev
+      ? '核心那张逆了。<b style="color:var(--gold);font-weight:400">问题不在过去，也不在未来，就在"现在"这一格</b>——它卡住了。'
+      : '有一处逆位。整体在流动，只有一格在顶着。找到那一格，其余的会自己松开。')
+  : '两张逆位。<b style="color:var(--gold);font-weight:400">这不是僵局，是拉扯</b>——两股力量方向相反，你正夹在中间。需要做一次取舍，而不是等它们自己和解。';
+
+  reading.innerHTML =
+    `<h4 style="font-family:var(--serif);font-size:10px;letter-spacing:.34em;color:var(--gold-dim);font-weight:400;margin-bottom:12px">THE READING</h4>`+
+    three.map((p,i)=>mk(p,i)).join('')+
+    `<div class="r-synth"><h4>合 参</h4><p>${synth}</p></div>`;
+
+  $('#tarotOut').hidden=false;
+  requestAnimationFrame(()=>reading.classList.add('in'));
+  setTimeout(()=>reading.scrollIntoView({behavior:'smooth',block:'nearest'}),120);
+}
+
+/* ============================================================
+   入场：滚动揭示
+   ============================================================ */
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+}),{threshold:.14});
+$$('.reveal').forEach(e=>io.observe(e));
+</script>
+</body>
+</html>
