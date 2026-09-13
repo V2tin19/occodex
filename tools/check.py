@@ -73,7 +73,8 @@ for h in htmls:
 
 # ---- 5. 服务器 ----
 try:
-    code = urllib.request.urlopen('http://127.0.0.1:8399/index.html', timeout=3).status
+    opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+    code = opener.open('http://127.0.0.1:8399/index.html', timeout=3).status
     if code == 200: oks.append('服务器 8399 OK')
     else: fails.append('服务器返回 %d' % code)
 except Exception as e:

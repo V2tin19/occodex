@@ -1,0 +1,248 @@
+<svg class="palm-svg" viewBox="0 0 360 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="palmTitle palmDesc">
+  <title id="palmTitle">小六壬左手掌诀图</title>
+  <desc id="palmDesc">左手掌心朝向观众，标示大安、留连、速喜、赤口、小吉、空亡六宫及顺时针起课轨迹。</desc>
+
+  <style>
+    .palm-svg { width: 100%; height: auto; display: block; }
+    .palm-svg .hand-contour { fill: var(--bg-card, #13161e); stroke: var(--gold, #c9a227); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .palm-svg .hand-crease { fill: none; stroke: var(--gold, #c9a227); stroke-opacity: 0.22; stroke-width: 1; stroke-linecap: round; }
+    .palm-svg .pring { fill: none; stroke: var(--gold, #c9a227); stroke-opacity: 0.35; stroke-width: 1.2; stroke-dasharray: 4 5; }
+    .palm-svg .chev { fill: none; stroke: var(--gold, #c9a227); stroke-opacity: 0.6; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+    .palm-svg .halo { fill: none; stroke: var(--gold, #c9a227); stroke-opacity: 0.45; stroke-width: 1; stroke-dasharray: 2 3; }
+    .palm-svg .nd { stroke-width: 1.2; fill: var(--bg-card, #13161e); fill-opacity: 0.9; stroke: var(--gold, #c9a227); stroke-opacity: 0.6; cursor: pointer; transition: all 0.2s ease; }
+    .palm-svg .nd.ji { stroke: var(--gold, #c9a227); }
+    .palm-svg .nd.xiong { stroke: var(--celadon, #5d8ab5); stroke-opacity: 0.7; }
+    .palm-svg .nm { font-family: "Noto Serif SC", "STSong", serif; font-size: 13.5px; fill: var(--paper, #ece5d6); letter-spacing: 0.05em; font-weight: 500; pointer-events: none; }
+    .palm-svg .wx { font-size: 9.5px; fill: var(--text3, #827b6d); letter-spacing: 0.02em; pointer-events: none; }
+    .palm-svg .fg { font-size: 11px; fill: var(--text3, #827b6d); letter-spacing: 0.08em; }
+    .palm-svg .mk { font-family: "Noto Serif SC", serif; font-size: 11px; fill: var(--gold, #c9a227); font-weight: 600; }
+    .palm-svg .minor { fill: none; stroke: var(--gold, #c9a227); stroke-opacity: 0.11; stroke-width: 0.7; }
+    .palm-svg .wash { fill: var(--gold, #c9a227); fill-opacity: 0.035; }
+    .palm-svg .seal { fill: none; stroke: var(--gold, #c9a227); stroke-opacity: 0.38; stroke-width: 0.8; }
+  </style>
+
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="42%" r="72%">
+      <stop offset="0%" stop-color="#29251d" stop-opacity="0.6"></stop>
+      <stop offset="62%" stop-color="#13161e" stop-opacity="0.18"></stop>
+      <stop offset="100%" stop-color="#090b10" stop-opacity="0"></stop>
+    </radialGradient>
+
+    <linearGradient id="handSheen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6c5630" stop-opacity="0.13"></stop>
+      <stop offset="48%" stop-color="#d4b55b" stop-opacity="0.025"></stop>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.12"></stop>
+    </linearGradient>
+
+    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.2" result="blur"></feGaussianBlur>
+      <feMerge>
+        <feMergeNode in="blur"></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+
+    <filter id="nodeShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="0" stdDeviation="2.4" flood-color="#d6b44c" flood-opacity="0.35"></feDropShadow>
+    </filter>
+  </defs>
+
+  <rect width="360" height="400" fill="#0d1016"></rect>
+  <rect x="8" y="8" width="344" height="384" rx="3" fill="url(#bgGlow)" stroke="#c9a227" stroke-opacity="0.22"></rect>
+  <path class="minor" d="M22 38 H338 M22 362 H338"></path>
+  <path class="minor" d="M28 30 V370 M332 30 V370"></path>
+
+  <text class="mk" x="180" y="25" text-anchor="middle" letter-spacing="0.18em">小 六 壬 · 左 手 掌 诀</text>
+  <text class="fg" x="180" y="39" text-anchor="middle" font-size="8">以掌定局　循六宫而数</text>
+
+  <!-- 左手掌心轮廓：拇指在左，小指在右 -->
+  <path class="hand-contour" d="
+    M120 393
+    C114 378 110 357 112 339
+    C114 322 107 305 95 292
+    C86 282 72 276 61 264
+    C51 254 47 243 52 233
+    C57 223 67 218 77 221
+    C88 224 97 235 106 243
+    C105 228 102 212 103 196
+    L105 98
+    C105 83 113 74 125 73
+    C138 73 146 83 146 98
+    L145 175
+    C148 177 151 179 154 179
+    C156 150 156 111 157 81
+    C157 65 166 55 179 54
+    C192 54 200 65 200 81
+    L198 178
+    C202 179 205 180 208 182
+    L210 97
+    C210 82 219 73 231 72
+    C243 72 250 83 249 98
+    L246 187
+    C250 188 253 190 255 192
+    L258 121
+    C259 107 267 99 278 100
+    C290 102 296 112 295 126
+    L289 219
+    C288 235 281 248 272 258
+    C258 275 251 291 250 309
+    C249 330 254 352 260 373
+    C263 385 258 392 248 396
+    C211 402 160 402 120 393 Z"></path>
+
+  <path d="
+    M120 393
+    C114 378 110 357 112 339
+    C114 322 107 305 95 292
+    C86 282 72 276 61 264
+    C51 254 47 243 52 233
+    C57 223 67 218 77 221
+    C88 224 97 235 106 243
+    C105 228 102 212 103 196
+    L105 98
+    C105 83 113 74 125 73
+    C138 73 146 83 146 98
+    L145 175
+    C148 177 151 179 154 179
+    C156 150 156 111 157 81
+    C157 65 166 55 179 54
+    C192 54 200 65 200 81
+    L198 178
+    C202 179 205 180 208 182
+    L210 97
+    C210 82 219 73 231 72
+    C243 72 250 83 249 98
+    L246 187
+    C250 188 253 190 255 192
+    L258 121
+    C259 107 267 99 278 100
+    C290 102 296 112 295 126
+    L289 219
+    C288 235 281 248 272 258
+    C258 275 251 291 250 309
+    C249 330 254 352 260 373
+    C263 385 258 392 248 396
+    C211 402 160 402 120 393 Z" fill="url(#handSheen)" opacity="0.8"></path>
+
+  <!-- 指间纵向细阴影 -->
+  <path class="minor" d="M145 177 C143 190 144 204 148 218"></path>
+  <path class="minor" d="M198 179 C195 193 196 208 201 222"></path>
+  <path class="minor" d="M246 188 C243 202 243 215 247 229"></path>
+  <path class="minor" d="M289 219 C284 231 278 239 269 247"></path>
+
+  <!-- 掌丘柔和层次 -->
+  <path class="wash" d="M106 243 C127 231 150 233 166 252 C182 271 185 312 171 345 C157 377 135 385 120 374 C115 351 116 330 105 306 C96 286 91 260 106 243 Z"></path>
+  <path class="wash" d="M208 235 C236 224 263 239 272 262 C257 281 250 300 250 320 C229 335 205 326 196 302 C188 278 190 248 208 235 Z"></path>
+
+  <!-- 掌纹：心线、智慧线、生命线 -->
+  <path class="hand-crease" d="M108 223 C132 211 158 214 181 224 C201 233 222 232 244 220"></path>
+  <path class="hand-crease" d="M103 249 C127 250 147 256 164 269 C183 283 207 286 239 279"></path>
+  <path class="hand-crease" d="M108 244 C91 261 94 284 112 302 C129 320 139 346 137 377"></path>
+  <path class="hand-crease" d="M118 273 C130 281 141 290 148 305"></path>
+  <path class="hand-crease" d="M126 333 C143 340 158 342 174 336"></path>
+  <path class="hand-crease" d="M183 304 C203 299 222 300 243 308"></path>
+
+  <!-- 手腕横纹 -->
+  <path class="hand-crease" d="M116 361 C146 353 193 357 254 365"></path>
+  <path class="hand-crease" d="M118 374 C153 368 202 372 257 379"></path>
+  <path class="hand-crease" d="M123 386 C158 382 204 386 251 390"></path>
+
+  <!-- 指节横纹 -->
+  <g class="hand-crease">
+    <!-- 食指 -->
+    <path d="M108 112 C119 116 132 116 143 112"></path>
+    <path d="M107 143 C119 147 132 147 144 143"></path>
+    <path d="M106 174 C118 178 132 178 145 174"></path>
+    <!-- 中指 -->
+    <path d="M160 94 C171 98 186 98 197 94"></path>
+    <path d="M159 128 C171 132 185 132 198 128"></path>
+    <path d="M158 163 C171 167 185 167 198 163"></path>
+    <!-- 无名指 -->
+    <path d="M213 111 C224 115 237 115 248 111"></path>
+    <path d="M212 143 C223 147 236 147 247 143"></path>
+    <path d="M211 174 C222 178 235 178 246 174"></path>
+    <!-- 小指 -->
+    <path d="M260 134 C269 138 281 139 292 135"></path>
+    <path d="M259 160 C269 164 280 164 291 160"></path>
+    <path d="M257 186 C267 190 278 190 290 186"></path>
+  </g>
+
+  <!-- 手指名称 -->
+  <text class="fg" x="66" y="211" text-anchor="middle">大拇指</text>
+  <text class="fg" x="126" y="62" text-anchor="middle">食指</text>
+  <text class="fg" x="179" y="42" text-anchor="middle">中指</text>
+  <text class="fg" x="229" y="59" text-anchor="middle">无名指</text>
+  <text class="fg" x="280" y="87" text-anchor="middle">小指</text>
+
+  <!-- 顺时针六宫轨迹 -->
+  <path class="pring" d="
+    M130 204
+    C123 180 120 140 126 112
+    C140 97 158 91 179 95
+    C199 98 216 105 227 112
+    C246 133 250 173 226 205
+    C214 218 198 218 180 205
+    C163 197 145 197 130 204 Z"></path>
+
+  <!-- 顺数导向箭头 -->
+  <g class="chev">
+    <path d="M121 160 L126 152 L133 157"></path>
+    <path d="M151 96 L160 93 L157 102"></path>
+    <path d="M202 98 L211 102 L205 108"></path>
+    <path d="M248 151 L251 160 L242 157"></path>
+    <path d="M208 213 L200 218 L202 209"></path>
+    <path d="M157 208 L148 204 L155 199"></path>
+  </g>
+
+  <!-- 大安起点光晕 -->
+  <circle class="halo" cx="130" cy="204" r="22"></circle>
+  <circle class="halo" cx="130" cy="204" r="27" opacity="0.55"></circle>
+  <text class="mk" x="101" y="201" text-anchor="middle">起</text>
+
+  <!-- 六宫节点 -->
+  <g id="palmNodes" text-anchor="middle">
+    <g id="palmNode0" filter="url(#nodeShadow)">
+      <circle class="nd ji st" cx="130" cy="204" r="16"></circle>
+      <text class="nm" x="130" y="202">大安</text>
+      <text class="wx" x="130" y="214" fill="var(--wx-mu, #6aa872)">木</text>
+    </g>
+
+    <g id="palmNode1">
+      <circle class="nd xiong" cx="126" cy="112" r="16"></circle>
+      <text class="nm" x="126" y="110">留连</text>
+      <text class="wx" x="126" y="122" fill="var(--wx-shui, #6ca8c4)">水</text>
+    </g>
+
+    <g id="palmNode2" filter="url(#nodeShadow)">
+      <circle class="nd ji" cx="179" cy="95" r="16"></circle>
+      <text class="nm" x="179" y="93">速喜</text>
+      <text class="wx" x="179" y="105" fill="var(--wx-huo, #d27b4d)">火</text>
+    </g>
+
+    <g id="palmNode3">
+      <circle class="nd xiong" cx="227" cy="112" r="16"></circle>
+      <text class="nm" x="227" y="110">赤口</text>
+      <text class="wx" x="227" y="122" fill="var(--wx-jin, #c8c5a8)">金</text>
+    </g>
+
+    <g id="palmNode4" filter="url(#nodeShadow)">
+      <circle class="nd ji" cx="226" cy="205" r="16"></circle>
+      <text class="nm" x="226" y="203">小吉</text>
+      <text class="wx" x="226" y="215" fill="var(--wx-shui, #6ca8c4)">水</text>
+    </g>
+
+    <g id="palmNode5">
+      <circle class="nd xiong" cx="180" cy="205" r="16"></circle>
+      <text class="nm" x="180" y="203">空亡</text>
+      <text class="wx" x="180" y="215" fill="var(--wx-tu, #b99a61)">土</text>
+    </g>
+  </g>
+
+  <!-- 末端印记 -->
+  <g class="seal" transform="translate(304 346)">
+    <rect x="0" y="0" width="28" height="28" rx="2"></rect>
+    <path d="M7 8 H21 M7 14 H21 M7 20 H21"></path>
+    <path d="M10 5 V23 M18 5 V23"></path>
+  </g>
+  <text class="fg" x="318" y="386" text-anchor="middle" font-size="8">掌诀</text>
+</svg>
