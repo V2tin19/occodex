@@ -672,6 +672,9 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
       <div id="lyResultBox" style="margin-top:14px"></div>
     </div>
 
+    <!-- 东西方双轨时空参详仪 · 全息星历 (完整版) -->
+    <div id="portalFullChrono" style="margin-top:36px"></div>
+
     <div class="note tip" style="margin-top:30px">
       <span class="tag">关于本手册</span><br>
       东玄板块按道教"山医命相卜"五术传统分组；西玄板块对应西方神秘学（Western Esotericism）谱系。所有课程均为<b>知识教学</b>：不提供占卜、预测或任何人生决策服务，学习进度仅保存在本机。
@@ -4951,7 +4954,8 @@ function initLiuYaoSandbox() {
 }
 
 if(window.MysticUI && typeof window.MysticUI.initChronoClock === 'function') {
-  window.MysticUI.initChronoClock('portalChrono');
+  window.MysticUI.initChronoClock('portalChrono', { mode: 'compact' });
+  window.MysticUI.initChronoClock('portalFullChrono', { mode: 'full' });
 }
 initLiuYaoSandbox();
 

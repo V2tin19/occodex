@@ -395,300 +395,365 @@
   /* ============================================================
      1. 东西方双轨时空参详仪 (East-West Esoteric Chrono-Deck)
      ============================================================ */
-  function initChronoClock(containerId) {
-    const el = document.getElementById(containerId);
-    if (!el) return;
+  function calculateChronoData() {
+    const now = new Date();
+    let Y = now.getFullYear();
+    let M = now.getMonth() + 1;
+    let D = now.getDate();
+    const h = now.getHours();
+    const dayOfWeek = now.getDay();
 
-    function renderDeck() {
-      const now = new Date();
-      let Y = now.getFullYear();
-      let M = now.getMonth() + 1;
-      let D = now.getDate();
-      const h = now.getHours();
-      const dayOfWeek = now.getDay();
+    // 四柱排盘
+    let adv = false;
+    if (h >= 23) {
+      adv = true;
+      const t = new Date(Date.UTC(Y, M - 1, D));
+      t.setUTCDate(t.getUTCDate() + 1);
+      Y = t.getUTCFullYear();
+      M = t.getUTCMonth() + 1;
+      D = t.getUTCDate();
+    }
+    const fy = (M < 2 || (M === 2 && D < 4)) ? Y - 1 : Y;
+    const yIdx = (((fy - 4) % 60) + 60) % 60;
+    const yGan = yIdx % 10;
+    const yZhi = yIdx % 12;
 
-      // 四柱排盘
-      let adv = false;
-      if (h >= 23) {
-        adv = true;
-        const t = new Date(Date.UTC(Y, M - 1, D));
-        t.setUTCDate(t.getUTCDate() + 1);
-        Y = t.getUTCFullYear();
-        M = t.getUTCMonth() + 1;
-        D = t.getUTCDate();
-      }
-      const fy = (M < 2 || (M === 2 && D < 4)) ? Y - 1 : Y;
-      const yIdx = (((fy - 4) % 60) + 60) % 60;
-      const yGan = yIdx % 10;
-      const yZhi = yIdx % 12;
+    const mb = monthBranch(Y, M, D);
+    const mGan = ((2 + (yGan % 5) * 2 + ((mb - 2 + 12) % 12)) % 10 + 10) % 10;
+    const mIdx = getGanzhiIdx(mGan, mb);
 
-      const mb = monthBranch(Y, M, D);
-      const mGan = ((2 + (yGan % 5) * 2 + ((mb - 2 + 12) % 12)) % 10 + 10) % 10;
-      const mIdx = getGanzhiIdx(mGan, mb);
+    const dp = dayPillar(Y, M, D);
+    const dGan = dp.gan;
+    const dZhi = dp.zhi;
+    const dIdx = dp.idx;
 
-      const dp = dayPillar(Y, M, D);
-      const dGan = dp.gan;
-      const dZhi = dp.zhi;
-      const dIdx = dp.idx;
+    const hb = Math.floor((h + 1) % 24 / 2);
+    const hGan = ((dGan % 5) * 2 + hb) % 10;
+    const hIdx = getGanzhiIdx(hGan, hb);
 
-      const hb = Math.floor((h + 1) % 24 / 2);
-      const hGan = ((dGan % 5) * 2 + hb) % 10;
-      const hIdx = getGanzhiIdx(hGan, hb);
+    const pillarsRaw = [
+      { name: '年柱 · 岁首', shortName: '年柱', gan: yGan, zhi: yZhi, idx: yIdx, isDay: false },
+      { name: '月柱 · 提纲', shortName: '月柱', gan: mGan, zhi: mb, idx: mIdx, isDay: false },
+      { name: '日柱 · 日元 (主)', shortName: '日元', gan: dGan, zhi: dZhi, idx: dIdx, isDay: true },
+      { name: '时柱 · 归宿', shortName: '时柱', gan: hGan, zhi: hb, idx: hIdx, isDay: false }
+    ];
 
-      // 东玄各柱详情构建
-      const pillars = [
-        {
-          name: '年柱 · 岁首',
-          gan: yGan, zhi: yZhi, idx: yIdx,
-          tenGod: getTenGod(dGan, yGan),
-          xunKong: getXunKong(yGan, yZhi),
-          isDay: false
-        },
-        {
-          name: '月柱 · 提纲',
-          gan: mGan, zhi: mb, idx: mIdx,
-          tenGod: getTenGod(dGan, mGan),
-          xunKong: getXunKong(mGan, mb),
-          isDay: false
-        },
-        {
-          name: '日柱 · 日元 (主)',
-          gan: dGan, zhi: dZhi, idx: dIdx,
-          tenGod: '日元',
-          xunKong: getXunKong(dGan, dZhi),
-          isDay: true
-        },
-        {
-          name: '时柱 · 归宿',
-          gan: hGan, zhi: hb, idx: hIdx,
-          tenGod: getTenGod(dGan, hGan),
-          xunKong: getXunKong(hGan, hb),
-          isDay: false
-        }
-      ];
+    const pillars = pillarsRaw.map(p => {
+      const ganChar = GAN[p.gan];
+      const zhiChar = ZHI[p.zhi];
+      const ganWx = GAN_WX_ARR[p.gan];
+      const zhiWx = ZHI_WX_ARR[p.zhi];
+      const ganWxClass = WX_CLASSES[ganWx];
+      const zhiWxClass = WX_CLASSES[zhiWx];
+      const nayin = NAYIN[p.idx];
+      const sxChar = SX[p.zhi];
+      const yyStr = (p.gan % 2 === 0) ? '阳' : '阴';
+      const tenGod = p.isDay ? '日元' : getTenGod(dGan, p.gan);
+      const xunKong = getXunKong(p.gan, p.zhi);
+      const cgs = CANGGAN[p.zhi];
+      const canggan = cgs.map(g => {
+        const gIdx = GAN.indexOf(g);
+        const tg = getTenGod(dGan, gIdx);
+        const wx = GAN_WX_ARR[gIdx];
+        return { g, tg, wx, wxClass: WX_CLASSES[wx] };
+      });
+      const cangganSummary = cgs.join('');
 
-      function formatCanggan(zhiIdx) {
-        const cgs = CANGGAN[zhiIdx];
-        return cgs.map(g => {
-          const gIdx = GAN.indexOf(g);
-          const tg = getTenGod(dGan, gIdx);
-          const wx = GAN_WX_ARR[gIdx];
-          const wxClass = WX_CLASSES[wx];
-          return `<span class="cg-pill"><b class="${wxClass}">${g}</b><small>(${tg})</small></span>`;
-        }).join('');
-      }
+      return {
+        ...p,
+        ganChar, zhiChar, ganWx, zhiWx, ganWxClass, zhiWxClass,
+        nayin, sxChar, yyStr, tenGod, xunKong, canggan, cangganSummary
+      };
+    });
 
-      const jianchuIdx = (dZhi - mb + 12) % 12;
-      const jianchuName = JIANCHU_NAMES[jianchuIdx];
-      const jianchuDesc = JIANCHU_DESC[jianchuIdx];
+    const jianchuIdx = (dZhi - mb + 12) % 12;
+    const jianchuName = JIANCHU_NAMES[jianchuIdx];
+    const jianchuDesc = JIANCHU_DESC[jianchuIdx];
 
-      const currentJdn = jdn(Y, M, D);
-      const mansionIdx = (currentJdn + 18) % 28;
-      const mansion = MANSIONS[mansionIdx];
+    const currentJdn = jdn(Y, M, D);
+    const mansionIdx = (currentJdn + 18) % 28;
+    const mansion = MANSIONS[mansionIdx];
 
-      const solarTerm = getCurrentSolarTermInfo(M, D);
-      const shengchen = SHENGCHEN_INFO[ZHI[hb]] || SHENGCHEN_INFO['子'];
+    const solarTerm = getCurrentSolarTermInfo(M, D);
+    const shengchen = SHENGCHEN_INFO[ZHI[hb]] || SHENGCHEN_INFO['子'];
+    const planetary = getPlanetaryInfo(dayOfWeek, h);
+    const zodiac = getZodiacAndDecan(M, D);
+    const moon = getMoonPhase(now);
 
-      const planetary = getPlanetaryInfo(dayOfWeek, h);
-      const zodiac = getZodiacAndDecan(M, D);
-      const moon = getMoonPhase(now);
+    return {
+      now, Y, M, D, h, dayOfWeek, adv,
+      pillars,
+      dGan, dZhi,
+      dayMasterGan: GAN[dGan],
+      dayMasterXiang: GAN_XIANG_DICT[GAN[dGan]],
+      jianchuName, jianchuDesc,
+      mansion,
+      solarTerm,
+      shengchen,
+      planetary,
+      zodiac,
+      moon
+    };
+  }
 
-      const pillarsHtml = pillars.map(p => {
-        const ganChar = GAN[p.gan];
-        const zhiChar = ZHI[p.zhi];
-        const ganWx = GAN_WX_ARR[p.gan];
-        const zhiWx = ZHI_WX_ARR[p.zhi];
-        const ganWxClass = WX_CLASSES[ganWx];
-        const zhiWxClass = WX_CLASSES[zhiWx];
-        const nayin = NAYIN[p.idx];
-        const sxChar = SX[p.zhi];
-        const yyStr = (p.gan % 2 === 0) ? '阳' : '阴';
-        const cardClass = p.isDay ? 'chrono-pillar-card p-main' : 'chrono-pillar-card';
+  function renderCompactDeck(el, data) {
+    const { pillars, solarTerm, jianchuName, mansion, shengchen } = data;
 
-        return `
-          <div class="${cardClass}">
-            <div class="cpc-header">
-              <span class="cpc-name">${p.name}</span>
-              <span class="cpc-nayin">${nayin}</span>
-            </div>
-            <div class="cpc-ganzhi-block">
-              <div class="cpc-gz-row">
-                <span class="cpc-char ${ganWxClass}">${ganChar}</span>
-                <span class="cpc-subtag">${yyStr}${ganWx} · ${p.tenGod}</span>
-              </div>
-              <div class="cpc-gz-row">
-                <span class="cpc-char ${zhiWxClass}">${zhiChar}</span>
-                <span class="cpc-subtag">${zhiWx} · 肖${sxChar}</span>
-              </div>
-            </div>
-            <div class="cpc-meta-section">
-              <div class="cpc-meta-line">
-                <span class="cpc-lbl">藏干十神</span>
-                <div class="cpc-cg-wrap">${formatCanggan(p.zhi)}</div>
-              </div>
-              <div class="cpc-meta-line">
-                <span class="cpc-lbl">旬空所在</span>
-                <span class="cpc-val">${p.xunKong}</span>
-              </div>
-            </div>
+    const cardsHtml = pillars.map(p => {
+      const cardClass = p.isDay ? 'ccc-p-item ccc-p-main' : 'ccc-p-item';
+      const tagText = p.isDay ? '日元(主)' : p.shortName;
+      const godText = p.isDay ? `${p.ganChar}金` : p.tenGod;
+      const subInfo = p.isDay ? `空: ${p.xunKong.replace('空','')}` : `藏: ${p.cangganSummary}`;
+
+      return `
+        <div class="${cardClass}">
+          <div class="ccc-p-head">
+            <span class="ccc-p-tag">${tagText}</span>
+            <span class="ccc-p-god">${godText}</span>
           </div>
-        `;
+          <div class="ccc-p-gz">
+            <span class="cpc-char ${p.ganWxClass}">${p.ganChar}</span>
+            <span class="cpc-char ${p.zhiWxClass}">${p.zhiChar}</span>
+          </div>
+          <div class="ccc-p-foot">
+            <span class="ccc-nayin">${p.nayin}</span>
+            <span class="ccc-cg">${subInfo}</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    el.innerHTML = `
+      <div class="chrono-compact-card">
+        <div class="ccc-topbar">
+          <div class="ccc-title-group">
+            <span class="tech-chip"><span class="dot"></span>东玄 // 皇极四柱历标</span>
+            <span class="ccc-term-badge"><strong>${solarTerm.termName}</strong> <small>(${solarTerm.pentadLabel})</small></span>
+            <span class="ccc-mini-pill">${jianchuName}日值守</span>
+            <span class="ccc-mini-pill">${mansion.name}宿</span>
+            <span class="ccc-mini-pill">${shengchen.title.split(' ')[0]}·${shengchen.meridian.split('·')[0]}</span>
+          </div>
+          <div class="ccc-right-actions">
+            <span class="cdt-sync-pill"><span class="pulse-dot"></span>四柱同步</span>
+            <a href="#portalFullChrono" class="ccc-full-link">全息双轨星历 ↓</a>
+          </div>
+        </div>
+        <div class="ccc-pillars-row">
+          ${cardsHtml}
+        </div>
+      </div>
+    `;
+  }
+
+  function renderFullDeck(el, data) {
+    const { Y, M, D, pillars, solarTerm, jianchuName, jianchuDesc, mansion, shengchen, planetary, zodiac, moon, dayMasterGan, dayMasterXiang } = data;
+
+    function formatCanggan(cangganList) {
+      return cangganList.map(item => {
+        return `<span class="cg-pill"><b class="${item.wxClass}">${item.g}</b><small>(${item.tg})</small></span>`;
       }).join('');
+    }
 
-      el.innerHTML = `
-        <div class="chrono-deck-container">
-          <div class="chrono-deck-topbar">
-            <div class="cdt-left">
-              <span class="tech-chip"><span class="dot"></span>CHRONO // 东西方双轨时空参详仪</span>
-              <span class="cdt-subtitle">CELESTIAL CHRONO-DECK & HERMETIC EPHEMERIS</span>
+    const pillarsHtml = pillars.map(p => {
+      const cardClass = p.isDay ? 'chrono-pillar-card p-main' : 'chrono-pillar-card';
+      return `
+        <div class="${cardClass}">
+          <div class="cpc-header">
+            <span class="cpc-name">${p.name}</span>
+            <span class="cpc-nayin">${p.nayin}</span>
+          </div>
+          <div class="cpc-ganzhi-block">
+            <div class="cpc-gz-row">
+              <span class="cpc-char ${p.ganWxClass}">${p.ganChar}</span>
+              <span class="cpc-subtag">${p.yyStr}${p.ganWx} · ${p.tenGod}</span>
             </div>
-            <div class="cdt-right">
-              <span class="cdt-date-badge">${Y}年${M}月${D}日 · 律历静息流转</span>
-              <span class="cdt-sync-pill"><span class="pulse-dot"></span>四柱星轨同步中</span>
+            <div class="cpc-gz-row">
+              <span class="cpc-char ${p.zhiWxClass}">${p.zhiChar}</span>
+              <span class="cpc-subtag">${p.zhiWx} · 肖${p.sxChar}</span>
             </div>
           </div>
-
-          <div class="chrono-twin-grid">
-            <!-- 左栏：东玄·皇极四柱干支历 -->
-            <div class="chrono-deck-panel east-panel">
-              <div class="cdp-head">
-                <div class="cdp-title">
-                  <span class="cdp-icon">☯</span>
-                  <span class="cdp-main-title">东玄 · 皇极四柱历标</span>
-                  <span class="cdp-en">FOUR PILLARS OF DESTINY</span>
-                </div>
-                <div class="cdp-desc">
-                  以立春定岁首，节气定提纲。日主 <strong>${GAN[dGan]}金 (${GAN_XIANG_DICT[GAN[dGan]]})</strong> 当令参详。
-                </div>
-              </div>
-
-              <div class="chrono-pillars-matrix">
-                ${pillarsHtml}
-              </div>
-
-              <div class="east-ephemeris-ribbon">
-                <div class="eer-item">
-                  <span class="eer-tag">廿四节气与七十二候</span>
-                  <span class="eer-val"><strong>${solarTerm.termName}</strong> <small>(${solarTerm.pentadLabel})</small></span>
-                </div>
-                <div class="eer-item">
-                  <span class="eer-tag">建除十二神</span>
-                  <span class="eer-val"><strong>${jianchuName}日</strong> <small>(${jianchuDesc})</small></span>
-                </div>
-                <div class="eer-item">
-                  <span class="eer-tag">二十八宿值日</span>
-                  <span class="eer-val"><strong>${mansion.name}</strong> <small>(${mansion.palace} · ${mansion.nature})</small></span>
-                </div>
-                <div class="eer-item">
-                  <span class="eer-tag">时辰经络与物候</span>
-                  <span class="eer-val"><strong>${shengchen.title}</strong> <small>(${shengchen.meridian})</small></span>
-                </div>
-              </div>
+          <div class="cpc-meta-section">
+            <div class="cpc-meta-line">
+              <span class="cpc-lbl">藏干十神</span>
+              <div class="cpc-cg-wrap">${formatCanggan(p.canggan)}</div>
             </div>
-
-            <!-- 右栏：西玄·赫尔密斯七曜与黄道分度 -->
-            <div class="chrono-deck-panel west-panel">
-              <div class="cdp-head">
-                <div class="cdp-title">
-                  <span class="cdp-icon">🜂</span>
-                  <span class="cdp-main-title">西玄 · 赫尔密斯七曜与黄道分度</span>
-                  <span class="cdp-en">HERMETIC ASTROLOGY & DECANS</span>
-                </div>
-                <div class="cdp-desc">
-                  迦勒底行星时阶 · 黄道十分度守护塔罗 · 月相潮汐与赫尔密斯四原质。
-                </div>
-              </div>
-
-              <div class="chrono-west-matrix">
-                <div class="west-matrix-card">
-                  <div class="wmc-header">
-                    <span class="wmc-badge">PLANETARY RULERS</span>
-                    <span class="wmc-sym">${planetary.dayPlanet.sym} / ${planetary.hourPlanet.sym}</span>
-                  </div>
-                  <div class="wmc-body">
-                    <div class="wmc-title">
-                      ${planetary.dayPlanet.name}日 <small>· ${planetary.dayPlanet.en}</small>
-                    </div>
-                    <div class="wmc-highlight">
-                      当前时辰：<strong>${planetary.hourPlanet.name}时</strong> <small>(${planetary.hourPlanet.en} Hour · 第 ${planetary.hourOrder} 阶)</small>
-                    </div>
-                    <div class="wmc-detail">
-                      日主掌控 <strong>${planetary.dayPlanet.metal}</strong>（${planetary.dayPlanet.desc}）；当前时阶引动 <strong>${planetary.hourPlanet.name}</strong> 之能（${planetary.hourPlanet.desc}）。
-                    </div>
-                  </div>
-                </div>
-
-                <div class="west-matrix-card">
-                  <div class="wmc-header">
-                    <span class="wmc-badge">TROPICAL ZODIAC & DECAN</span>
-                    <span class="wmc-sym">${zodiac.sym} ${zodiac.degree}°</span>
-                  </div>
-                  <div class="wmc-body">
-                    <div class="wmc-title">
-                      ${zodiac.sign} · ${zodiac.decan.num} <small>· ${zodiac.en}</small>
-                    </div>
-                    <div class="wmc-highlight">
-                      分度主星：<strong>${zodiac.decan.ruler}</strong> <small>(Decan Ruler)</small>
-                    </div>
-                    <div class="wmc-detail">
-                      黄道行经 <strong>${zodiac.degree}°</strong>；由 <strong>${zodiac.decan.ruler}</strong> 赋予 ${zodiac.decan.title} 之象。
-                    </div>
-                  </div>
-                </div>
-
-                <div class="west-matrix-card wmc-tarot-highlight">
-                  <div class="wmc-header">
-                    <span class="wmc-badge">MINOR ARCANA DECAN RULER</span>
-                    <span class="wmc-sym">🎴</span>
-                  </div>
-                  <div class="wmc-body">
-                    <div class="wmc-title">
-                      ${zodiac.decan.tarot} <small>· ${zodiac.decan.tarotEn}</small>
-                    </div>
-                    <div class="wmc-highlight">
-                      黄金黎明秘义：<strong>${zodiac.decan.title}</strong>
-                    </div>
-                    <div class="wmc-detail">
-                      对应 ${zodiac.elemProp.name} 之精微演化，指示当前时空之深层修习课题与精神照彻。
-                    </div>
-                  </div>
-                </div>
-
-                <div class="west-matrix-card">
-                  <div class="wmc-header">
-                    <span class="wmc-badge">LUNAR PHASE & 4 HUMORS</span>
-                    <span class="wmc-sym">${moon.sym} ${zodiac.elemProp.sym}</span>
-                  </div>
-                  <div class="wmc-body">
-                    <div class="wmc-title">
-                      ${moon.name} <small>· ${moon.en} (月龄 ${moon.age} 天 · 光照 ${moon.illum})</small>
-                    </div>
-                    <div class="wmc-highlight">
-                      主导原质：<strong>${zodiac.elemProp.name} · ${zodiac.elemProp.quality}</strong>
-                    </div>
-                    <div class="wmc-detail">
-                      气质对应：<strong>${zodiac.elemProp.humor}</strong>；气场侧重 <em>${zodiac.elemProp.focus}</em>。
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="west-quote-ribbon">
-                <div class="wqr-text">
-                  "As above, so below; as within, so without; as the universe, so the soul."
-                </div>
-                <div class="wqr-sub">
-                  —— 赫尔密斯·特里斯墨吉斯忒斯《翡翠石板》· 天人同构法则
-                </div>
-              </div>
+            <div class="cpc-meta-line">
+              <span class="cpc-lbl">旬空所在</span>
+              <span class="cpc-val">${p.xunKong}</span>
             </div>
           </div>
         </div>
       `;
+    }).join('');
+
+    el.innerHTML = `
+      <div class="chrono-deck-container">
+        <div class="chrono-deck-topbar">
+          <div class="cdt-left">
+            <span class="tech-chip"><span class="dot"></span>CHRONO // 东西方双轨时空参详仪 · 全息星历</span>
+            <span class="cdt-subtitle">CELESTIAL CHRONO-DECK & HERMETIC EPHEMERIS</span>
+          </div>
+          <div class="cdt-right">
+            <span class="cdt-date-badge">${Y}年${M}月${D}日 · 律历静息流转</span>
+            <span class="cdt-sync-pill"><span class="pulse-dot"></span>四柱星轨同步中</span>
+          </div>
+        </div>
+
+        <div class="chrono-twin-grid">
+          <!-- 左栏：东玄·皇极四柱干支历 -->
+          <div class="chrono-deck-panel east-panel">
+            <div class="cdp-head">
+              <div class="cdp-title">
+                <span class="cdp-icon">☯</span>
+                <span class="cdp-main-title">东玄 · 皇极四柱历标</span>
+                <span class="cdp-en">FOUR PILLARS OF DESTINY</span>
+              </div>
+              <div class="cdp-desc">
+                以立春定岁首，节气定提纲。日主 <strong>${dayMasterGan}金 (${dayMasterXiang})</strong> 当令参详。
+              </div>
+            </div>
+
+            <div class="chrono-pillars-matrix">
+              ${pillarsHtml}
+            </div>
+
+            <div class="east-ephemeris-ribbon">
+              <div class="eer-item">
+                <span class="eer-tag">廿四节气与七十二候</span>
+                <span class="eer-val"><strong>${solarTerm.termName}</strong> <small>(${solarTerm.pentadLabel})</small></span>
+              </div>
+              <div class="eer-item">
+                <span class="eer-tag">建除十二神</span>
+                <span class="eer-val"><strong>${jianchuName}日</strong> <small>(${jianchuDesc})</small></span>
+              </div>
+              <div class="eer-item">
+                <span class="eer-tag">二十八宿值日</span>
+                <span class="eer-val"><strong>${mansion.name}</strong> <small>(${mansion.palace} · ${mansion.nature})</small></span>
+              </div>
+              <div class="eer-item">
+                <span class="eer-tag">时辰经络与物候</span>
+                <span class="eer-val"><strong>${shengchen.title}</strong> <small>(${shengchen.meridian})</small></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 右栏：西玄·赫尔密斯七曜与黄道分度 -->
+          <div class="chrono-deck-panel west-panel">
+            <div class="cdp-head">
+              <div class="cdp-title">
+                <span class="cdp-icon">🜂</span>
+                <span class="cdp-main-title">西玄 · 赫尔密斯七曜与黄道分度</span>
+                <span class="cdp-en">HERMETIC ASTROLOGY & DECANS</span>
+              </div>
+              <div class="cdp-desc">
+                迦勒底行星时阶 · 黄道十分度守护塔罗 · 月相潮汐与赫尔密斯四原质。
+              </div>
+            </div>
+
+            <div class="chrono-west-matrix">
+              <div class="west-matrix-card">
+                <div class="wmc-header">
+                  <span class="wmc-badge">PLANETARY RULERS</span>
+                  <span class="wmc-sym">${planetary.dayPlanet.sym} / ${planetary.hourPlanet.sym}</span>
+                </div>
+                <div class="wmc-body">
+                  <div class="wmc-title">
+                    ${planetary.dayPlanet.name}日 <small>· ${planetary.dayPlanet.en}</small>
+                  </div>
+                  <div class="wmc-highlight">
+                    当前时辰：<strong>${planetary.hourPlanet.name}时</strong> <small>(${planetary.hourPlanet.en} Hour · 第 ${planetary.hourOrder} 阶)</small>
+                  </div>
+                  <div class="wmc-detail">
+                    日主掌控 <strong>${planetary.dayPlanet.metal}</strong>（${planetary.dayPlanet.desc}）；当前时阶引动 <strong>${planetary.hourPlanet.name}</strong> 之能（${planetary.hourPlanet.desc}）。
+                  </div>
+                </div>
+              </div>
+
+              <div class="west-matrix-card">
+                <div class="wmc-header">
+                  <span class="wmc-badge">TROPICAL ZODIAC & DECAN</span>
+                  <span class="wmc-sym">${zodiac.sym} ${zodiac.degree}°</span>
+                </div>
+                <div class="wmc-body">
+                  <div class="wmc-title">
+                    ${zodiac.sign} · ${zodiac.decan.num} <small>· ${zodiac.en}</small>
+                  </div>
+                  <div class="wmc-highlight">
+                    分度主星：<strong>${zodiac.decan.ruler}</strong> <small>(Decan Ruler)</small>
+                  </div>
+                  <div class="wmc-detail">
+                    黄道行经 <strong>${zodiac.degree}°</strong>；由 <strong>${zodiac.decan.ruler}</strong> 赋予 ${zodiac.decan.title} 之象。
+                  </div>
+                </div>
+              </div>
+
+              <div class="west-matrix-card wmc-tarot-highlight">
+                <div class="wmc-header">
+                  <span class="wmc-badge">MINOR ARCANA DECAN RULER</span>
+                  <span class="wmc-sym">🎴</span>
+                </div>
+                <div class="wmc-body">
+                  <div class="wmc-title">
+                    ${zodiac.decan.tarot} <small>· ${zodiac.decan.tarotEn}</small>
+                  </div>
+                  <div class="wmc-highlight">
+                    黄金黎明秘义：<strong>${zodiac.decan.title}</strong>
+                  </div>
+                  <div class="wmc-detail">
+                    对应 ${zodiac.elemProp.name} 之精微演化，指示当前时空之深层修习课题与精神照彻。
+                  </div>
+                </div>
+              </div>
+
+              <div class="west-matrix-card">
+                <div class="wmc-header">
+                  <span class="wmc-badge">LUNAR PHASE & 4 HUMORS</span>
+                  <span class="wmc-sym">${moon.sym} ${zodiac.elemProp.sym}</span>
+                </div>
+                <div class="wmc-body">
+                  <div class="wmc-title">
+                    ${moon.name} <small>· ${moon.en} (月龄 ${moon.age} 天 · 光照 ${moon.illum})</small>
+                  </div>
+                  <div class="wmc-highlight">
+                    主导原质：<strong>${zodiac.elemProp.name} · ${zodiac.elemProp.quality}</strong>
+                  </div>
+                  <div class="wmc-detail">
+                    气质对应：<strong>${zodiac.elemProp.humor}</strong>；气场侧重 <em>${zodiac.elemProp.focus}</em>。
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="west-quote-ribbon">
+              <div class="wqr-text">
+                "As above, so below; as within, so without; as the universe, so the soul."
+              </div>
+              <div class="wqr-sub">
+                —— 赫尔密斯·特里斯墨吉斯忒斯《翡翠石板》· 天人同构法则
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function initChronoClock(containerId, options) {
+    const el = document.getElementById(containerId);
+    if (!el) return;
+    const mode = (options && options.mode) ? options.mode : (containerId === 'portalChrono' ? 'compact' : 'full');
+
+    function update() {
+      const data = calculateChronoData();
+      if (mode === 'compact') {
+        renderCompactDeck(el, data);
+      } else {
+        renderFullDeck(el, data);
+      }
     }
 
-    renderDeck();
-    setInterval(renderDeck, 60000);
+    update();
+    setInterval(update, 60000);
   }
 
   /* ============================================================

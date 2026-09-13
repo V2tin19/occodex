@@ -337,6 +337,201 @@ body.tactical .card:hover {
 }
 
 /* ------------------------------------------------------------
+   东玄精简版时空标 (Compact Eastern Chrono Bar)
+   ------------------------------------------------------------ */
+.chrono-compact-card {
+  border: var(--hair);
+  background: var(--card-grad);
+  padding: 14px 18px 12px;
+  margin: 14px 0 24px;
+  position: relative;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s var(--ease-mystic);
+}
+.chrono-compact-card::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid var(--gold);
+  border-left: 2px solid var(--gold);
+}
+.chrono-compact-card::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 10px;
+  height: 10px;
+  border-bottom: 2px solid var(--gold);
+  border-right: 2px solid var(--gold);
+}
+
+.ccc-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: var(--hair-soft);
+}
+.ccc-title-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+.ccc-term-badge {
+  font-size: 11px;
+  color: var(--paper);
+  background: rgba(var(--gold-rgb), 0.08);
+  border: 1px solid rgba(var(--gold-rgb), 0.25);
+  padding: 1px 7px;
+  border-radius: 2px;
+}
+.ccc-term-badge strong {
+  color: var(--gold);
+  font-weight: 500;
+}
+.ccc-term-badge small {
+  color: var(--text3);
+}
+.ccc-mini-pill {
+  font-size: 11px;
+  color: var(--text2);
+  letter-spacing: 0.06em;
+}
+.ccc-mini-pill::before {
+  content: "·";
+  color: var(--gold-dim);
+  margin-right: 4px;
+}
+
+.ccc-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ccc-full-link {
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  padding: 2px 10px;
+  border: 1px solid rgba(var(--gold-rgb), 0.35);
+  border-radius: 2px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  background: rgba(var(--gold-rgb), 0.05);
+}
+.ccc-full-link:hover {
+  background: rgba(var(--gold-rgb), 0.18);
+  color: var(--paper);
+  border-color: var(--gold);
+  transform: translateY(-1px);
+}
+
+.ccc-pillars-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+@media (max-width: 650px) {
+  .ccc-pillars-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.ccc-p-item {
+  background: var(--bg-card);
+  border: var(--hair-soft);
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  transition: all 0.25s var(--ease-mystic);
+}
+.ccc-p-item:hover {
+  border-color: rgba(var(--gold-rgb), 0.4);
+  background: var(--bg-card-hover);
+}
+.ccc-p-item.ccc-p-main {
+  border-color: var(--gold);
+  background: rgba(var(--gold-rgb), 0.08);
+  box-shadow: 0 0 10px rgba(var(--gold-rgb), 0.14);
+}
+.ccc-p-item.ccc-p-main::before {
+  content: "★";
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  font-size: 8.5px;
+  color: var(--gold);
+}
+
+.ccc-p-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  margin-bottom: 2px;
+}
+.ccc-p-tag {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--text3);
+}
+.ccc-p-god {
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--gold);
+}
+.ccc-p-item.ccc-p-main .ccc-p-god {
+  color: var(--paper);
+  background: rgba(var(--gold-rgb), 0.18);
+  padding: 0 4px;
+  border-radius: 2px;
+}
+
+.ccc-p-gz {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px;
+  margin: 3px 0;
+}
+.ccc-p-gz .cpc-char {
+  font-size: 24px;
+  line-height: 1.1;
+  font-family: var(--font-serif);
+  font-weight: 600;
+}
+
+.ccc-p-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 10px;
+  color: var(--text3);
+  margin-top: 2px;
+  border-top: var(--hair-soft);
+  padding-top: 3px;
+}
+.ccc-nayin {
+  color: var(--text2);
+}
+.ccc-cg {
+  color: var(--gold-dim);
+}
+
+/* ------------------------------------------------------------
    东西方双轨时空参详仪 (East-West Esoteric Chrono-Deck)
    ------------------------------------------------------------ */
 .chrono-deck-container {
