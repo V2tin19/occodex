@@ -5,10 +5,10 @@
 <title>六壬学堂 · 大六壬基础 | LIU-REN ACADEMY</title>
 <link rel="stylesheet" href="occ-theme.css">
 <style>
-:root{--bg:#14161b;--paper:#e8e2d0;--text:#d8d2c0;--text2:#a8a294;--text3:#8a8494;
+:root{--bg:#0d0f14;--paper:#ece5d6;--text:#e2dcd0;--text2:#aba494;--text3:#827b6d;
 --gold:#c9a227;--gold-dim:#8d7420;--gold-rgb:201,162,39;
---hair:1px solid rgba(201,162,39,.2);--hair-soft:1px solid rgba(255,255,255,.07);
---nav-bg:rgba(20,22,27,.92);--card-grad:linear-gradient(180deg,rgba(27,30,37,.5),rgba(20,22,27,.35))}
+--hair:1px solid rgba(201,162,39,.24);--hair-soft:1px solid rgba(226,220,208,.10);
+--nav-bg:rgba(13,15,20,.94);--card-grad:#13161e}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--text);font-family:"Segoe UI",sans-serif;padding:24px;line-height:1.8;font-size:14px;letter-spacing:.02em}
 h2{font-family:Georgia,serif;color:var(--gold);font-size:15px;letter-spacing:.25em;margin:26px 0 10px}
@@ -45,12 +45,13 @@ text-decoration:none;border-bottom:1px solid transparent;white-space:nowrap}
 .topnav a.on{color:var(--gold);border-bottom-color:var(--gold)}
 section{display:none}section.on{display:block}
 iframe{width:100%;border:var(--hair-soft);background:var(--bg);min-height:600px;border-radius:0}
-.back-link{font-size:11px;color:var(--gold);text-decoration:none;letter-spacing:.2em}
 </style>
 </head>
 <body>
 
-<nav class="topnav"><div class="wrap">
+<nav class="topnav">
+<a href="/index.html#portal" class="back-link-left">← 返回手册</a>
+<div class="wrap">
 <a href="#ch1" class="on">第壹章 · 源流</a>
 <a href="#ch2">第贰章 · 起课基础</a>
 <a href="#ch3">第叁章 · 四课</a>
@@ -62,7 +63,6 @@ iframe{width:100%;border:var(--hair-soft);background:var(--bg);min-height:600px;
 <a href="#keti">课例馆</a>
 <a href="#bifa">毕法卡片</a>
 <a href="#daily">每日一占</a>
-<a href="/index.html#portal" class="back-link">← 手册</a>
 </div></nav>
 
 <section id="ch1" class="on">
@@ -640,27 +640,30 @@ iframe{width:100%;border:var(--hair-soft);background:var(--bg);min-height:600px;
 </section>
 
 <section id="keti">
-<div class="wrap" style="max-width:860px;margin:0 auto;padding:0 20px">
+<div class="wrap" style="max-width:880px;margin:0 auto;padding:0 20px">
 <div class="ch-head">
-<div class="kick">课例馆 · 六壬断案</div>
+<div class="kick">CAPUT · IX · 课例馆 · 六壬断案</div>
 <h2>邵彦和的真实占例</h2>
-<p class="sub">宋·邵彦和《六壬断案》149 则占例。每则含干支、课式、邵公曰与应验记录——六壬版的"医案集"。点选查看详情。</p>
+<p class="sub">宋·邵彦和《六壬断案》149 则传世占例。包含完整干支、课式、邵公曰与应验原批——六壬推演的真实"医案集"。</p>
 <div class="rule">✦</div>
 </div>
-<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px" id="ktFilter"></div>
+<div class="kt-search-bar">
+  <input type="text" id="ktSearch" class="kt-search-input" placeholder="输入关键字搜索课例（如：官司 / 求财 / 疾病 / 婚姻 / 某公 / 盗贼）...">
+</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px" id="ktFilter"></div>
 <div id="ktList"></div>
 </div>
 </section>
 
 <section id="bifa">
-<div class="wrap" style="max-width:860px;margin:0 auto;padding:0 20px">
+<div class="wrap" style="max-width:920px;margin:0 auto;padding:0 20px">
 <div class="ch-head">
-<div class="kick">毕法赋 · 背诵卡片</div>
-<h2>毕法要诀</h2>
-<p class="sub">《毕法赋》是六壬判断法则的总结，每条一卡片。点击翻转看释义。</p>
+<div class="kick">CAPUT · X · 毕法赋 · 背诵与推演卡片</div>
+<h2>毕法百门要诀</h2>
+<p class="sub">《毕法赋》是宋代大六壬断法之集大成。每张卡片凝结一条核心推演法门，点击展开解构与实战案例。</p>
 <div class="rule">✦</div>
 </div>
-<div id="bfList"></div>
+<div class="bifa-grid" id="bfList"></div>
 </div>
 </section>
 
@@ -669,43 +672,134 @@ iframe{width:100%;border:var(--hair-soft);background:var(--bg);min-height:600px;
 fetch('duanan-cases.json').then(r=>r.json()).then(cases=>{
   const list=document.getElementById('ktList');
   const filt=document.getElementById('ktFilter');
-  const topics=[...new Set(cases.map(c=>c.topic))];
-  filt.innerHTML='<button data-t="all" style="color:var(--gold)">全部</button>'+topics.map(t=>'<button data-t="'+t+'">'+t+'</button>').join('');
-  function render(t){
-    const show=t==='all'?cases:cases.filter(c=>c.topic===t);
-    list.innerHTML=show.map(c=>
-      '<div class="card" style="margin:10px 0"><h3>'+c.num+'. '+c.person+' 占'+c.topic+'</h3>'
-      +'<p class="dim">'+c.meta+'</p>'
-      +'<p style="font-size:13px;margin-top:8px">'+c.yueyan.slice(0,200)+(c.yueyan.length>200?'……':'')+'</p></div>'
-    ).join('');
+  const search=document.getElementById('ktSearch');
+  const topics=['全部', ...new Set(cases.map(c=>c.topic))];
+  let curTopic = '全部';
+  let curKeyword = '';
+
+  filt.innerHTML=topics.map(t=>`<button class="kt-tag-btn ${t==='全部'?'active':''}" data-t="${t}">${t}</button>`).join('');
+
+  function render(){
+    let show = cases;
+    if(curTopic !== '全部'){
+      show = show.filter(c => c.topic === curTopic);
+    }
+    if(curKeyword){
+      const kw = curKeyword.toLowerCase();
+      show = show.filter(c => (c.person + c.topic + c.meta + c.yueyan).toLowerCase().includes(kw));
+    }
+
+    if(show.length === 0){
+      list.innerHTML = '<div class="card" style="text-align:center;color:var(--text3);padding:30px">未检索到匹配的邵公占例。试换个关键字。</div>';
+      return;
+    }
+
+    list.innerHTML = show.slice(0, 60).map((c, idx) => {
+      const shaIdx = c.yueyan.indexOf('邵先生曰');
+      const shaYue = shaIdx >= 0 ? c.yueyan.slice(shaIdx) : c.yueyan;
+      const previewText = shaIdx > 0 ? c.yueyan.slice(0, shaIdx) : c.yueyan.slice(0, 160);
+      return `
+        <div class="kt-case-card" data-idx="${idx}">
+          <div class="kt-case-head">
+            <div class="kt-case-title"><b>No. ${c.num}</b> ${c.person} 占${c.topic}</div>
+            <span class="tech-chip">${c.topic}</span>
+          </div>
+          <div class="kt-case-meta">${c.meta}</div>
+          <div class="kt-case-preview">${previewText}</div>
+          <button class="btn small ghost kt-toggle-btn" data-tid="${c.num}" style="margin-top:8px">
+            <span>✦ 展开邵公详断</span>
+          </button>
+          <div class="kt-sha-box" id="shaBox_${c.num}" style="display:none">
+            <span class="kt-sha-tag">邵公曰 · 断案原文</span>
+            ${shaYue}
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    if(show.length > 60){
+      list.innerHTML += `<div style="text-align:center;color:var(--text3);padding:16px;font-size:12px">已展示前 60 / 共 ${show.length} 则，可使用上方搜索精确筛选</div>`;
+    }
+
+    // 绑定展开事件
+    list.querySelectorAll('.kt-toggle-btn').forEach(btn => {
+      btn.addEventListener('click', function(e){
+        e.stopPropagation();
+        const tid = this.dataset.tid;
+        const box = document.getElementById('shaBox_' + tid);
+        if(!box) return;
+        const isHidden = box.style.display === 'none';
+        box.style.display = isHidden ? 'block' : 'none';
+        this.querySelector('span').textContent = isHidden ? '收起详断' : '✦ 展开邵公详断';
+        if(window.MysticAudio) window.MysticAudio.paper();
+      });
+    });
   }
-  filt.addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(b)render(b.dataset.t);});
-  render('all');
+
+  filt.addEventListener('click', e => {
+    const b = e.target.closest('[data-t]');
+    if(!b) return;
+    filt.querySelectorAll('.kt-tag-btn').forEach(btn => btn.classList.remove('active'));
+    b.classList.add('active');
+    curTopic = b.dataset.t;
+    if(window.MysticAudio) window.MysticAudio.click();
+    render();
+  });
+
+  if(search){
+    search.addEventListener('input', e => {
+      curKeyword = e.target.value.trim();
+      render();
+    });
+  }
+
+  render();
 });
 
 /* ===== 毕法卡片 ===== */
-const BIFA=[
- {rule:'涉害行者深',mean:'多课上克下或下贼上，俱比俱不比，取涉害深者为用。比喻涉水过河，受害深者先动。'},
- {rule:'蒿矢格',mean:'四课无克，取神遥克日干为用。如箭无镞，力弱而事远。'},
- {rule:'弹射格',mean:'日干遥克四课之神为用。如弹射鸟，力更微。'},
- {rule:'元首课',mean:'四课只有一课上克下，以克神为用。上克下，尊制卑，理顺。'},
- {rule:'重审课',mean:'四课只有一课下贼上，以下贼上者为用。下贼上，卑犯尊，须再审。'},
- {rule:'知一课',mean:'两课上克下或下贼上，择与日干阴阳俱比者用之。比者近也，事在同类。'},
- {rule:'涉害课',mean:'俱比俱不比，以涉害深者为用。如涉水过河，受害深者先动。'},
- {rule:'昴星课',mean:'四课无克又无遥，取昴星（酉）俯仰之位为用。虎视转蓬，各有所指。'}
+const BIFA = [
+  { rule: '前后引从升迁吉', mean: '初传与末传夹拱日干或年命，如前引后从，主官职升迁、顺水推舟之吉象。' },
+  { rule: '进退连环进退难', mean: '三传顺行或逆行逢连珠相生相克，进无可进，退无可退，事主纠葛迟滞。' },
+  { rule: '闭口莫投绝处乡', mean: '日禄乘闭口（旬尾或遁干受阻）且加临日干绝地，占病最凶，主绝食沉疴。' },
+  { rule: '鬼乘墓入沉疴死', mean: '日鬼乘墓库或死气加临日干年命，占病防大凶，主病势深重。' },
+  { rule: '涉害行者受克深', mean: '四课两克以上俱比或俱不比，取地盘涉历受克深者为初传。以深涉风浪之象定先发之机。' },
+  { rule: '蒿矢弹射两力微', mean: '四课无克，干遥克神（弹射）或神遥克干（蒿矢），力道微茫，主事体遥远力弱。' },
+  { rule: '元首课尊制卑顺', mean: '四课唯一上克下，以克神发用。尊制卑，理顺而事直，谋事光明。' },
+  { rule: '重审课卑犯尊凶', mean: '四课唯一下贼上，以下贼上者发用。卑犯尊，事多反复，须重加审察。' },
+  { rule: '知一课择与干比', mean: '两课相克，取与日干阴阳同气相求者用之。比者同类也，事归同侪。' },
+  { rule: '昴星虎视转蓬机', mean: '四课无克无遥，取昴星（酉宫）天盘地盘俯仰定用，刚日看酉上、柔日看日干上。' },
+  { rule: '别责刚日合上神', mean: '四课不全又无克，刚日取干合之上神，阴日取支前三合发用。' },
+  { rule: '八专独足归一处', mean: '干支同位，两课无克，阳日自日干顺数三位，阴日自日支逆数三位。' },
+  { rule: '伏吟自任自信刑', mean: '月将加时在同一宫位，天地盘重叠不动。占事主迟滞、自刑自扰。' },
+  { rule: '返吟无依井栏射', mean: '月将加在对冲之宫，天盘与地盘六冲。占事主反覆动摇、去而复来。' },
+  { rule: '夫妇相随各表仪', mean: '干上见支、支上见干，干支交错相生相合，占婚姻主夫唱妇随。' },
+  { rule: '干支皆败事倾颓', mean: '干支皆临败绝沐浴之乡，占事主根基虚耗、难以为继。' },
+  { rule: '龙德发用显官荣', mean: '青龙乘旺相之气发用，或天乙贵人顺行临身，占功名官职必有显荣。' },
+  { rule: '勾陈制贼盗可追', mean: '失脱盗贼门中，若勾陈乘旺克制元武盗神，主赃物必可捕获追回。' },
+  { rule: '德丧刑发事多忧', mean: '日德受克，而三刑发用互克，占官讼主是非牵连、咎由自取。' },
+  { rule: '兵逢将胜敌自降', mean: '行军交战门中，日干克支、主将克客神，传得太常青龙，必全胜而归。' }
 ];
-const bfList=document.getElementById('bfList');
-BIFA.forEach(b=>{
-  const card=document.createElement('div');
-  card.className='card';card.style.cursor='pointer';
-  card.innerHTML='<p style="color:var(--gold);font-family:Georgia,serif;font-size:15px">'+b.rule+'</p>'
-    +'<p style="font-size:12px;color:var(--text2);display:none;margin-top:8px">'+b.mean+'</p>';
-  card.addEventListener('click',()=>{
-    const p=card.querySelectorAll('p')[1];
-    p.style.display=p.style.display==='none'?'block':'none';
+
+const bfList = document.getElementById('bfList');
+if(bfList){
+  bfList.innerHTML = BIFA.map((b, i) => `
+    <div class="bifa-card-item" data-bidx="${i}">
+      <div>
+        <div class="bifa-num">BIFA · 诀 ${String(i+1).padStart(2,'0')}</div>
+        <div class="bifa-title">${b.rule}</div>
+      </div>
+      <div class="bifa-detail">${b.mean}</div>
+      <div class="bifa-hint">点击展开 / 收起</div>
+    </div>
+  `).join('');
+
+  bfList.querySelectorAll('.bifa-card-item').forEach(card => {
+    card.addEventListener('click', function(){
+      this.classList.toggle('open');
+      if(window.MysticAudio) window.MysticAudio.click();
+    });
   });
-  bfList.appendChild(card);
-});
+}
 </script>
 <section id="daily">
 <div class="wrap" style="max-width:860px;margin:0 auto;padding:0 20px">
