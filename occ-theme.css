@@ -337,70 +337,440 @@ body.tactical .card:hover {
 }
 
 /* ------------------------------------------------------------
-   逆流时钟卡片 (Chrono Clock)
+   东西方双轨时空参详仪 (East-West Esoteric Chrono-Deck)
    ------------------------------------------------------------ */
-.chrono-clock-card {
+.chrono-deck-container {
   border: var(--hair);
   background: var(--card-grad);
-  padding: 22px 26px;
-  margin: 20px 0 28px;
+  padding: 24px 26px;
+  margin: 22px 0 32px;
   position: relative;
-  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition: all 0.35s var(--ease-mystic);
 }
-.chrono-clock-card::before {
+.chrono-deck-container::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: var(--gold);
+  top: -1px;
+  left: -1px;
+  width: 14px;
+  height: 14px;
+  border-top: 2px solid var(--gold);
+  border-left: 2px solid var(--gold);
 }
-.chrono-header {
+.chrono-deck-container::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 14px;
+  height: 14px;
+  border-bottom: 2px solid var(--gold);
+  border-right: 2px solid var(--gold);
+}
+
+.chrono-deck-topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: var(--hair-soft);
+  margin-bottom: 20px;
 }
-.chrono-status {
-  font-size: 10px;
-  letter-spacing: 0.25em;
-  color: var(--text3);
-}
-.chrono-display {
+.cdt-left {
   display: flex;
-  align-items: baseline;
-  gap: 16px;
+  flex-direction: column;
+  gap: 4px;
+}
+.cdt-subtitle {
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  color: var(--gold-dim);
+  font-family: var(--font-serif);
+}
+.cdt-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   flex-wrap: wrap;
 }
-.chrono-time {
-  font-family: var(--font-serif);
-  font-size: clamp(28px, 4.5vw, 44px);
-  color: var(--paper);
-  letter-spacing: 0.08em;
-  font-weight: 500;
-  line-height: 1.1;
-}
-.chrono-date {
-  font-size: 14px;
+.cdt-date-badge {
+  font-size: 12px;
+  letter-spacing: 0.14em;
   color: var(--text2);
-  letter-spacing: 0.12em;
 }
-.chrono-date em {
-  font-style: normal;
+.cdt-sync-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  background: rgba(var(--gold-rgb), 0.08);
+  border: 1px solid rgba(var(--gold-rgb), 0.3);
+  padding: 3px 10px;
+  border-radius: 2px;
+}
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 8px var(--gold);
+  display: inline-block;
+  animation: pulseLight 2s infinite ease-in-out;
+}
+@keyframes pulseLight {
+  0%, 100% { opacity: 0.4; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+.chrono-twin-grid {
+  display: grid;
+  grid-template-columns: 1.18fr 0.82fr;
+  gap: 22px;
+}
+@media (max-width: 900px) {
+  .chrono-twin-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.chrono-deck-panel {
+  background: rgba(var(--gold-rgb), 0.02);
+  border: var(--hair-soft);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.cdp-head {
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: var(--hair-soft);
+}
+.cdp-title {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+.cdp-icon {
+  color: var(--gold);
+  font-size: 16px;
+}
+.cdp-main-title {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--paper);
+  letter-spacing: 0.14em;
+}
+.cdp-en {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--gold-dim);
+}
+.cdp-desc {
+  font-size: 12px;
+  color: var(--text3);
+  line-height: 1.6;
+}
+.cdp-desc strong {
   color: var(--gold);
   font-weight: 500;
-  margin-left: 6px;
 }
-.chrono-quote {
-  margin-top: 12px;
-  padding-top: 12px;
+
+/* ------------------------------------------------------------
+   东玄 · 四柱矩阵
+   ------------------------------------------------------------ */
+.chrono-pillars-matrix {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+@media (max-width: 600px) {
+  .chrono-pillars-matrix {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.chrono-pillar-card {
+  background: var(--bg-card);
+  border: var(--hair-soft);
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s var(--ease-mystic);
+}
+.chrono-pillar-card:hover {
+  border-color: rgba(var(--gold-rgb), 0.45);
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+}
+.chrono-pillar-card.p-main {
+  border-color: var(--gold);
+  background: rgba(var(--gold-rgb), 0.07);
+  box-shadow: 0 0 14px rgba(var(--gold-rgb), 0.15);
+}
+.chrono-pillar-card.p-main::before {
+  content: "★";
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-size: 9px;
+  color: var(--gold);
+}
+
+.cpc-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+.cpc-name {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--text3);
+}
+.cpc-nayin {
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  background: rgba(var(--gold-rgb), 0.08);
+  padding: 1px 6px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+.cpc-ganzhi-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 6px 0 10px;
+  width: 100%;
+  padding: 6px 0;
   border-top: var(--hair-soft);
+  border-bottom: var(--hair-soft);
+}
+.cpc-gz-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.cpc-char {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0.05em;
+}
+.cpc-subtag {
+  font-size: 10.5px;
+  color: var(--text2);
+  letter-spacing: 0.08em;
+}
+
+.cpc-meta-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  font-size: 11px;
+  text-align: left;
+}
+.cpc-meta-line {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.cpc-lbl {
+  font-size: 9.5px;
+  letter-spacing: 0.15em;
+  color: var(--text3);
+}
+.cpc-cg-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.cg-pill {
+  font-size: 10.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(var(--lit-rgb), 0.04);
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+.cg-pill small {
+  color: var(--text3);
+  font-size: 9px;
+}
+.cpc-val {
+  color: var(--paper-2);
+  font-size: 11px;
+}
+
+/* 东玄底栏 */
+.east-ephemeris-ribbon {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 12px;
+  padding: 12px 14px;
+  background: var(--bg-card);
+  border: var(--hair-soft);
+  margin-top: 4px;
+}
+@media (max-width: 600px) {
+  .east-ephemeris-ribbon {
+    grid-template-columns: 1fr;
+  }
+}
+.eer-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.eer-tag {
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  color: var(--gold-dim);
+}
+.eer-val {
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.5;
+}
+.eer-val strong {
+  color: var(--paper);
+  font-weight: 500;
+}
+.eer-val small {
+  color: var(--text3);
+}
+
+/* ------------------------------------------------------------
+   西玄 · 赫尔密斯矩阵
+   ------------------------------------------------------------ */
+.chrono-west-matrix {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+@media (max-width: 600px) {
+  .chrono-west-matrix {
+    grid-template-columns: 1fr;
+  }
+}
+
+.west-matrix-card {
+  background: var(--bg-card);
+  border: var(--hair-soft);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s var(--ease-mystic);
+}
+.west-matrix-card:hover {
+  border-color: rgba(var(--gold-rgb), 0.45);
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+}
+.west-matrix-card.wmc-tarot-highlight {
+  border-color: rgba(var(--gold-rgb), 0.6);
+  background: rgba(var(--gold-rgb), 0.05);
+}
+
+.wmc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: var(--hair-soft);
+}
+.wmc-badge {
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
+  color: var(--gold-dim);
+}
+.wmc-sym {
+  font-size: 14px;
+  color: var(--gold);
+}
+
+.wmc-title {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  color: var(--paper);
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.wmc-title small {
+  font-size: 11px;
+  color: var(--text3);
+  font-weight: 400;
+}
+.wmc-highlight {
+  font-size: 12px;
+  color: var(--gold);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.wmc-highlight strong {
+  font-weight: 600;
+}
+.wmc-highlight small {
+  color: var(--text3);
+}
+.wmc-detail {
+  font-size: 11.5px;
+  color: var(--text2);
+  line-height: 1.6;
+}
+.wmc-detail strong {
+  color: var(--paper);
+  font-weight: 500;
+}
+.wmc-detail em {
+  font-style: normal;
+  color: var(--gold);
+}
+
+.west-quote-ribbon {
+  padding: 12px 14px;
+  background: var(--bg-card);
+  border: var(--hair-soft);
+  border-left: 2px solid var(--gold);
+}
+.wqr-text {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 12.5px;
-  color: var(--text3);
+  font-size: 12px;
+  color: var(--paper-2);
   letter-spacing: 0.04em;
+  line-height: 1.6;
+}
+.wqr-sub {
+  font-size: 10.5px;
+  color: var(--gold-dim);
+  letter-spacing: 0.1em;
+  margin-top: 4px;
 }
 
 /* ------------------------------------------------------------
