@@ -1,12 +1,12 @@
 /* ============================================================
    occ-theme.css — 神秘学手册 · 视觉引擎与三套沉浸式主题系统
-   Theme 1: 1999 逆流低长调 (Reverse: 1999 Midnight - Default)
-   Theme 2: 炎国宣纸与朱砂 (Yan-Guo Rice Paper & Cinnabar - body.daylight)
-   Theme 3: 司岁战术终端 (Arknights Sui Tactical HUD - body.tactical)
+   Theme 1: 极夜秘卷低长调 (Midnight Codex - Default)
+   Theme 2: 素绢水墨与朱砂 (Rice Paper & Cinnabar - body.daylight)
+   Theme 3: 司岁战术终端 (Sui Tactical HUD - body.tactical)
    ============================================================ */
 
 /* ------------------------------------------------------------
-   1. THEME 1: 1999 逆流低长调 (默认)
+   1. THEME 1: 极夜秘卷低长调 (默认)
    ------------------------------------------------------------ */
 :root {
   /* 基础暗色 - 纯粹深邃的炭黑油墨底 */
@@ -161,7 +161,7 @@ body.tactical .card:hover {
   box-shadow: inset 0 0 0 1px rgba(229, 169, 40, 0.5), 0 8px 24px rgba(0, 195, 255, 0.1);
 }
 
-/* 1999 Art Deco 标角 (Crop Marks) */
+/* Art Deco 标角 (Crop Marks) */
 .crop-mark {
   position: relative;
 }

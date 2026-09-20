@@ -1,6 +1,6 @@
 /**
  * occ-theme.js — 跨页面统一多主题与 HUD 控制台
- * 支持三套主题循环切换：'night' (1999) / 'day' (宣纸朱砂) / 'tactical' (司岁战术终端)
+ * 支持三套主题循环切换：'night' (秘卷玄奥) / 'day' (素绢水墨朱砂) / 'tactical' (司岁战术终端)
  * 支持 Web Audio 微音效一键静音/开启动态指示
  */
 (function(global) {
@@ -9,8 +9,8 @@
   const STORAGE_KEY = 'occ_theme';
   const THEMES = ['night', 'day', 'tactical'];
   const THEME_NAMES = {
-    night: '1999 逆流低长调',
-    day: '炎国宣纸与朱砂',
+    night: '极夜秘卷低长调',
+    day: '素绢水墨朱砂',
     tactical: '司岁战术终端'
   };
 
