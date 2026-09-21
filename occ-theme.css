@@ -1426,4 +1426,318 @@ body.tactical .card:hover {
   margin-top: 6px;
 }
 
+/* ============================================================
+   统一全站导航与卷册目录系统 (Master Nav & Codex Chapter Drawer)
+   ============================================================ */
+
+/* 统一母版顶栏 */
+.occ-master-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background: var(--nav-bg, rgba(13, 15, 20, 0.94));
+  border-bottom: var(--hair);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-sizing: border-box;
+}
+
+/* 唯一正规返回按钮 */
+.occ-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 12.5px;
+  letter-spacing: 0.18em;
+  font-family: var(--serif);
+  padding: 6px 10px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+.occ-back-btn:hover {
+  background: rgba(var(--gold-rgb), 0.08);
+  border-color: rgba(var(--gold-rgb), 0.3);
+  color: var(--paper);
+  transform: translateX(-2px);
+}
+.occ-back-btn .arrow {
+  font-size: 15px;
+  line-height: 1;
+  transition: transform 0.25s;
+}
+.occ-back-btn:hover .arrow {
+  transform: translateX(-3px);
+}
+
+/* 顶栏章节切换下拉器 */
+.occ-ch-dropdown-btn {
+  background: rgba(var(--gold-rgb), 0.06);
+  border: 1px solid rgba(var(--gold-rgb), 0.25);
+  color: var(--paper);
+  padding: 6px 14px;
+  border-radius: 2px;
+  font-family: var(--serif);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  max-width: min(340px, 42vw);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.occ-ch-dropdown-btn:hover {
+  background: rgba(var(--gold-rgb), 0.14);
+  border-color: var(--gold);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(var(--gold-rgb), 0.2);
+}
+.occ-ch-dropdown-btn .caret {
+  font-size: 10px;
+  color: var(--gold);
+  transition: transform 0.25s ease;
+}
+.occ-ch-dropdown-btn.open .caret {
+  transform: rotate(180deg);
+}
+
+/* 顶栏右侧快捷工具 */
+.occ-nav-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.occ-nav-link {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
+  padding: 6px 10px;
+  border-radius: 2px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.occ-nav-link:hover, .occ-nav-link.active {
+  color: var(--gold);
+  background: rgba(var(--gold-rgb), 0.06);
+}
+
+/* 全景卷册目录模态浮层 (TOC Drawer Modal) */
+.occ-toc-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 16px 60px;
+  overflow-y: auto;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.occ-toc-overlay.on {
+  display: flex;
+  opacity: 1;
+}
+.occ-toc-panel {
+  width: min(960px, 94vw);
+  background: var(--bg);
+  border: 1px solid rgba(var(--gold-rgb), 0.45);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(var(--gold-rgb), 0.15);
+  padding: 28px 32px 36px;
+  position: relative;
+  animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.occ-toc-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: var(--hair);
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+}
+.occ-toc-title {
+  font-family: var(--serif);
+  font-size: 20px;
+  color: var(--paper);
+  letter-spacing: 0.18em;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.occ-toc-title small {
+  font-size: 11px;
+  color: var(--gold-dim);
+  letter-spacing: 0.25em;
+  font-family: var(--sans);
+}
+.occ-toc-close {
+  background: transparent;
+  border: 1px solid rgba(var(--gold-rgb), 0.2);
+  color: var(--text3);
+  font-size: 18px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.occ-toc-close:hover {
+  color: var(--paper);
+  border-color: var(--gold);
+}
+
+/* 四册两列/四列矩阵网格 */
+.occ-vol-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+}
+.occ-vol-card {
+  border: var(--hair-soft);
+  background: rgba(255, 255, 255, 0.015);
+  padding: 16px 18px;
+  border-radius: 2px;
+}
+.occ-vol-header {
+  font-family: var(--serif);
+  font-size: 13.5px;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  border-bottom: 1px dashed rgba(var(--gold-rgb), 0.2);
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.occ-vol-count {
+  font-size: 10px;
+  color: var(--text3);
+  letter-spacing: 0.1em;
+}
+.occ-ch-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.occ-ch-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 10px;
+  text-decoration: none;
+  border-radius: 2px;
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  color: var(--text2);
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+}
+.occ-ch-item:hover {
+  color: var(--paper);
+  background: rgba(var(--gold-rgb), 0.08);
+  border-color: rgba(var(--gold-rgb), 0.25);
+  transform: translateX(3px);
+}
+.occ-ch-item.active {
+  color: var(--gold);
+  background: rgba(var(--gold-rgb), 0.12);
+  border-color: var(--gold);
+  font-weight: 500;
+}
+.occ-ch-item.read .badge-read {
+  color: #7ab87a;
+  font-size: 11px;
+}
+
+/* 章节底部双向翻页器 (Chapter Footer Navigator) */
+.occ-ch-footer-nav {
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: var(--hair);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.occ-ch-btn-prev, .occ-ch-btn-next {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 12px 20px;
+  border: 1px solid rgba(var(--gold-rgb), 0.3);
+  background: rgba(var(--gold-rgb), 0.04);
+  color: var(--paper);
+  text-decoration: none;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+  min-width: 180px;
+}
+.occ-ch-btn-prev:hover, .occ-ch-btn-next:hover {
+  background: rgba(var(--gold-rgb), 0.12);
+  border-color: var(--gold);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+.occ-ch-btn-next {
+  text-align: right;
+  margin-left: auto;
+}
+.occ-ch-btn-label {
+  font-size: 10px;
+  color: var(--gold-dim);
+  letter-spacing: 0.25em;
+  margin-bottom: 4px;
+}
+.occ-ch-btn-title {
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--paper);
+  letter-spacing: 0.1em;
+}
+.occ-ch-btn-catalog {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border: 1px dashed rgba(var(--gold-rgb), 0.35);
+  background: transparent;
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 12.5px;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+.occ-ch-btn-catalog:hover {
+  background: rgba(var(--gold-rgb), 0.08);
+  border-color: var(--gold);
+  color: var(--paper);
+}
+
+
 

@@ -566,49 +566,282 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
 </head>
 <body>
 
-<nav class="topnav">
-  <a href="index.html#portal" class="back-link-left">‹ 返回手册总览</a>
-  <div class="wrap">
-    <a href="#home" data-nav="home">卷首 · 总览</a>
-    <a href="#ch1" data-nav="ch1">第壹章 · 阴阳五行</a>
-    <a href="#ch2" data-nav="ch2">第贰章 · 天干地支</a>
-    <a href="#ch3" data-nav="ch3">第叁章 · 历法时辰</a>
-    <a href="#ch4" data-nav="ch4">第肆章 · 四柱排盘</a>
-    <a href="#ch5" data-nav="ch5">第伍章 · 十神</a>
-    <a href="#ch6" data-nav="ch6">第陆章 · 旺衰用神</a>
-    <a href="#ch7" data-nav="ch7">第柒章 · 大运流年</a>
-    <a href="#ch8" data-nav="ch8">第捌章 · 实战次第</a>
-    <span class="nav-sep">第贰册</span>
-    <a href="#ch9" data-nav="ch9">第玖章 · 格局总纲</a>
-    <a href="#ch10" data-nav="ch10">第拾章 · 取格</a>
-    <a href="#ch11" data-nav="ch11">第拾壹章 · 成败</a>
-    <a href="#ch12" data-nav="ch12">第拾贰章 · 四格</a>
-    <a href="#ch13" data-nav="ch13">第拾叁章 · 食禄</a>
-    <a href="#ch14" data-nav="ch14">第拾肆章 · 调候</a>
-    <a href="#ch15" data-nav="ch15">第拾伍章 · 从化</a>
-    <a href="#ch16" data-nav="ch16">第拾陆章 · 实战</a>
-    <span class="nav-sep">第叁册</span>
-    <a href="#ch17" data-nav="ch17">第拾柒章 · 刑冲合会</a>
-    <a href="#ch18" data-nav="ch18">第拾捌章 · 岁运</a>
-    <a href="#ch19" data-nav="ch19">第拾玖章 · 流年</a>
-    <a href="#ch20" data-nav="ch20">第贰拾章 · 应期</a>
-    <a href="#ch21" data-nav="ch21">第贰拾壹章 · 实战</a>
-    <a href="#ch22" data-nav="ch22">第贰拾贰章 · 小结</a>
-    <a href="#ch23" data-nav="ch23">第贰拾叁章 · 六亲</a>
-    <a href="#ch24" data-nav="ch24">第贰拾肆章 · 父母兄弟</a>
-    <a href="#ch25" data-nav="ch25">第贰拾伍章 · 夫妻</a>
-    <a href="#ch26" data-nav="ch26">第贰拾陆章 · 子女</a>
-    <a href="#ch27" data-nav="ch27">第贰拾柒章 · 女命</a>
-    <a href="#ch28" data-nav="ch28">第贰拾捌章 · 性情事业</a>
-  </div>
-  <div class="nav-arrows"><button class="nav-arrow" id="navL" title="向左">‹</button><button class="nav-arrow" id="navR" title="向右">›</button></div>
-  <div class="nav-tools">
-    <a href="#quiz" data-nav="quiz">练习场</a>
-    <a href="#lab" data-nav="lab">断例训练</a>
-    <a href="#ancient" data-nav="ancient">古例馆</a>
-    <a href="#classics" id="navClassics">典籍</a>
+<nav class="occ-master-header">
+  <a href="index.html#portal" class="occ-back-btn" title="返回手册总览">
+    <span class="arrow">‹</span> <span>返回手册</span>
+  </a>
+
+  <button id="chDropdownBtn" class="occ-ch-dropdown-btn" title="点击展开全景卷册目录">
+    <span style="color:var(--gold);font-size:12px;">✦</span>
+    <span id="currChLabel">卷首 · 总览</span>
+    <span class="caret">▾</span>
+  </button>
+
+  <div class="occ-nav-tools">
+    <button id="btnOpenToc" class="occ-nav-link" style="background:transparent;border:none;cursor:pointer;">卷册目录</button>
+    <a href="#quiz" class="occ-nav-link" data-nav="quiz">练习场</a>
+    <a href="#lab" class="occ-nav-link" data-nav="lab">断例室</a>
+    <a href="#ancient" class="occ-nav-link" data-nav="ancient">古例馆</a>
+    <a href="#classics" class="occ-nav-link" id="navClassics">典籍</a>
   </div>
 </nav>
+
+<!-- 全景卷册目录浮层 (TOC Drawer) -->
+<div id="occTocOverlay" class="occ-toc-overlay" aria-hidden="true">
+  <div class="occ-toc-panel">
+    <div class="occ-toc-head">
+      <div class="occ-toc-title">
+        <span>子平八字 · 全景卷册目录</span>
+        <small>四册 · 廿八章完结</small>
+      </div>
+      <button id="occTocClose" class="occ-toc-close" title="关闭目录">✕</button>
+    </div>
+
+    <!-- 卷首总览入口 -->
+    <div style="margin-bottom:20px;padding:12px 16px;border:var(--hair-soft);background:rgba(var(--gold-rgb),.04);display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <a href="#home" class="occ-ch-item" data-ch="home" style="display:inline-block;padding:0;border:none;">
+          <strong style="color:var(--gold);font-family:var(--serif);font-size:14px;">卷首 · 课程总览与学法建议</strong>
+          <div style="font-size:11.5px;color:var(--text3);">建议顺序通读：每一章都是下一章的字典</div>
+        </a>
+      </div>
+      <a href="#home" class="btn" style="padding:6px 16px;font-size:11.5px;">进入卷首 →</a>
+    </div>
+
+    <div class="occ-vol-grid">
+      
+    <div class="occ-vol-card">
+      <div class="occ-vol-header">
+        <span>第壹册 · 识字篇</span>
+        <span class="occ-vol-count">8 章</span>
+      </div>
+      <div class="occ-ch-list">
+        <a href="#ch1" class="occ-ch-item" data-ch="ch1">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第壹章 · 阴阳五行</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">宇宙原质与生克制化模型</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch1"></span>
+        </a>
+        <a href="#ch2" class="occ-ch-item" data-ch="ch2">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第贰章 · 天干地支</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">二十二字干支藏干与节气</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch2"></span>
+        </a>
+        <a href="#ch3" class="occ-ch-item" data-ch="ch3">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第叁章 · 历法时辰</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">真太阳时与早晚子时辩证</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch3"></span>
+        </a>
+        <a href="#ch4" class="occ-ch-item" data-ch="ch4">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第肆章 · 四柱排盘</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">年月柱起遁与排盘次第</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch4"></span>
+        </a>
+        <a href="#ch5" class="occ-ch-item" data-ch="ch5">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第伍章 · 十神体系</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">生克定位与心性象征</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch5"></span>
+        </a>
+        <a href="#ch6" class="occ-ch-item" data-ch="ch6">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第陆章 · 旺衰用神</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">得令得地得势与扶抑通关</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch6"></span>
+        </a>
+        <a href="#ch7" class="occ-ch-item" data-ch="ch7">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第柒章 · 大运流年</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">排大运运程与三岁起运</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch7"></span>
+        </a>
+        <a href="#ch8" class="occ-ch-item" data-ch="ch8">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第捌章 · 实战次第</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">看盘八步法与初步断案</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch8"></span>
+        </a>
+      </div>
+    </div>
+    <div class="occ-vol-card">
+      <div class="occ-vol-header">
+        <span>第贰册 · 格局篇</span>
+        <span class="occ-vol-count">8 章</span>
+      </div>
+      <div class="occ-ch-list">
+        <a href="#ch9" class="occ-ch-item" data-ch="ch9">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第玖章 · 格局总纲</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">八字以格为纲，提纲切领</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch9"></span>
+        </a>
+        <a href="#ch10" class="occ-ch-item" data-ch="ch10">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第拾章 · 八格取格</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">月令透干与会局取用</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch10"></span>
+        </a>
+        <a href="#ch11" class="occ-ch-item" data-ch="ch11">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第拾壹章 · 成败救应</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">格之成与破，救应之理</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch11"></span>
+        </a>
+        <a href="#ch12" class="occ-ch-item" data-ch="ch12">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第拾贰章 · 四吉四凶</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">顺用逆用与财官印煞</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch12"></span>
+        </a>
+        <a href="#ch13" class="occ-ch-item" data-ch="ch13">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第拾叁章 · 食禄专论</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">建禄月劫与弃命从财</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch13"></span>
+        </a>
+        <a href="#ch14" class="occ-ch-item" data-ch="ch14">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第拾肆章 · 调候节气</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">寒暖燥湿与调候为急</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch14"></span>
+        </a>
+        <a href="#ch15" class="occ-ch-item" data-ch="ch15">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第拾伍章 · 从化变格</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">从格化气格与特殊格局</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch15"></span>
+        </a>
+        <a href="#ch16" class="occ-ch-item" data-ch="ch16">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第拾陆章 · 格局实战</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">清明格局古例精解</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch16"></span>
+        </a>
+      </div>
+    </div>
+    <div class="occ-vol-card">
+      <div class="occ-vol-header">
+        <span>第叁册 · 岁运篇</span>
+        <span class="occ-vol-count">6 章</span>
+      </div>
+      <div class="occ-ch-list">
+        <a href="#ch17" class="occ-ch-item" data-ch="ch17">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第拾柒章 · 刑冲合会</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">地支动静与生合刑害克冲</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch17"></span>
+        </a>
+        <a href="#ch18" class="occ-ch-item" data-ch="ch18">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第拾捌章 · 岁运并临</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">大运流年干支引动</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch18"></span>
+        </a>
+        <a href="#ch19" class="occ-ch-item" data-ch="ch19">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第拾玖章 · 流年关煞</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">天克地冲与反吟伏吟</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch19"></span>
+        </a>
+        <a href="#ch20" class="occ-ch-item" data-ch="ch20">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第贰拾章 · 应期法则</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">吉凶应事之年月推断</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch20"></span>
+        </a>
+        <a href="#ch21" class="occ-ch-item" data-ch="ch21">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第贰拾壹章 · 岁运实战</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">流年断事经典课案</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch21"></span>
+        </a>
+        <a href="#ch22" class="occ-ch-item" data-ch="ch22">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第贰拾贰章 · 进阶小结</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">理气象数阶段性复盘</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch22"></span>
+        </a>
+      </div>
+    </div>
+    <div class="occ-vol-card">
+      <div class="occ-vol-header">
+        <span>第肆册 · 人生篇</span>
+        <span class="occ-vol-count">6 章</span>
+      </div>
+      <div class="occ-ch-list">
+        <a href="#ch23" class="occ-ch-item" data-ch="ch23">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第贰拾叁章 · 六亲总纲</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">宫位定位与十神对应</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch23"></span>
+        </a>
+        <a href="#ch24" class="occ-ch-item" data-ch="ch24">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第贰拾肆章 · 父母兄弟</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">年月柱宫位与印比推求</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch24"></span>
+        </a>
+        <a href="#ch25" class="occ-ch-item" data-ch="ch25">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第贰拾伍章 · 夫妻婚姻</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">日支配偶宫与正偏财官</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch25"></span>
+        </a>
+        <a href="#ch26" class="occ-ch-item" data-ch="ch26">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第贰拾陆章 · 子女后代</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">时柱宫位与食伤官杀</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch26"></span>
+        </a>
+        <a href="#ch27" class="occ-ch-item" data-ch="ch27">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第贰拾柒章 · 女命专论</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">古代女命赋文现代辨析</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch27"></span>
+        </a>
+        <a href="#ch28" class="occ-ch-item" data-ch="ch28">
+          <div>
+            <div style="color:var(--paper);font-weight:500;">第贰拾捌章 · 性情事业</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px;">五行清浊寿夭与职业</div>
+          </div>
+          <span class="badge-read" id="tocBadge_ch28"></span>
+        </a>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
 
 <main id="main">
 <section id="home" class="on">
@@ -681,6 +914,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
       <span class="tag">使用说明</span><br>
       本站是<b>传统文化知识学习工具</b>：排盘结果仅用于教学演示，全站不提供命理预测、吉凶判断或人生决策建议。内容以现代白话讲解传统命理学的基础概念，学习成果以题目得分衡量。
     </div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="index.html#portal" class="occ-ch-btn-prev">
+  <span class="occ-ch-btn-label">‹ 返回手册</span>
+  <span class="occ-ch-btn-title">手册总览门户</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch1" class="occ-ch-btn-next" data-target="ch1">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第壹章 · 阴阳五行</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -772,6 +1018,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch1"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#quiz"><span>去做本章练习 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#home" class="occ-ch-btn-prev" data-target="home">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">卷首 · 课程总览</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch2" class="occ-ch-btn-next" data-target="ch2">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第贰章 · 天干地支</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -846,6 +1105,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch2"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#ch3"><span>下一章 · 历法时辰 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch1" class="occ-ch-btn-prev" data-target="ch1">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第壹章 · 阴阳五行</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch3" class="occ-ch-btn-next" data-target="ch3">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第叁章 · 历法时辰</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -924,6 +1196,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     <div class="note story"><span class="tag">史例 · 明</span><br>时辰到底有多要紧？《三命通会》记了两对双胞胎："三河王氏兄弟双生，弟先中，兄后中，功名寿夭，大率相似，而兄竟不如弟。颍州李氏兄弟双生，因差一时，故弟登甲科，兄只秀才。考其八字，果如前说。"——同一对父母、几乎同一刻出生，只因时辰差了一位，功名便分了高下。时辰是四柱里最细的一根刻度。<span class="src-line">——明·万民英《三命通会·论时刻》（原文可于本站古文库检索）</span><button class="btn small ghost" data-yuanpi="yp-shuangsheng" style="margin:10px 8px 0 0"><span>✦ 查原批 · 古文</span></button></div>
     <div class="btn-row"><button class="btn" data-read="ch3"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#ch4"><span>下一章 · 四柱排盘 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch2" class="occ-ch-btn-prev" data-target="ch2">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第贰章 · 天干地支</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch4" class="occ-ch-btn-next" data-target="ch4">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第肆章 · 四柱排盘</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -1001,6 +1286,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch4"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#quiz"><span>进入练习场 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch3" class="occ-ch-btn-prev" data-target="ch3">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第叁章 · 历法时辰</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch5" class="occ-ch-btn-next" data-target="ch5">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第伍章 · 十神体系</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -1068,6 +1366,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch5"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#quiz"><span>去练习场巩固 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch4" class="occ-ch-btn-prev" data-target="ch4">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第肆章 · 四柱排盘</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch6" class="occ-ch-btn-next" data-target="ch6">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第陆章 · 旺衰用神</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -1128,6 +1439,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch6"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#quiz"><span>去练习场巩固 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch5" class="occ-ch-btn-prev" data-target="ch5">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第伍章 · 十神体系</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch7" class="occ-ch-btn-next" data-target="ch7">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第柒章 · 大运流年</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -1193,6 +1517,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch7"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#quiz"><span>去练习场巩固 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch6" class="occ-ch-btn-prev" data-target="ch6">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第陆章 · 旺衰用神</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch8" class="occ-ch-btn-next" data-target="ch8">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第捌章 · 实战次第</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -1266,6 +1603,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch8"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#quiz"><span>去练习场巩固 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch7" class="occ-ch-btn-prev" data-target="ch7">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第柒章 · 大运流年</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch9" class="occ-ch-btn-next" data-target="ch9">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第玖章 · 格局总纲</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -1311,6 +1661,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch9"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#ch10"><span>下一章 · 取格 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch8" class="occ-ch-btn-prev" data-target="ch8">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第捌章 · 实战次第</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch10" class="occ-ch-btn-next" data-target="ch10">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第拾章 · 八格取格</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -1365,6 +1728,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch10"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#ch11"><span>下一章 · 成败 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch9" class="occ-ch-btn-prev" data-target="ch9">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第玖章 · 格局总纲</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch11" class="occ-ch-btn-next" data-target="ch11">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第拾壹章 · 成败救应</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -1426,6 +1802,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch11"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#quiz"><span>去练习场巩固 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch10" class="occ-ch-btn-prev" data-target="ch10">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第拾章 · 八格取格</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch12" class="occ-ch-btn-next" data-target="ch12">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第拾贰章 · 四吉四凶</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -1474,6 +1863,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch12"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#ch13"><span>下一章 · 食伤建禄 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch11" class="occ-ch-btn-prev" data-target="ch11">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第拾壹章 · 成败救应</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch13" class="occ-ch-btn-next" data-target="ch13">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第拾叁章 · 食禄专论</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -1520,6 +1922,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch13"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#quiz"><span>去练习场巩固 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch12" class="occ-ch-btn-prev" data-target="ch12">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第拾贰章 · 四吉四凶</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch14" class="occ-ch-btn-next" data-target="ch14">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第拾肆章 · 调候节气</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -1575,6 +1990,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch14"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#ch15"><span>下一章 · 从化外格 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch13" class="occ-ch-btn-prev" data-target="ch13">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第拾叁章 · 食禄专论</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch15" class="occ-ch-btn-next" data-target="ch15">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第拾伍章 · 从化变格</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -1627,6 +2055,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch15"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#quiz"><span>去练习场巩固 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch14" class="occ-ch-btn-prev" data-target="ch14">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第拾肆章 · 调候节气</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch16" class="occ-ch-btn-next" data-target="ch16">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第拾陆章 · 格局实战</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -1697,6 +2138,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch16"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#quiz"><span>去练习场巩固 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch15" class="occ-ch-btn-prev" data-target="ch15">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第拾伍章 · 从化变格</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch17" class="occ-ch-btn-next" data-target="ch17">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第拾柒章 · 刑冲合会</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -1761,6 +2215,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch17"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#quiz"><span>去练习场巩固 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch16" class="occ-ch-btn-prev" data-target="ch16">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第拾陆章 · 格局实战</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch18" class="occ-ch-btn-next" data-target="ch18">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第拾捌章 · 岁运并临</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -1821,6 +2288,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch18"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#ch19"><span>下一章 · 流年月建 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch17" class="occ-ch-btn-prev" data-target="ch17">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第拾柒章 · 刑冲合会</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch19" class="occ-ch-btn-next" data-target="ch19">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第拾玖章 · 流年关煞</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -1884,6 +2364,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch19"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#quiz"><span>去练习场巩固 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch18" class="occ-ch-btn-prev" data-target="ch18">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第拾捌章 · 岁运并临</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch20" class="occ-ch-btn-next" data-target="ch20">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第贰拾章 · 应期法则</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -1966,6 +2459,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch20"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#quiz"><span>去练习场巩固 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch19" class="occ-ch-btn-prev" data-target="ch19">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第拾玖章 · 流年关煞</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch21" class="occ-ch-btn-next" data-target="ch21">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第贰拾壹章 · 岁运实战</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -2010,6 +2516,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch21"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#ch22"><span>下一章 · 第叁册小结 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch20" class="occ-ch-btn-prev" data-target="ch20">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第贰拾章 · 应期法则</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch22" class="occ-ch-btn-next" data-target="ch22">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第贰拾贰章 · 进阶小结</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -2051,6 +2570,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch22"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#quiz"><span>去练习场巩固 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch21" class="occ-ch-btn-prev" data-target="ch21">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第贰拾壹章 · 岁运实战</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch23" class="occ-ch-btn-next" data-target="ch23">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第贰拾叁章 · 六亲总纲</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -2109,6 +2641,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch23"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#ch24"><span>下一章 · 父母兄弟 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch22" class="occ-ch-btn-prev" data-target="ch22">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第贰拾贰章 · 进阶小结</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch24" class="occ-ch-btn-next" data-target="ch24">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第贰拾肆章 · 父母兄弟</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -2153,6 +2698,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch24"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#ch25"><span>下一章 · 夫妻 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch23" class="occ-ch-btn-prev" data-target="ch23">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第贰拾叁章 · 六亲总纲</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch25" class="occ-ch-btn-next" data-target="ch25">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第贰拾伍章 · 夫妻婚姻</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -2204,6 +2762,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch25"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#quiz"><span>去练习场巩固 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch24" class="occ-ch-btn-prev" data-target="ch24">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第贰拾肆章 · 父母兄弟</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch26" class="occ-ch-btn-next" data-target="ch26">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第贰拾陆章 · 子女后代</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -2240,6 +2811,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch26"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#ch27"><span>下一章 · 女命专章 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch25" class="occ-ch-btn-prev" data-target="ch25">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第贰拾伍章 · 夫妻婚姻</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch27" class="occ-ch-btn-next" data-target="ch27">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第贰拾柒章 · 女命专论</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -2289,6 +2873,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch27"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#ch28"><span>下一章 · 性情疾病事业 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch26" class="occ-ch-btn-prev" data-target="ch26">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第贰拾陆章 · 子女后代</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#ch28" class="occ-ch-btn-next" data-target="ch28">
+  <span class="occ-ch-btn-label">下一章 ›</span>
+  <span class="occ-ch-btn-title">第贰拾捌章 · 性情事业</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -2356,6 +2953,19 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
     <div class="btn-row"><button class="btn" data-read="ch28"><span>标记本章已学</span></button>
     <a class="btn ghost" href="#quiz"><span>去练习场巩固 →</span></a></div>
+    <!-- 章节底部双向翻页器 -->
+    <div class="occ-ch-footer-nav">
+      <a href="#ch27" class="occ-ch-btn-prev" data-target="ch27">
+  <span class="occ-ch-btn-label">‹ 上一章</span>
+  <span class="occ-ch-btn-title">第贰拾柒章 · 女命专论</span>
+</a>
+      <button class="occ-ch-btn-catalog" onclick="window.openToc()">✦ 卷册目录</button>
+      <a href="#quiz" class="occ-ch-btn-next" data-target="quiz">
+  <span class="occ-ch-btn-label">进入演练 ›</span>
+  <span class="occ-ch-btn-title">八字综合练习场</span>
+</a>
+    </div>
+
   </div>
 </section>
 
@@ -2688,6 +3298,20 @@ function renderProgress(){
 }
 document.querySelectorAll('[data-read]').forEach(b=>b.addEventListener('click',()=>{
   const k=b.dataset.read; P.read[k]=!P.read[k]; saveP(); renderProgress();
+
+  const chBtn = document.getElementById('chDropdownBtn');
+  if (chBtn) chBtn.addEventListener('click', openToc);
+  const btnToc = document.getElementById('btnOpenToc');
+  if (btnToc) btnToc.addEventListener('click', openToc);
+  const closeBtn = document.getElementById('occTocClose');
+  if (closeBtn) closeBtn.addEventListener('click', closeToc);
+  const ov = document.getElementById('occTocOverlay');
+  if (ov) {
+    ov.addEventListener('click', function(e) {
+      if (e.target === ov) closeToc();
+    });
+  }
+
   toast(P.read[k]?'已标记本章为已学':'已取消标记');
 }));
 
@@ -3249,6 +3873,20 @@ function quizEnd(){
     P.best=Q.score;saveP();
   }
   renderProgress();
+
+  const chBtn = document.getElementById('chDropdownBtn');
+  if (chBtn) chBtn.addEventListener('click', openToc);
+  const btnToc = document.getElementById('btnOpenToc');
+  if (btnToc) btnToc.addEventListener('click', openToc);
+  const closeBtn = document.getElementById('occTocClose');
+  if (closeBtn) closeBtn.addEventListener('click', closeToc);
+  const ov = document.getElementById('occTocOverlay');
+  if (ov) {
+    ov.addEventListener('click', function(e) {
+      if (e.target === ov) closeToc();
+    });
+  }
+
   box.innerHTML=`
     <div class="q-score">
       <div class="num">${pct}<span style="font-size:26px"> 分</span></div>
@@ -3552,6 +4190,20 @@ const ANCIENT=[
       rv.innerHTML=`<div class="note ${ok?'tip':'warn'}"><span class="tag">${ok?'你的判断与古人相合':'古人的断语'}</span><br>
         <span style="font-family:var(--serif);display:block;margin:8px 0;color:var(--paper);line-height:2.1">「${c.quote}」</span>${c.note}</div>`;
       P.ancient=true;saveP();renderProgress();
+
+  const chBtn = document.getElementById('chDropdownBtn');
+  if (chBtn) chBtn.addEventListener('click', openToc);
+  const btnToc = document.getElementById('btnOpenToc');
+  if (btnToc) btnToc.addEventListener('click', openToc);
+  const closeBtn = document.getElementById('occTocClose');
+  if (closeBtn) closeBtn.addEventListener('click', closeToc);
+  const ov = document.getElementById('occTocOverlay');
+  if (ov) {
+    ov.addEventListener('click', function(e) {
+      if (e.target === ov) closeToc();
+    });
+  }
+
       rv.scrollIntoView({behavior:'smooth',block:'nearest'});
     }));
     box.appendChild(card);
@@ -4465,6 +5117,20 @@ SECTIONS.slice(1,5).forEach(ch=>{
 });
 
 renderProgress();
+
+  const chBtn = document.getElementById('chDropdownBtn');
+  if (chBtn) chBtn.addEventListener('click', openToc);
+  const btnToc = document.getElementById('btnOpenToc');
+  if (btnToc) btnToc.addEventListener('click', openToc);
+  const closeBtn = document.getElementById('occTocClose');
+  if (closeBtn) closeBtn.addEventListener('click', closeToc);
+  const ov = document.getElementById('occTocOverlay');
+  if (ov) {
+    ov.addEventListener('click', function(e) {
+      if (e.target === ov) closeToc();
+    });
+  }
+
 </script>
 </body>
 </html>
