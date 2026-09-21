@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0d0e11">
-<title>神秘学手册 · 东西方术数与星历研习指南 | OCCODEX</title>
-<meta name="description" content="传统文化知识学习工具：从阴阳五行、天干地支、十二时辰到四柱排盘，配合客观题练习与经典断例训练。">
+<title>小六壬 · 马前课 | OCCODEX</title>
+<meta name="description" content="小六壬马前课：大安、留连、速喜、赤口、小吉、空亡六神指掌掐算，正统左手解剖线稿与步进飞宫动画。">
 <link rel="stylesheet" href="occ-theme.css">
 <style>
 
@@ -546,222 +546,592 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
 .sr-hint{font-size:11px;color:var(--text-3);letter-spacing:.08em;margin-bottom:16px}
 @media (max-width:640px){.theme-btn{top:10px;right:10px;width:40px;height:40px}}
 
+/* XLR 独立页面顶栏适配 */
+.xlr-topnav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: var(--nav-bg, rgba(13,15,20,.94));
+  border-bottom: var(--hair);
+  backdrop-filter: blur(12px);
+}
+.back-link-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: .15em;
+  font-family: var(--serif);
+  transition: opacity .2s;
+}
+.back-link-left:hover {
+  opacity: .75;
+}
 </style>
 </head>
 <body>
 
-<nav id="topNav" style="position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:12px 24px;background:var(--nav-bg, rgba(13,15,20,.94));border-bottom:var(--hair);backdrop-filter:blur(12px);">
-  <div style="display:flex;align-items:center;gap:12px;">
-    <span style="font-family:var(--serif);font-size:16px;color:var(--paper);letter-spacing:.15em;font-weight:600;">OCCODEX</span>
-    <span style="font-size:11px;color:var(--gold-dim);letter-spacing:.25em;display:none;sm:inline;">// 神秘学手册</span>
-  </div>
-  <div style="display:flex;gap:16px;align-items:center;font-size:13px;letter-spacing:.15em;">
-    <a href="ziping.html" style="color:var(--text-2);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-2)'">子平八字</a>
-    <a href="xlr.html" style="color:var(--text-2);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-2)'">小六壬</a>
-    <a href="liuren.html" style="color:var(--text-2);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-2)'">大六壬</a>
-    <a href="liuyao.html" style="color:var(--text-2);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-2)'">六爻</a>
-    <a href="#portalFullChrono" style="color:var(--gold);text-decoration:none;border:1px solid rgba(var(--gold-rgb),.3);padding:4px 10px;font-size:11px;">全息双轨星历 ↓</a>
-  </div>
+<nav class="xlr-topnav">
+  <a href="index.html#portal" class="back-link-left">‹ 返回手册总览</a>
+  <div style="font-size:12px;letter-spacing:.2em;color:var(--text-3)">OCCODEX // 式占微课 · 小六壬</div>
 </nav>
 
-<main id="main">
-<section id="portal" class="on">
+<main>
+<section id="xlr" class="on">
   <div class="wrap">
+    <div style="margin-bottom:20px"><a href="#portal" data-nav="portal" class="back-link-left" style="border:var(--hair);border-radius:2px;display:inline-flex">← 返回手册</a></div>
     <div class="ch-head">
-      <div class="kick">OCCODEX // MYSTERIUM HANDBOOK · 交互研习版</div>
-      <h1 style="letter-spacing:.1em">神秘学手册</h1>
-      <p class="lede">一本可以交互学习的命理与神秘学教科书。每门课从零开始，配练习场、案例馆与古籍检索；学习进度保存在本机。</p>
-      <div class="meta"><span>东玄（山·医·命·相·卜）</span><span>西玄（赫尔密斯传统）</span><span>课程制 · 陆续开设</span></div>
+      <div class="kick">XIAO LIU REN · 马前课 · 袖珍体验课</div>
+      <h2>小六壬：掐指之间</h2>
+      <p class="sub">传说为诸葛武侯行军时所创的微型式占：不排盘、不立式，只取月、日、时三个数字，在左手六宫上顺次数去，落宫即断。</p>
       <div class="rule">✦</div>
     </div>
 
-    <!-- 逆流时钟与实时时标终端 -->
-    <div id="portalChrono"></div>
-
-    <div class="toc-group">
-      <div class="toc-ghead"><span class="tg-title">东玄 · 命</span><span class="tg-sub">推命体系</span><span class="tg-stat">1 / 4 门课开放</span></div>
-      <div class="toc-list">
-        <a href="ziping.html"><span class="tr-no">东玄 · 命</span><span class="tr-main"><span class="tr-tt">子平学堂（八字 · 子平法）</span><span class="tr-ds">四册 · 廿八章完结：识字 → 局面 → 时间 → 人生面向。配排盘、练习场、古例馆、典籍、AI 助教。</span></span><span class="st" style="color:var(--gold)">进入课程 →</span></a>
-        <a class="toc-row-static"><span class="tr-no">东玄 · 命</span><span class="tr-main"><span class="tr-tt">紫微斗数</span><span class="tr-ds">规划中——底本调研后开课。</span></span><span class="st">筹备</span></a>
-      </div>
+    <div class="card">
+      <h3><span class="zh-no">壹</span>六宫：六种基本局势</h3>
+      <p>小六壬把一切结果收敛为六种"局势"，各配一位神将与五行。先记住顺序：<b>大安 → 留连 → 速喜 → 赤口 → 小吉 → 空亡</b>，周而复始。</p>
+      <div class="tbl-scroll"><table>
+        <thead><tr><th>宫</th><th>吉凶</th><th>五行 · 神将</th><th>一句话释义</th></tr></thead>
+        <tbody>
+          <tr><td><b>大安</b></td><td style="color:var(--gold)">吉</td><td>木 · 青龙</td><td>心安体泰，诸事平稳；谋事在初，贵人可倚</td></tr>
+          <tr><td><b>留连</b></td><td>凶</td><td>水 · 玄武</td><td>纠缠暗昧，迁延反复；事多牵扯，难解难分</td></tr>
+          <tr><td><b>速喜</b></td><td style="color:var(--gold)">吉</td><td>火 · 朱雀</td><td>喜讯速至，立见分晓；文书之喜，快而不久</td></tr>
+          <tr><td><b>赤口</b></td><td>凶</td><td>金 · 白虎</td><td>口舌是非，争斗冲突；防小人，防官非</td></tr>
+          <tr><td><b>小吉</b></td><td style="color:var(--gold)">吉</td><td>水 · 六合</td><td>和合美满，小有财利；慢中有成，人际和顺</td></tr>
+          <tr><td><b>空亡</b></td><td>凶</td><td>土 · 勾陈</td><td>落空无果，谋事难成；求而不获，望而不至</td></tr>
+        </tbody>
+      </table></div>
     </div>
 
-    <div class="toc-group">
-      <div class="toc-ghead"><span class="tg-title">东玄 · 卜</span><span class="tg-sub">卜筮体系</span><span class="tg-stat">2 / 5 门课规划</span></div>
-      <div class="toc-list">
-        <a href="xlr.html"><span class="tr-no">东玄 · 卜</span><span class="tr-main"><span class="tr-tt">小六壬 · 马前课</span><span class="tr-ds">已开放：袖珍体验课。掐指即得的"式占"最小完整样本——理解六壬思维的免费入口。</span></span><span class="st" style="color:var(--gold)">进入课程 →</span></a>
-        <a href="liuren.html"><span class="tr-no">东玄 · 卜</span><span class="tr-main"><span class="tr-tt">六壬学堂（大六壬）· 进阶</span><span class="tr-ds">进阶课程 · 建设中（建议先学六爻再回来）：源流 → 起课基础 → 四课 → 三传九宗门 → 天将十二神 → 课体 → 毕法精读 → 占类分科。配起课推演室、断案课例馆（149 则）。</span></span><span class="st" style="color:var(--gold)">进入课程 →</span></a>
-        <a class="toc-row-static"><span class="tr-no">东玄 · 卜</span><span class="tr-main"><span class="tr-tt">六爻学堂 · 纳甲筮法</span><span class="tr-ds">即将开课：三枚铜钱起卦，以《增删卜易》为底本。先修八字的地支五行六亲即可上手——难度贴合小六壬到八字的梯度。</span></span><span class="st" style="color:var(--gold)">即将开课</span></a>
-        <a class="toc-row-static"><span class="tr-no">东玄 · 卜</span><span class="tr-main"><span class="tr-tt">奇门遁甲</span><span class="tr-ds">规划中——底本已备（遁甲演义、秘笈大全）。</span></span><span class="st">筹备</span></a>
+    <div class="card">
+      <h3><span class="zh-no">贰</span>起课：三次顺数</h3>
+      <p>规则只有一条口诀：<b>"月初从大安起，日从月宫起初一，时从日宫起子时。"</b>三次顺数，每数一圈回原地继续——最终落宫就是答案。</p>
+      <div class="inline-fields" style="max-width:560px">
+        <div class="field"><label>月（1–12）</label><input type="number" id="xlrM" value="3" min="1" max="12"></div>
+        <div class="field"><label>日（1–30）</label><input type="number" id="xlrD" value="15" min="1" max="30"></div>
+        <div class="field"><label>时辰</label><select id="xlrH"></select></div>
+        <div class="field" style="flex:0"><label>&nbsp;</label><button class="btn small" id="xlrBtn"><span>掐指起课</span></button></div>
+        <div class="field" style="flex:0"><label>&nbsp;</label><button class="btn small ghost" id="xlrNow"><span>以当下时刻示例</span></button></div>
       </div>
+      <div id="xlrBox"></div>
     </div>
 
-    <div class="toc-group">
-      <div class="toc-ghead"><span class="tg-title">西玄 · 赫尔密斯传统</span><span class="tg-sub">Western Esotericism</span><span class="tg-stat">规划中</span></div>
-      <div class="toc-list">
-        <a class="toc-row-static"><span class="tr-no">西玄</span><span class="tr-main"><span class="tr-tt">塔罗</span><span class="tr-ds">课程大纲调研中（22 张大阿卡纳为主线的结构草案已立）。</span></span><span class="st">筹备</span></a>
-        <a class="toc-row-static"><span class="tr-no">西玄</span><span class="tr-main"><span class="tr-tt">炼金术</span><span class="tr-ds">规划中——偏知识科普形态，与推演体系课型不同。</span></span><span class="st">筹备</span></a>
-      </div>
-    </div>
+    <div class="card">
+  <h3><span class="zh-no">贰 · 补</span>掌诀图：掐在哪、怎么数</h3>
+  <p>小六壬之所以叫"掐指一算"，是因为六宫的位置就在<b>左手三根手指的六个关节</b>上——食指、中指、无名指，每根手指分根部与尖端，共六位。用拇指在这六个位置上顺时针点掐，就是"掐指一算"的字面意思。</p>
+      <div style="max-width:440px;margin:18px auto 4px">
+        <svg class="palm-svg" viewBox="0 0 360 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="palmTitle palmDesc">
+          <title id="palmTitle">小六壬左手掌诀图</title>
+          <desc id="palmDesc">左手掌心朝向观众，标示大安、留连、速喜、赤口、小吉、空亡六宫及顺时针起课轨迹。</desc>
 
-    <!-- 演易交互台：六爻·三钱演易 -->
-    <div class="card crop-mark" style="margin-top:36px">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-        <h3 style="margin-bottom:0"><span class="zh-no">演易</span>三钱演易 · 纳甲筮法交互台</h3>
-        <span class="tech-chip"><span class="dot"></span>I-CHING // SIMULATOR</span>
-      </div>
-      <p>以三枚开元通宝摇掷六次，自下而上建立初爻至上爻。老阳/老阴为动爻，自动演化变卦：</p>
-      <div class="coin-stage" id="lyCoinStage">
-        <div class="coin-item" id="lyCoin0"><div class="coin-hole"></div><span class="coin-char" style="top:4px">开</span><span class="coin-char" style="bottom:4px">元</span><span class="coin-char" style="left:4px">通</span><span class="coin-char" style="right:4px">宝</span></div>
-        <div class="coin-item" id="lyCoin1"><div class="coin-hole"></div><span class="coin-char" style="top:4px">开</span><span class="coin-char" style="bottom:4px">元</span><span class="coin-char" style="left:4px">通</span><span class="coin-char" style="right:4px">宝</span></div>
-        <div class="coin-item" id="lyCoin2"><div class="coin-hole"></div><span class="coin-char" style="top:4px">开</span><span class="coin-char" style="bottom:4px">元</span><span class="coin-char" style="left:4px">通</span><span class="coin-char" style="right:4px">宝</span></div>
-      </div>
-      <div style="display:flex;gap:12px;justify-content:center;margin-bottom:16px">
-        <button class="btn small" id="lyTossBtn"><span>掷钱起一爻（第 <span id="lyStepNum">1</span>/6 爻）</span></button>
-        <button class="btn small ghost" id="lyResetBtn"><span>重置卦盘</span></button>
-      </div>
-      <div id="lyVisualizer" class="hexagram-visualizer"></div>
-      <div id="lyResultBox" style="margin-top:14px"></div>
-    </div>
+          <style>
+            .palm-svg { width: 100%; height: auto; display: block; }
+            .palm-svg .hand-contour { fill: var(--bg-card, #13161e); stroke: var(--gold, #c9a227); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+            .palm-svg .hand-crease { fill: none; stroke: var(--gold, #c9a227); stroke-opacity: 0.22; stroke-width: 1; stroke-linecap: round; }
+            .palm-svg .pring { fill: none; stroke: var(--gold, #c9a227); stroke-opacity: 0.35; stroke-width: 1.2; stroke-dasharray: 4 5; }
+            .palm-svg .chev { fill: none; stroke: var(--gold, #c9a227); stroke-opacity: 0.6; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+            .palm-svg .halo { fill: none; stroke: var(--gold, #c9a227); stroke-opacity: 0.45; stroke-width: 1; stroke-dasharray: 2 3; }
+            .palm-svg .nd { stroke-width: 1.2; fill: var(--bg-card, #13161e); fill-opacity: 0.9; stroke: var(--gold, #c9a227); stroke-opacity: 0.6; cursor: pointer; transition: all 0.2s ease; }
+            .palm-svg .nd.ji { stroke: var(--gold, #c9a227); }
+            .palm-svg .nd.xiong { stroke: var(--celadon, #5d8ab5); stroke-opacity: 0.7; }
+            .palm-svg .nm { font-family: var(--serif); font-size: 13.5px; fill: var(--paper, #ece5d6); letter-spacing: 0.05em; font-weight: 500; pointer-events: none; }
+            .palm-svg .wx { font-size: 9.5px; fill: var(--text3, #827b6d); letter-spacing: 0.02em; pointer-events: none; }
+            .palm-svg .fg { font-size: 11px; fill: var(--text3, #827b6d); letter-spacing: 0.08em; }
+            .palm-svg .mk { font-family: var(--serif); font-size: 11px; fill: var(--gold, #c9a227); font-weight: 600; }
+            .palm-svg .minor { fill: none; stroke: var(--gold, #c9a227); stroke-opacity: 0.11; stroke-width: 0.7; }
+            .palm-svg .wash { fill: var(--gold, #c9a227); fill-opacity: 0.035; }
+            .palm-svg .seal { fill: none; stroke: var(--gold, #c9a227); stroke-opacity: 0.38; stroke-width: 0.8; }
+            body.daylight .palm-svg .hand-contour { fill: var(--bg-card, #ece5d6); stroke: var(--gold, #9e3626); }
+            body.daylight .palm-svg .hand-crease,
+            body.daylight .palm-svg .pring,
+            body.daylight .palm-svg .chev,
+            body.daylight .palm-svg .halo,
+            body.daylight .palm-svg .minor,
+            body.daylight .palm-svg .seal { stroke: var(--gold, #9e3626); }
+            body.daylight .palm-svg .wash { fill: var(--gold, #9e3626); }
+            body.daylight .palm-svg .nd { fill: var(--bg-card, #ece5d6); stroke: var(--gold, #9e3626); }
+            body.daylight .palm-svg .nm { fill: var(--paper, #28241e); }
+            body.daylight .palm-svg .mk { fill: var(--gold, #9e3626); }
+          </style>
 
-    <!-- 东西方双轨时空参详仪 · 全息星历 (完整版) -->
-    <div id="portalFullChrono" style="margin-top:36px"></div>
+          <defs>
+            <radialGradient id="bgGlow" cx="50%" cy="42%" r="72%">
+              <stop offset="0%" stop-color="var(--gold, #c9a227)" stop-opacity="0.12"></stop>
+              <stop offset="62%" stop-color="var(--bg-subtle, #141720)" stop-opacity="0.18"></stop>
+              <stop offset="100%" stop-color="transparent" stop-opacity="0"></stop>
+            </radialGradient>
 
-    <div class="note tip" style="margin-top:30px">
-      <span class="tag">关于本手册</span><br>
-      东玄板块按道教"山医命相卜"五术传统分组；西玄板块对应西方神秘学（Western Esotericism）谱系。所有课程均为<b>知识教学</b>：不提供占卜、预测或任何人生决策服务，学习进度仅保存在本机。
+            <linearGradient id="handSheen" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="var(--gold, #c9a227)" stop-opacity="0.13"></stop>
+              <stop offset="48%" stop-color="var(--gold, #c9a227)" stop-opacity="0.025"></stop>
+              <stop offset="100%" stop-color="#000000" stop-opacity="0.12"></stop>
+            </linearGradient>
+
+            <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+              <feGaussianBlur stdDeviation="2.2" result="blur"></feGaussianBlur>
+              <feMerge>
+                <feMergeNode in="blur"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+              </feMerge>
+            </filter>
+
+            <filter id="nodeShadow" x="-50%" y="-50%" width="200%" height="200%">
+              <feDropShadow dx="0" dy="0" stdDeviation="2.4" flood-color="var(--gold, #d6b44c)" flood-opacity="0.35"></feDropShadow>
+            </filter>
+          </defs>
+
+          <rect width="360" height="400" fill="transparent"></rect>
+          <rect x="8" y="8" width="344" height="384" rx="3" fill="url(#bgGlow)" stroke="var(--gold, #c9a227)" stroke-opacity="0.22"></rect>
+          <path class="minor" d="M22 38 H338 M22 362 H338"></path>
+          <path class="minor" d="M28 30 V370 M332 30 V370"></path>
+
+          <text class="mk" x="180" y="25" text-anchor="middle" letter-spacing="0.18em">小 六 壬 · 左 手 掌 诀</text>
+          <text class="fg" x="180" y="39" text-anchor="middle" font-size="8">以掌定局　循六宫而数</text>
+
+          <!-- 左手掌心轮廓：拇指在左，小指在右 -->
+          <path class="hand-contour" d="
+            M120 393
+            C114 378 110 357 112 339
+            C114 322 107 305 95 292
+            C86 282 72 276 61 264
+            C51 254 47 243 52 233
+            C57 223 67 218 77 221
+            C88 224 97 235 106 243
+            C105 228 102 212 103 196
+            L105 98
+            C105 83 113 74 125 73
+            C138 73 146 83 146 98
+            L145 175
+            C148 177 151 179 154 179
+            C156 150 156 111 157 81
+            C157 65 166 55 179 54
+            C192 54 200 65 200 81
+            L198 178
+            C202 179 205 180 208 182
+            L210 97
+            C210 82 219 73 231 72
+            C243 72 250 83 249 98
+            L246 187
+            C250 188 253 190 255 192
+            L258 121
+            C259 107 267 99 278 100
+            C290 102 296 112 295 126
+            L289 219
+            C288 235 281 248 272 258
+            C258 275 251 291 250 309
+            C249 330 254 352 260 373
+            C263 385 258 392 248 396
+            C211 402 160 402 120 393 Z"></path>
+
+          <path d="
+            M120 393
+            C114 378 110 357 112 339
+            C114 322 107 305 95 292
+            C86 282 72 276 61 264
+            C51 254 47 243 52 233
+            C57 223 67 218 77 221
+            C88 224 97 235 106 243
+            C105 228 102 212 103 196
+            L105 98
+            C105 83 113 74 125 73
+            C138 73 146 83 146 98
+            L145 175
+            C148 177 151 179 154 179
+            C156 150 156 111 157 81
+            C157 65 166 55 179 54
+            C192 54 200 65 200 81
+            L198 178
+            C202 179 205 180 208 182
+            L210 97
+            C210 82 219 73 231 72
+            C243 72 250 83 249 98
+            L246 187
+            C250 188 253 190 255 192
+            L258 121
+            C259 107 267 99 278 100
+            C290 102 296 112 295 126
+            L289 219
+            C288 235 281 248 272 258
+            C258 275 251 291 250 309
+            C249 330 254 352 260 373
+            C263 385 258 392 248 396
+            C211 402 160 402 120 393 Z" fill="url(#handSheen)" opacity="0.8"></path>
+
+          <!-- 指间纵向细阴影 -->
+          <path class="minor" d="M145 177 C143 190 144 204 148 218"></path>
+          <path class="minor" d="M198 179 C195 193 196 208 201 222"></path>
+          <path class="minor" d="M246 188 C243 202 243 215 247 229"></path>
+          <path class="minor" d="M289 219 C284 231 278 239 269 247"></path>
+
+          <!-- 掌丘柔和层次 -->
+          <path class="wash" d="M106 243 C127 231 150 233 166 252 C182 271 185 312 171 345 C157 377 135 385 120 374 C115 351 116 330 105 306 C96 286 91 260 106 243 Z"></path>
+          <path class="wash" d="M208 235 C236 224 263 239 272 262 C257 281 250 300 250 320 C229 335 205 326 196 302 C188 278 190 248 208 235 Z"></path>
+
+          <!-- 掌纹：心线、智慧线、生命线 -->
+          <path class="hand-crease" d="M108 223 C132 211 158 214 181 224 C201 233 222 232 244 220"></path>
+          <path class="hand-crease" d="M103 249 C127 250 147 256 164 269 C183 283 207 286 239 279"></path>
+          <path class="hand-crease" d="M108 244 C91 261 94 284 112 302 C129 320 139 346 137 377"></path>
+          <path class="hand-crease" d="M118 273 C130 281 141 290 148 305"></path>
+          <path class="hand-crease" d="M126 333 C143 340 158 342 174 336"></path>
+          <path class="hand-crease" d="M183 304 C203 299 222 300 243 308"></path>
+
+          <!-- 手腕横纹 -->
+          <path class="hand-crease" d="M116 361 C146 353 193 357 254 365"></path>
+          <path class="hand-crease" d="M118 374 C153 368 202 372 257 379"></path>
+          <path class="hand-crease" d="M123 386 C158 382 204 386 251 390"></path>
+
+          <!-- 指节横纹 -->
+          <g class="hand-crease">
+            <!-- 食指 -->
+            <path d="M108 112 C119 116 132 116 143 112"></path>
+            <path d="M107 143 C119 147 132 147 144 143"></path>
+            <path d="M106 174 C118 178 132 178 145 174"></path>
+            <!-- 中指 -->
+            <path d="M160 94 C171 98 186 98 197 94"></path>
+            <path d="M159 128 C171 132 185 132 198 128"></path>
+            <path d="M158 163 C171 167 185 167 198 163"></path>
+            <!-- 无名指 -->
+            <path d="M213 111 C224 115 237 115 248 111"></path>
+            <path d="M212 143 C223 147 236 147 247 143"></path>
+            <path d="M211 174 C222 178 235 178 246 174"></path>
+            <!-- 小指 -->
+            <path d="M260 134 C269 138 281 139 292 135"></path>
+            <path d="M259 160 C269 164 280 164 291 160"></path>
+            <path d="M257 186 C267 190 278 190 290 186"></path>
+          </g>
+
+          <!-- 手指名称 -->
+          <text class="fg" x="66" y="211" text-anchor="middle">大拇指</text>
+          <text class="fg" x="126" y="62" text-anchor="middle">食指</text>
+          <text class="fg" x="179" y="42" text-anchor="middle">中指</text>
+          <text class="fg" x="229" y="59" text-anchor="middle">无名指</text>
+          <text class="fg" x="280" y="87" text-anchor="middle">小指</text>
+
+          <!-- 顺时针六宫轨迹 -->
+          <path class="pring" d="
+            M130 204
+            C123 180 120 140 126 112
+            C140 97 158 91 179 95
+            C199 98 216 105 227 112
+            C246 133 250 173 226 205
+            C214 218 198 218 180 205
+            C163 197 145 197 130 204 Z"></path>
+
+          <!-- 顺数导向箭头 -->
+          <g class="chev">
+            <path d="M121 160 L126 152 L133 157"></path>
+            <path d="M151 96 L160 93 L157 102"></path>
+            <path d="M202 98 L211 102 L205 108"></path>
+            <path d="M248 151 L251 160 L242 157"></path>
+            <path d="M208 213 L200 218 L202 209"></path>
+            <path d="M157 208 L148 204 L155 199"></path>
+          </g>
+
+          <!-- 大安起点光晕 -->
+          <circle class="halo" cx="130" cy="204" r="22"></circle>
+          <circle class="halo" cx="130" cy="204" r="27" opacity="0.55"></circle>
+          <text class="mk" x="101" y="201" text-anchor="middle">起</text>
+
+          <!-- 六宫节点 -->
+          <g id="palmNodes" text-anchor="middle">
+            <g id="palmNode0" filter="url(#nodeShadow)">
+              <circle class="nd ji st" cx="130" cy="204" r="16"></circle>
+              <text class="nm" x="130" y="202">大安</text>
+              <text class="wx" x="130" y="214" fill="var(--wx-mu, #6aa872)">木</text>
+            </g>
+
+            <g id="palmNode1">
+              <circle class="nd xiong" cx="126" cy="112" r="16"></circle>
+              <text class="nm" x="126" y="110">留连</text>
+              <text class="wx" x="126" y="122" fill="var(--wx-shui, #6ca8c4)">水</text>
+            </g>
+
+            <g id="palmNode2" filter="url(#nodeShadow)">
+              <circle class="nd ji" cx="179" cy="95" r="16"></circle>
+              <text class="nm" x="179" y="93">速喜</text>
+              <text class="wx" x="179" y="105" fill="var(--wx-huo, #d27b4d)">火</text>
+            </g>
+
+            <g id="palmNode3">
+              <circle class="nd xiong" cx="227" cy="112" r="16"></circle>
+              <text class="nm" x="227" y="110">赤口</text>
+              <text class="wx" x="227" y="122" fill="var(--wx-jin, #c8c5a8)">金</text>
+            </g>
+
+            <g id="palmNode4" filter="url(#nodeShadow)">
+              <circle class="nd ji" cx="226" cy="205" r="16"></circle>
+              <text class="nm" x="226" y="203">小吉</text>
+              <text class="wx" x="226" y="215" fill="var(--wx-shui, #6ca8c4)">水</text>
+            </g>
+
+            <g id="palmNode5">
+              <circle class="nd xiong" cx="180" cy="205" r="16"></circle>
+              <text class="nm" x="180" y="203">空亡</text>
+              <text class="wx" x="180" y="215" fill="var(--wx-tu, #b99a61)">土</text>
+            </g>
+          </g>
+
+          <!-- 末端印记 -->
+          <g class="seal" transform="translate(304 346)">
+            <rect x="0" y="0" width="28" height="28" rx="2"></rect>
+            <path d="M7 8 H21 M7 14 H21 M7 20 H21"></path>
+            <path d="M10 5 V23 M18 5 V23"></path>
+          </g>
+          <text class="fg" x="318" y="386" text-anchor="middle" font-size="8">掌诀</text>
+        </svg>
+      </div>
+  <div class="note tip"><span class="tag">掐指要领</span><br>用左手拇指顺时针依次点掐六个位置：从<b>食指根（大安）</b>起，经<b>食指尖（留连）→ 中指尖（速喜）→ 无名指尖（赤口）→ 无名指根（小吉）→ 中指根（空亡）</b>，回到大安循环。数月从大安起正月，数日从月宫起初一，数时从日宫起子时。</div>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">贰 · 补二</span>占类详解</h3>
+<p>同一个落宫，问不同的事含义不同：</p>
+<div class="tbl-scroll"><table>
+<thead><tr><th>占事</th><th>大安（吉）</th><th>留连（凶）</th><th>速喜（吉）</th><th>赤口（凶）</th><th>小吉（吉）</th><th>空亡（凶）</th></tr></thead>
+<tbody>
+<tr><td>求财</td><td>有，正路得财</td><td>不利，有耗损</td><td>有，且速</td><td>破财争执</td><td>小有，且稳</td><td>无，落空</td></tr>
+<tr><td>出行</td><td>平安顺利</td><td>受阻宜缓</td><td>速去速回</td><td>有险慎行</td><td>平安宜伴</td><td>不宜有阻</td></tr>
+<tr><td>婚姻</td><td>和合可成</td><td>有波折暗昧</td><td>有喜讯速成</td><td>口舌是非</td><td>和合美满</td><td>难成</td></tr>
+<tr><td>疾病</td><td>无恙渐愈</td><td>缠绵难愈</td><td>轻症即愈</td><td>急症需防</td><td>渐愈无忧</td><td>凶象需防</td></tr>
+<tr><td>失物</td><td>在附近可寻</td><td>难寻或在原处</td><td>可寻速见</td><td>有争难还</td><td>速现可得</td><td>难寻无果</td></tr>
+<tr><td>官司</td><td>有理可胜</td><td>拖延缠讼</td><td>速决有喜</td><td>大凶防刑</td><td>有理和解</td><td>不了了之</td></tr>
+</tbody>
+</table></div>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">贰 · 补三</span>实战练习</h3>
+<p>试着自己掐一遍：</p>
+<ul>
+<li><b>例一</b>：三月初五午时。月从大安数到速喜（三月），日从速喜数到赤口（初五），时从赤口数到午——落<b>小吉</b>。查表：小有财利，和合。</li>
+<li><b>例二</b>：七月初一子时。月从大安数到赤口（七月），日从赤口起初一仍赤口，时从赤口起子仍赤口——落<b>赤口</b>。查表：口舌是非。</li>
+</ul>
+<p>多练几次，掌上位置自然熟悉。</p>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">贰 · 补三</span>实战练习：十例逐步推演</h3>
+<p>以下十例覆盖六宫吉凶各种组合。每例先自己算，再看推演过程。</p>
+<div class="tbl-scroll"><table>
+<thead><tr><th>#</th><th>月</th><th>日</th><th>时辰</th><th>月宫</th><th>日宫</th><th>落宫</th><th>断</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>正月初一子时</td><td>1</td><td>1</td><td>大安</td><td>大安</td><td>大安</td><td>平安</td></tr>
+<tr><td>2</td><td>三月初五午时</td><td>3</td><td>5</td><td>速喜</td><td>赤口</td><td>小吉</td><td>和合</td></tr>
+<tr><td>3</td><td>七月初一子时</td><td>7</td><td>1</td><td>赤口</td><td>赤口</td><td>赤口</td><td>口舌是非</td></tr>
+<tr><td>4</td><td>五月十五申时</td><td>5</td><td>15</td><td>大安</td><td>速喜</td><td>小吉</td><td>和合</td></tr>
+<tr><td>5</td><td>十一月二十亥时</td><td>11</td><td>20</td><td>空亡</td><td>留连</td><td>赤口</td><td>口舌是非</td></tr>
+<tr><td>6</td><td>二月初八卯时</td><td>2</td><td>8</td><td>留连</td><td>大安</td><td>大安</td><td>平安</td></tr>
+<tr><td>7</td><td>六月初十酉时</td><td>6</td><td>10</td><td>空亡</td><td>空亡</td><td>小吉</td><td>和合</td></tr>
+<tr><td>8</td><td>九月廿二戌时</td><td>9</td><td>22</td><td>空亡</td><td>速喜</td><td>空亡</td><td>落空</td></tr>
+<tr><td>9</td><td>四月十二巳时</td><td>4</td><td>12</td><td>留连</td><td>空亡</td><td>速喜</td><td>喜讯速至</td></tr>
+<tr><td>10</td><td>十月十八未时</td><td>10</td><td>18</td><td>空亡</td><td>大安</td><td>留连</td><td>纠缠暗昧</td></tr>
+</tbody>
+</table></div>
+<p class="dim">月宫=从大安起正月数到该月；日宫=从月宫起初一数到该日；时宫=从日宫起子时数到该时辰。</p>
+</div>
+
+<div class="card">
+<h3><span class="zh-no">贰 · 补四</span>连占与十二地支</h3>
+<p><b>连占</b>：一次问多件事，传统做法是每件事分别起一课（重新数月日时），不是在同一次数完之后继续数。</p>
+<p><b>与十二地支的对应</b>：六宫分布在食指、中指、无名指的六个关节上，暗合十二地支掌诀。</p>
+<div class="tbl-scroll"><table>
+<thead><tr><th>宫</th><th>五行 · 神将</th><th>对应地支</th></tr></thead>
+<tbody>
+<tr><td>大安</td><td>木 · 青龙</td><td>寅</td></tr>
+<tr><td>留连</td><td>水 · 玄武</td><td>卯</td></tr>
+<tr><td>速喜</td><td>火 · 朱雀</td><td>午</td></tr>
+<tr><td>赤口</td><td>金 · 白虎</td><td>酉</td></tr>
+<tr><td>小吉</td><td>水 · 六合</td><td>未</td></tr>
+<tr><td>空亡</td><td>土 · 勾陈</td><td>子</td></tr>
+</tbody>
+</table></div>
+<p class="dim">对应关系存在流派差异，取通行版本。理解"六宫=十二地支的压缩投影"即可。</p>
+</div>
+
+<h3><span class="zh-no">叁</span>它教给你什么</h3>
+      <p>小六壬的价值不在"准"，而在它是<b>"式占"的最小完整样本</b>：把时间（月日时）通过一套固定的顺数程序，映射为有限的符号集（六宫），再由符号给出情境解读。大六壬的一切复杂——月将、天地盘、四课三传——都是这套"时间→符号→解读"逻辑的放大版。体验完小六壬，你就理解了式占思维的骨架。</p>
+      <div class="note warn"><span class="tag">边界声明</span><br>小六壬为民间流传的微型式占，无古籍单行底本，释义取民间通行版本（各处小异）。本课是体验课：教数算法与六宫含义，<b>不提供占卜服务，结果仅供课程练习</b>。</div>
+
+    <div class="keypoints">
+      <div class="kp-title">本课要点</div>
+      <ul>
+        <li>六宫顺序：大安→留连→速喜→赤口→小吉→空亡。</li>
+        <li>三次顺数：月从大安起、日从月宫起、时从日宫起。</li>
+        <li>落宫即局势：三吉（大安速喜小吉）三凶（留连赤口空亡）。</li>
+      </ul>
     </div>
+    <div class="btn-row"><button class="btn small ghost" data-nav="portal"><span>← 返回手册</span></button>
+    <a class="btn ghost" href="#ancient"><span>去古例馆看真实课例 →</span></a></div>
   </div>
 </section>
 
-<!-- ======================= 课程 · 小六壬（马前课） ======================= -->
+<!-- ======================= 卷首 ======================= -->
 </main>
-
-<footer style="text-align:center;padding:48px 20px;border-top:var(--hair-soft);color:var(--text-3);font-size:12px;letter-spacing:.1em;margin-top:60px;">
-  <div style="margin-bottom:8px;font-family:var(--serif);color:var(--gold)">OCCODEX // MYSTERIUM HANDBOOK</div>
-  <div>本手册所有内容均为中国传统文化与古代式占文献整理之学术研习工具，严禁用于任何形式的迷信交易活动。</div>
-  <div style="margin-top:6px;font-size:11px;opacity:.7">纯原生零依赖构建 · 本地隐私优先 · 离线即用</div>
-</footer>
 
 <script src="js/lib/occ-storage.js"></script>
 <script src="js/lib/mystic-audio.js"></script>
 <script src="js/lib/mystic-ui.js"></script>
-<script src="js/lib/liuyao.js"></script>
 <script src="occ-theme.js"></script>
 <script>
+/* XLR 交互逻辑（已封装为独立模块作用域） */
 (function() {
   'use strict';
 
-  // 初始化时钟
-  if (window.MysticUI && typeof window.MysticUI.initChronoClock === 'function') {
-    window.MysticUI.initChronoClock('portalChrono', { mode: 'compact' });
-    window.MysticUI.initChronoClock('portalFullChrono', { mode: 'full' });
-  }
+  // 快捷 DOM 查询
+  const $ = sel => document.querySelector(sel);
+  const $$ = sel => Array.from(document.querySelectorAll(sel));
 
-  // 门户内置六爻沙盘
   /* ============================================================
-   六爻三钱演易交互台
+   小六壬起课练习器
    ============================================================ */
-let LY_YAOS = [];
-function initLiuYaoSandbox() {
-  const tossBtn = $('#lyTossBtn');
-  const resetBtn = $('#lyResetBtn');
-  const viz = $('#lyVisualizer');
-  const resBox = $('#lyResultBox');
-  const stepNum = $('#lyStepNum');
-  if(!tossBtn) return;
+const XLR_PAL=['大安','留连','速喜','赤口','小吉','空亡'];
+const XLR_DATA={
+ '大安':{wx:'木',sj:'青龙',jx:'吉',desc:'心安体泰，诸事平稳顺遂。谋事在初不在此，贵人可倚，静中可行。',
+   zy:{求财:'有，正路之财，缓中可得',出行:'平安顺利，宜近行',婚姻:'和合可成',疾病:'无恙，渐愈',失物:'在附近，可寻回'}},
+ '留连':{wx:'水',sj:'玄武',jx:'凶',desc:'纠缠暗昧，迁延反复。事多牵扯，难解难分，不宜强求。',
+   zy:{求财:'不利，有耗损',出行:'受阻，宜缓行',婚姻:'有波折暗昧',疾病:'缠绵难愈',失物:'难寻，或在原处'}},
+ '速喜':{wx:'火',sj:'朱雀',jx:'吉',desc:'喜讯速至，立见分晓。快速、惊喜、文书之喜，来得快去得也快。',
+   zy:{求财:'有，且速，数目不大',出行:'速去速回则吉',婚姻:'有喜讯，速成',疾病:'轻症即愈',失物:'可寻，速见分晓'}},
+ '赤口':{wx:'金',sj:'白虎',jx:'凶',desc:'口舌是非，争斗冲突。防小人搬弄，防官非词讼。',
+   zy:{求财:'有破财争执',出行:'有险阻，慎行',婚姻:'口舌是非不断',疾病:'来势急，需防加重',失物:'有争执，难归还'}},
+ '小吉':{wx:'水',sj:'六合',jx:'吉',desc:'和合美满，小有财利。人际和顺，慢中有成，宜结伴行事。',
+   zy:{求财:'小有，且平稳',出行:'平安，宜结伴',婚姻:'和合美满',疾病:'渐愈，无需忧',失物:'速现，可得'}},
+ '空亡':{wx:'土',sj:'勾陈',jx:'凶',desc:'落空无果，谋事难成。求而不获，望而不至，不宜强求。',
+   zy:{求财:'无，落空',出行:'不宜，有阻',婚姻:'难成',疾病:'凶象，需防加重',失物:'难寻，无果'}}};
+const XLR_HOUR=[['子','23:00–00:59'],['丑','01:00–02:59'],['寅','03:00–04:59'],['卯','05:00–06:59'],['辰','07:00–08:59'],['巳','09:00–10:59'],['午','11:00–12:59'],['未','13:00–14:59'],['申','15:00–16:59'],['酉','17:00–18:59'],['戌','19:00–20:59'],['亥','21:00–22:59']];
+$('#xlrH').innerHTML=XLR_HOUR.map((h,i)=>'<option value="'+i+'">'+h[0]+'时（'+h[1]+'）</option>').join('');
+function xlrPal(m,d,hIdx){
+  const mi=(m-1)%6, di=(mi+d-1)%6, hi=(di+hIdx)%6;
+  return {mi:mi,di:di,hi:hi,pal:XLR_PAL[hi],trail:[XLR_PAL[mi],XLR_PAL[di],XLR_PAL[hi]]};
+}
+function xlrRun(m,d,hIdx){
+  const box=$('#xlrBox');
+  if(!box) return;
+  box.innerHTML='<div class="xlr-step-track" id="xlrTrack"><span class="xlr-step-badge">推演中</span><span>正在掐指顺数……</span></div>';
+  box_scroll(box);
 
-  function renderHexagram() {
-    if(!viz) return;
-    viz.innerHTML = LY_YAOS.map((y, idx) => {
-      const isYang = (y.val === 7 || y.val === 9);
-      const isDong = (y.val === 6 || y.val === 9);
-      const barHtml = isYang 
-        ? '<div class="yao-bar-seg full"></div>'
-        : '<div class="yao-bar-seg half"></div><div class="yao-bar-seg half"></div>';
-      const posName = ['初爻','二爻','三爻','四爻','五爻','上爻'][idx];
-      return `
-        <div class="yao-row ${isDong ? 'is-dong' : ''}">
-          <span style="font-size:12px;color:var(--text3)">${posName}</span>
-          <div class="yao-bars">${barHtml}</div>
-          <span style="font-size:12px;color:${isDong?'var(--amber)':'var(--text)'}">${y.symbol} (${y.name})</span>
-        </div>
-      `;
-    }).join('');
+  document.querySelectorAll('#palmNodes g').forEach(g=>g.classList.remove('palm-node-active'));
 
-    if(stepNum) stepNum.textContent = Math.min(6, LY_YAOS.length + 1);
+  if(window.MysticUI && typeof window.MysticUI.runXiaoLiuRenAnimation === 'function'){
+    window.MysticUI.runXiaoLiuRenAnimation(m, d, hIdx + 1, function(step){
+      const track=$('#xlrTrack');
+      if(track) track.innerHTML='<span class="xlr-step-badge">'+step.phase+'位</span><span>'+step.label+'</span>';
+      document.querySelectorAll('#palmNodes g').forEach(g=>g.classList.remove('palm-node-active'));
+      const activeNode=document.getElementById('palmNode'+step.palace);
+      if(activeNode) activeNode.classList.add('palm-node-active');
+    }, function(res){
+      const finalPalace = res.final;
+      const info = XLR_DATA[finalPalace.name];
+      document.querySelectorAll('#palmNodes g').forEach(g=>g.classList.remove('palm-node-active'));
+      const finalNode = document.getElementById('palmNode'+finalPalace.id);
+      if(finalNode) finalNode.classList.add('palm-node-active');
 
-    if (LY_YAOS.length === 6) {
-      tossBtn.setAttribute('disabled', '');
-      tossBtn.querySelector('span').textContent = '六爻已备，卦象已成';
-      if (window.Liuyao && typeof window.Liuyao.zhuanggua === 'function') {
-        const vals = LY_YAOS.map(y => y.val);
-        const zg = window.Liuyao.zhuanggua(vals, null);
-        const dongCount = LY_YAOS.filter(y => y.isDong).length;
-        resBox.innerHTML = `
-          <div class="card crop-mark stamp-animate" style="background:var(--bg-card);border:1.5px solid var(--gold)">
-            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
-              <h4 style="font-family:var(--serif);font-size:20px;color:var(--paper)">本卦：【${zg.name}】（${zg.gong}宫 · ${zg.gui||'正卦'}）</h4>
-              <span class="tech-chip">${dongCount > 0 ? '变卦：' + (zg.bianName || '无') : '静卦'}</span>
-            </div>
-            <p style="font-size:13.5px;color:var(--text2)">世应：世在第 ${zg.shi + 1} 爻，应在第 ${zg.ying + 1} 爻 · 动爻数：${dongCount} 处</p>
-            <div class="tbl-scroll" style="margin-top:10px">
-              <table>
-                <thead><tr><th>爻位</th><th>六亲</th><th>纳甲干支</th><th>爻象</th><th>变卦六亲</th></tr></thead>
-                <tbody>
-                  ${zg.gz.map((gz, i) => {
-                    const y = LY_YAOS[i];
-                    return `<tr>
-                      <td>${['初爻','二爻','三爻','四爻','五爻','上爻'][i]}</td>
-                      <td><b style="color:var(--gold)">${zg.lq[i]}</b></td>
-                      <td>${gz}</td>
-                      <td>${y.symbol}</td>
-                      <td>${zg.bianLq ? (zg.bianLq[i] || '—') : '—'}</td>
-                    </tr>`;
-                  }).reverse().join('')}
-                </tbody>
-              </table>
-            </div>
+      const zy = Object.keys(info.zy).map(k=>'<tr><td>'+k+'</td><td>'+info.zy[k]+'</td></tr>').join('');
+      box.innerHTML=`
+        <div class="xlr-result-seal-box stamp-animate">
+          <div class="xlr-seal-icon">
+            <span class="sn">${finalPalace.name}</span>
+            <span class="sw">${info.jx} · ${finalPalace.wx}</span>
           </div>
-        `;
-        if (window.MysticAudio) window.MysticAudio.stamp();
-      }
-    } else {
-      tossBtn.removeAttribute('disabled');
-      tossBtn.querySelector('span').textContent = '掷钱起一爻（第 ' + (LY_YAOS.length + 1) + '/6 爻）';
-      resBox.innerHTML = '';
-    }
-  }
-
-  tossBtn.addEventListener('click', function() {
-    if(LY_YAOS.length >= 6) return;
-    const coins = [$('#lyCoin0'), $('#lyCoin1'), $('#lyCoin2')];
-    coins.forEach(c => c && c.classList.add('tossing'));
-    if(window.MysticAudio) {
-      window.MysticAudio.coin(1.1);
-      setTimeout(() => window.MysticAudio.coin(0.9), 100);
-      setTimeout(() => window.MysticAudio.coin(1.3), 220);
-    }
-    setTimeout(() => {
-      coins.forEach(c => c && c.classList.remove('tossing'));
-      if(window.MysticUI && typeof window.MysticUI.castLiuYaoCoinToss === 'function') {
-        const toss = window.MysticUI.castLiuYaoCoinToss();
-        LY_YAOS.push(toss);
-        renderHexagram();
-      }
-    }, 450);
-  });
-
-  if(resetBtn) {
-    resetBtn.addEventListener('click', function() {
-      LY_YAOS = [];
-      if(window.MysticAudio) window.MysticAudio.paper();
-      renderHexagram();
+          <div class="xlr-result-info">
+            <h4>${finalPalace.name}（${info.jx} · ${finalPalace.wx} · ${finalPalace.beast}）</h4>
+            <p class="pp-note">推演轨迹：月宫 <strong>${res.monthPalace.name}</strong> → 日宫 <strong>${res.dayPalace.name}</strong> → 终落 <strong>${finalPalace.name}</strong>（${finalPalace.pos}）</p>
+            <p>${info.desc}</p>
+          </div>
+        </div>
+        <div class="tbl-scroll" style="margin-top:16px"><table><tr><th>占类</th><th>通行释义（民间版）</th></tr>${zy}</table></div>
+      `;
+      box_scroll(box);
     });
+  } else {
+    const r=xlrPal(m,d,hIdx);
+    const info=XLR_DATA[r.pal];
+    const zy=Object.keys(info.zy).map(k=>'<tr><td>'+k+'</td><td>'+info.zy[k]+'</td></tr>').join('');
+    box.innerHTML=`
+      <div class="xlr-result-seal-box stamp-animate">
+        <div class="xlr-seal-icon">
+          <span class="sn">${r.pal}</span>
+          <span class="sw">${info.jx} · ${info.wx}</span>
+        </div>
+        <div class="xlr-result-info">
+          <h4>${r.pal}（${info.jx} · ${info.wx} · ${info.sj}）</h4>
+          <p class="pp-note">数得轨迹：月宫 <strong>${r.trail[0]}</strong> → 日宫 <strong>${r.trail[1]}</strong> → 时宫 <strong>${r.trail[2]}</strong></p>
+          <p>${info.desc}</p>
+        </div>
+      </div>
+      <div class="tbl-scroll" style="margin-top:16px"><table><tr><th>占类</th><th>通行释义（民间版）</th></tr>${zy}</table></div>
+    `;
+    box_scroll(box);
   }
 }
+$('#xlrBtn').addEventListener('click',()=>{
+  const m=+$('#xlrM').value,d=+$('#xlrD').value,h=+$('#xlrH').value;
+  if(!(m>=1&&m<=12&&d>=1&&d<=30)){toast('月 1–12、日 1–30');return}
+  xlrRun(m,d,h);
+});
+$('#xlrNow').addEventListener('click',()=>{
+  const t=new Date();
+  const hIdx=Math.floor(((t.getHours()+1)%24)/2);
+  $('#xlrM').value=t.getMonth()+1;$('#xlrD').value=t.getDate();$('#xlrH').value=hIdx;
+  $('#xlrBtn').click();
+});
 
-  initLiuYaoSandbox();
+/* ============================================================
+   章末小结卡片
+   ============================================================ */
+const sumOverlay=document.createElement('div');
+sumOverlay.className='sum-overlay';
+sumOverlay.innerHTML='<div class="sum-card"><div class="sc-head"><span>本章小结</span><button id="sumClose">×</button></div><div class="sc-body" id="sumBody"></div><div class="sc-actions"><button class="btn small ghost" id="sumCopy"><span>复制小结</span></button></div></div>';
+sumOverlay.querySelector('#sumClose').addEventListener('click',()=>sumOverlay.classList.remove('on'));
+sumOverlay.querySelector('#sumCopy').addEventListener('click',()=>{
+  const body=sumOverlay.querySelector('#sumBody');
+  if(body&&navigator.clipboard&&navigator.clipboard.writeText)
+    navigator.clipboard.writeText(body.innerText).then(()=>toast('小结已复制'));
+});
+document.body.appendChild(sumOverlay);
+sumOverlay.addEventListener('click',e=>{if(e.target===sumOverlay)sumOverlay.classList.remove('on')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')sumOverlay.classList.remove('on')});
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-summary]');
+  if(!b)return;
+  const ch=b.dataset.summary;
+  const sec=document.getElementById(ch);
+  if(!sec)return;
+  const title=sec.querySelector('.ch-head h2,h2');
+  const kick=sec.querySelector('.ch-head .kick');
+  const kps=sec.querySelectorAll('.keypoints li,.keypoints ul li');
+  const isRead=P.read&&P.read[ch];
+  let html='<div class="sc-ch">'+(kick?kick.textContent.trim():'')+'</div>';
+  html+='<div class="sc-status">'+(isRead?'✦ 已学':'未学')+'</div>';
+  if(kps.length){
+    html+='<div class="sc-kp"><ul>'+[...kps].map(li=>'<li>'+li.textContent.trim()+'</li>').join('')+'</ul></div>';
+  }
+  const prog=SECTIONS.slice(1).filter(x=>P.read[x]).length;
+  const total=SECTIONS.length-3; // minus quiz lab ancient
+  html+='<div class="sc-date">课程进度：'+prog+' / '+total+' 章 · 「神秘学手册」子平学堂</div>';
+  document.getElementById('sumBody').innerHTML=html;
+  sumOverlay.classList.add('on');
+});
+/* ============================================================
+   昼夜主题（夜=9味低长调 / 昼=宣纸与墨）
+   ============================================================ */
+
+  // 绑定初始化事件
+  const btn = $('#xlrBtn');
+  if (btn) {
+    btn.addEventListener('click', xlrRun);
+  }
+
+  // 记录学习进度
+  if (window.OccStorage) {
+    window.OccStorage.setCourse('xlr', { visited: true, lastVisited: Date.now() });
+  }
 })();
 </script>
 </body>

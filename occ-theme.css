@@ -6,9 +6,37 @@
    ============================================================ */
 
 /* ------------------------------------------------------------
+   0. 本地自托管字体 (Zero External Network / Offline First)
+   ------------------------------------------------------------ */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/playfair-normal-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('assets/fonts/playfair-normal-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/playfair-italic-400.woff2') format('woff2');
+}
+
+/* ------------------------------------------------------------
    1. THEME 1: 极夜秘卷低长调 (默认)
    ------------------------------------------------------------ */
 :root {
+  --serif: "Playfair Display", "Noto Serif SC", "Songti SC", "STSong", "SimSun", Georgia, serif;
+  --sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Source Han Sans CN", -apple-system, sans-serif;
+
   /* 基础暗色 - 纯粹深邃的炭黑油墨底 */
   --bg: #0d0f14;
   --bg-subtle: #141720;

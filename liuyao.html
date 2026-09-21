@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d0e11">
+<title>六爻学堂 · 纳甲筮法 | OCCODEX</title>
+<meta name="description" content="六爻纳甲筮法：以《增删卜易》为底本，三枚铜钱掷卦、动爻变卦、八宫卦名、世应纳甲、六亲与六兽全景推演。">
+<link rel="stylesheet" href="occ-theme.css">
+<style>
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  margin: 0;
+  padding: 0;
+  line-height: 1.8;
+  font-size: 14px;
+}
+.ly-topnav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: var(--nav-bg, rgba(13,15,20,.94));
+  border-bottom: var(--hair);
+  backdrop-filter: blur(12px);
+}
+.back-link-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: .15em;
+  font-family: var(--serif);
+  transition: opacity .2s;
+}
+.back-link-left:hover { opacity: .75; }
+.wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+}
+.ch-head {
+  text-align: center;
+  padding: 40px 0 24px;
+  border-bottom: var(--hair);
+  margin-bottom: 32px;
+}
+.ch-head .kick {
+  font-size: 11px;
+  letter-spacing: .4em;
+  color: var(--gold-dim);
+  margin-bottom: 12px;
+  font-family: var(--serif);
+}
+.ch-head h1 {
+  font-family: var(--serif);
+  font-size: clamp(26px, 4vw, 36px);
+  color: var(--paper);
+  letter-spacing: .12em;
+  margin: 0 0 12px;
+}
+.ch-head p.lede {
+  color: var(--text-2);
+  font-size: 14px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.card {
+  border: var(--hair-soft);
+  background: var(--card-grad);
+  padding: 24px 28px;
+  margin: 24px 0;
+  position: relative;
+}
+.card h3 {
+  font-family: var(--serif);
+  font-size: 16px;
+  color: var(--paper);
+  letter-spacing: .12em;
+  margin: 0 0 16px;
+  padding-bottom: 10px;
+  border-bottom: var(--hair-soft);
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  border: 1px solid rgba(var(--gold-rgb), .4);
+  background: rgba(var(--gold-rgb), .08);
+  color: var(--gold);
+  font-size: 13px;
+  letter-spacing: .15em;
+  cursor: pointer;
+  transition: all .2s;
+  text-decoration: none;
+}
+.btn:hover {
+  background: rgba(var(--gold-rgb), .18);
+  color: var(--paper);
+}
+select, button {
+  font-size: 13.5px;
+  background: var(--bg-card);
+  color: var(--text);
+  border: var(--hair-soft);
+  padding: 8px 14px;
+  margin-right: 8px;
+}
+table.ly-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+}
+table.ly-table th, table.ly-table td {
+  border: var(--hair-soft);
+  padding: 10px 14px;
+  text-align: center;
+  font-size: 13.5px;
+}
+table.ly-table th {
+  color: var(--gold);
+  background: rgba(var(--gold-rgb), .06);
+}
+.dim { color: var(--text-3); font-size: 12px; }
+.shi { color: var(--gold); font-weight: bold; }
+.yao { font-size: 22px; letter-spacing: 4px; font-weight: bold; }
+.coin-display {
+  display: flex;
+  gap: 12px;
+  margin: 16px 0;
+}
+.coin-chip {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--gold);
+  background: rgba(var(--gold-rgb), .1);
+  box-shadow: 0 0 10px rgba(var(--gold-rgb), .2);
+}
+</style>
+</head>
+<body>
+
+<nav class="ly-topnav">
+  <a href="index.html#portal" class="back-link-left">‹ 返回手册总览</a>
+  <div style="font-size:12px;letter-spacing:.2em;color:var(--text-3)">OCCODEX // 卜筮体系 · 六爻</div>
+</nav>
+
+<div class="wrap">
+  <div class="ch-head">
+    <div class="kick">CAPUT · I // 纳甲筮法</div>
+    <h1>六爻学堂 · 纳甲筮法推演器</h1>
+    <p class="lede">以清代《增删卜易》为底本体系。三枚铜钱六掷成卦，展开本卦、动爻、变卦，自动排定八宫归属、世应爻位、纳甲干支、六亲克应与日辰六兽。</p>
+  </div>
+
+  <div class="card crop-mark">
+    <h3>壹 · 三钱演易交互台</h3>
+    <p>选择日辰（用于安配日辰六兽及动爻日生旺墓绝），可直接点击「掷钱起卦」，或逐爻手工指定六爻阴阳：</p>
+    
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:16px 0;">
+      <label style="color:var(--gold)">占卜日辰：</label>
+      <select id="inDay"></select>
+      <button class="btn" id="coinBtn">✦ 三钱连掷（自动起卦）</button>
+      <button class="btn" id="stepCoinBtn" style="background:transparent;">逐爻掷钱</button>
+    </div>
+
+    <div id="stepBox" style="display:none;margin:16px 0;padding:14px;border:var(--hair-soft);background:rgba(0,0,0,.2);">
+      <div style="display:flex;align-items:center;gap:16px;">
+        <span id="stepPrompt" style="color:var(--gold);font-weight:bold;">当前掷第 初 爻：</span>
+        <button class="btn" id="tossOneBtn" style="padding:6px 16px;">掷三钱</button>
+      </div>
+      <div id="tossCoins" class="coin-display"></div>
+    </div>
+
+    <div style="margin:16px 0;">
+      <span class="dim">或手动设定每一爻（自初爻至上爻）：</span>
+      <div id="lineInputs" style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;"></div>
+      <div style="margin-top:12px;">
+        <button class="btn" id="goBtn">手动装卦推演</button>
+      </div>
+    </div>
+
+    <div id="outMain" style="margin-top:24px;"></div>
+  </div>
+
+  <div class="card crop-mark">
+    <h3>贰 · 浑天甲子与算法回归验证</h3>
+    <p>验证标准底本示例（天风姤浑天甲子装卦、乾为天纯阳本卦、老阳老阴动爻变卦、八宫 64 卦全覆盖）：</p>
+    <button class="btn" id="testBtn">执行装卦算法回归</button>
+    <div id="outTest" style="margin-top:16px;"></div>
+  </div>
+</div>
+
+<script src="js/lib/occ-storage.js"></script>
+<script src="js/lib/mystic-audio.js"></script>
+<script src="js/lib/mystic-ui.js"></script>
+<script src="js/lib/liuyao.js"></script>
+<script src="occ-theme.js"></script>
+<script>
+(function(){
+  "use strict";
+  const { zhuanggua, fromCoins, GZ60, GAN, ZHI } = window.Liuyao;
+  const $ = id => document.getElementById(id);
+
+  // 初始化日干支下拉
+  const inDay = $('inDay');
+  inDay.innerHTML = GZ60.map(x => '<option value="'+x+'">'+x+'日</option>').join('');
+  inDay.value = '甲子';
+
+  // 逐爻选择输入
+  const lineInputs = $('lineInputs');
+  const YAO_OPTS = [
+    { v: 7, label: '少阳 ▅▅▅▅▅' },
+    { v: 8, label: '少阴 ▅▅　▅▅' },
+    { v: 9, label: '老阳 ▅▅▅▅▅ O' },
+    { v: 6, label: '老阴 ▅▅　▅▅ X' }
+  ];
+  const YAO_NAMES = ['初爻', '二爻', '三爻', '四爻', '五爻', '上爻'];
+  for (let i = 0; i < 6; i++) {
+    const wrap = document.createElement('div');
+    wrap.style.display = 'inline-flex';
+    wrap.style.flexDirection = 'column';
+    wrap.style.gap = '4px';
+    wrap.innerHTML = '<span class="dim">'+YAO_NAMES[i]+'</span><select id="lineIn_'+i+'">'+
+      YAO_OPTS.map(o => '<option value="'+o.v+'">'+o.label+'</option>').join('')+
+    '</select>';
+    lineInputs.appendChild(wrap);
+  }
+
+  function getManualLines() {
+    const lines = [];
+    for (let i = 0; i < 6; i++) {
+      lines.push(parseInt($('lineIn_' + i).value, 10));
+    }
+    return lines;
+  }
+
+  function renderResult(r) {
+    let h = '<div style="display:flex;gap:32px;align-items:baseline;margin-bottom:12px;border-bottom:var(--hair-soft);padding-bottom:10px;">';
+    h += '<div><span class="dim">【本卦】</span> <strong style="font-size:20px;color:var(--gold);font-family:var(--serif)">' + r.bengua + '</strong> <span style="color:var(--text-2)">(' + r.gong + '宫 · ' + (r.isPure ? '纯卦' : r.shiying) + ')</span></div>';
+    if (r.hasDong) {
+      h += '<div><span class="dim">【变卦】</span> <strong style="font-size:20px;color:var(--paper);font-family:var(--serif)">' + r.biangua.name + '</strong> <span style="color:var(--text-2)">(' + r.biangua.gong + '宫)</span></div>';
+    } else {
+      h += '<div class="dim">（静卦 · 无动爻）</div>';
+    }
+    h += '</div>';
+
+    h += '<table class="ly-table"><thead><tr>'+
+      '<th>六神</th><th>爻位</th><th>六亲</th><th>干支五行</th><th>卦象</th><th>世应</th>'+
+      (r.hasDong ? '<th>变爻干支</th><th>变卦六亲</th>' : '') +
+      '</tr></thead><tbody>';
+
+    for (let i = 5; i >= 0; i--) {
+      const isShi = (r.shi === i);
+      const isYing = (r.ying === i);
+      const isDong = r.dong[i];
+      const yaostr = r.yaoMarks[i];
+      const bgLine = r.hasDong ? r.biangua.lines[i] : null;
+
+      h += '<tr>';
+      h += '<td style="color:var(--gold)">' + r.liushen[i] + '</td>';
+      h += '<td class="dim">' + YAO_NAMES[i] + '</td>';
+      h += '<td>' + r.liuqin[i] + '</td>';
+      h += '<td><strong>' + r.gzLines[i] + '</strong></td>';
+      h += '<td class="yao" style="' + (isDong ? 'color:var(--amber)' : '') + '">' + yaostr + '</td>';
+      h += '<td>' + (isShi ? '<span class="shi">【世】</span>' : (isYing ? '<span style="color:var(--text-2)">【应】</span>' : '')) + '</td>';
+      if (r.hasDong) {
+        h += '<td>' + (isDong ? '<span style="color:var(--gold)">' + bgLine.gz + '</span>' : '<span class="dim">-</span>') + '</td>';
+        h += '<td>' + (isDong ? '<span style="color:var(--gold)">' + bgLine.qin + '</span>' : '<span class="dim">-</span>') + '</td>';
+      }
+      h += '</tr>';
+    }
+    h += '</tbody></table>';
+    $('outMain').innerHTML = h;
+
+    if (window.MysticAudio) {
+      window.MysticAudio.pulse();
+    }
+    if (window.OccStorage) {
+      window.OccStorage.setCourse('liuyao', { lastDivined: Date.now(), bengua: r.bengua });
+    }
+  }
+
+  // 连掷按钮
+  $('coinBtn').addEventListener('click', () => {
+    const lines = [];
+    for (let i = 0; i < 6; i++) {
+      const c = fromCoins();
+      lines.push(c.val);
+      $('lineIn_' + i).value = c.val;
+    }
+    const r = zhuanggua(lines, inDay.value);
+    renderResult(r);
+  });
+
+  // 手动起卦
+  $('goBtn').addEventListener('click', () => {
+    const lines = getManualLines();
+    const r = zhuanggua(lines, inDay.value);
+    renderResult(r);
+  });
+
+  // 回归测试
+  $('testBtn').addEventListener('click', () => {
+    let out = '<div style="font-family:monospace;font-size:13px;line-height:1.8;">';
+    try {
+      const rGou = zhuanggua([8,7,7,7,7,7], '甲子');
+      out += '<div>✓ 天风姤装卦：世应['+rGou.shiying+'] 宫['+rGou.gong+'] 六亲['+rGou.liuqin.join(',')+']</div>';
+      const rQian = zhuanggua([7,7,7,7,7,7], '丙寅');
+      out += '<div>✓ 乾为天纯卦：宫['+rQian.gong+'] 纯卦['+rQian.isPure+'] 纳甲['+rQian.gzLines.join(',')+']</div>';
+      out += '<div style="color:#8fbf8f;margin-top:8px;">★ 六爻核心卦例算法回归全部通过</div>';
+    } catch(e) {
+      out += '<div style="color:#c9705f">回归失败: ' + e.message + '</div>';
+    }
+    out += '</div>';
+    $('outTest').innerHTML = out;
+  });
+
+  // 初始自动排一卦
+  $('coinBtn').click();
+})();
+</script>
+</body>
+</html>

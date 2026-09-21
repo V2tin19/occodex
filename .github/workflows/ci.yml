@@ -1,0 +1,40 @@
+name: OCCODEX Quality Gate CI
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  verify:
+    name: Syntax, Regressions & Offline Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Start local test server
+        run: |
+          python3 -m http.server 8399 --bind 127.0.0.1 &
+          sleep 2
+
+      - name: Run page consistency check
+        run: python3 tools/assemble.py
+
+      - name: Run algorithm regressions
+        run: node tools/regress.js
+
+      - name: Run quality gate test suite
+        run: python3 tools/check.py
