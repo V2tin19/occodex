@@ -579,8 +579,9 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
 
   <div class="occ-nav-tools">
     <button id="btnOpenToc" class="occ-nav-link" style="background:transparent;border:none;cursor:pointer;">卷册目录</button>
+    <a href="yansuan.html" class="occ-nav-link" style="color:var(--gold);font-weight:600;">✦ 验算</a>
     <a href="#quiz" class="occ-nav-link" data-nav="quiz">练习场</a>
-    <a href="#lab" class="occ-nav-link" data-nav="lab">断例室</a>
+    <a href="#lab" class="occ-nav-link" data-nav="lab">解题</a>
     <a href="#ancient" class="occ-nav-link" data-nav="ancient">古例馆</a>
     <a href="#classics" class="occ-nav-link" id="navClassics">典籍</a>
   </div>
@@ -903,8 +904,9 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     <div class="toc-group">
       <div class="toc-ghead"><span class="tg-title">练习与挑战</span><span class="tg-sub">学完就练</span><span class="tg-stat" id="g4stat"></span></div>
       <div class="toc-list">
+      <a href="yansuan.html"><span class="tr-no">LAB</span><span class="tr-main"><span class="tr-tt">演易验算室 · 验算</span><span class="tr-ds">输入任意四柱八字，系统即刻输出量化旺衰、子平格局、刑冲会合与穷通调候</span></span><span class="st" style="color:var(--gold)">验算台 →</span></a>
       <a href="#quiz"><span class="tr-no">EXERCITIUM</span><span class="tr-main"><span class="tr-tt">练习场 · 客观题</span><span class="tr-ds">选择填空混合测验，即时判分，错题本</span></span><span class="st" data-st="quiz">未学</span></a>
-      <a href="#lab"><span class="tr-no">CASES</span><span class="tr-main"><span class="tr-tt">断例训练 · 主观题</span><span class="tr-ds">真实八字分析写作，按细则自评或 AI 批改</span></span><span class="st" data-st="lab">未学</span></a>
+      <a href="#lab"><span class="tr-no">CASES</span><span class="tr-main"><span class="tr-tt">解题 · 命盘断例研习</span><span class="tr-ds">真实八字分析写作，按细则自评或 AI 批改，可一键载入验算室</span></span><span class="st" data-st="lab">未学</span></a>
       <a href="#ancient"><span class="tr-no">ANNALES</span><span class="tr-main"><span class="tr-tt">古例馆 · 盲断</span><span class="tr-ds">三命通会、千里命稿、人鉴共十四则真实命例，先盲断再对原批</span></span><span class="st" data-st="ancient">未学</span></a>
       <a data-drawer="1"><span class="tr-no">CLASSICS</span><span class="tr-main"><span class="tr-tt">典籍 · 古文</span><span class="tr-ds">56 段引文按章检索，11 部底本全文搜索</span></span><span class="st">抽屉</span></a>
       </div>
@@ -2987,16 +2989,16 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
   </div>
 </section>
 
-<!-- ======================= 断例训练 ======================= -->
+<!-- ======================= 解题 · 命盘断例研习 ======================= -->
 <section id="lab">
   <div class="wrap">
     <div class="ch-head">
-      <div class="kick">CASES · 主观题</div>
-      <h2>断例训练</h2>
-      <p class="sub">用经典结构做分析写作。两个案例的八字均由真实公历时间排出（可用第肆章工具验证）。写完先对照评分细则自评；也可以一键生成批改提示词，交给任意 AI 按细则打分。</p>
+      <div class="kick">PRAXIS · 主观解题</div>
+      <h2>解题 · 命盘断例研习</h2>
+      <p class="sub">用经典结构做分析写作。两个案例的八字均由真实公历时间排出。写完先对照评分细则自评，或一键生成 AI 批改提示词；亦可一键载入「演易验算室」由系统深度验算拆解。</p>
       <div class="rule">✦</div>
     </div>
-    <div class="note story"><span class="tag">占例 · 清初</span><br>《增删卜易》载：两村构讼。有人占得内卦合木局为我村、外卦合金局为人村，金来克木，看似可畏——野鹤老人断曰："幸衰金不克旺木，不足畏也……有人解散，必不成讼。"后果劝散。这部书名叫"增删"，正因野鹤把毕生占例当作实验记录：旧说屡试屡验则存，不验则改。<span class="src-line">——野鹤老人《增删卜易》（全文已入本站古文库）。断例训练要练的正是这个态度：先写判断，再看反馈，修正方法。</span></div>
+    <div class="note story"><span class="tag">占例 · 清初</span><br>《增删卜易》载：两村构讼。有人占得内卦合木局为我村、外卦合金局为人村，金来克木，看似可畏——野鹤老人断曰："幸衰金不克旺木，不足畏也……有人解散，必不成讼。"后果劝散。这部书名叫"增删"，正因野鹤把毕生占例当作实验记录：旧说屡试屡验则存，不验则改。<span class="src-line">——野鹤老人《增删卜易》（全文已入本站古文库）。断例解题要练的正是这个态度：先写判断，再看反馈，修正方法。</span></div>
     <div id="labBox"></div>
   </div>
 </section>
@@ -3060,10 +3062,11 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     <a data-tf="ch26">贰拾陆 · 子女</a>
     <a data-tf="ch27">贰拾柒 · 女命</a>
     <a data-tf="ch28">贰拾捌 · 性情事业</a>
-    <div class="tf-group">练习与查阅</div>
-    <a data-tf="quiz">练习场</a>
-    <a data-tf="lab">断例训练</a>
-    <a data-tf="ancient">古例馆</a>
+    <div class="tf-group">练习、解题与验算</div>
+    <a href="yansuan.html" style="color:var(--gold);font-weight:600;">✦ 演易验算室</a>
+    <a data-tf="quiz">练习场 · 客观题</a>
+    <a data-tf="lab">解题 · 主观断例</a>
+    <a data-tf="ancient">古例馆 · 盲断</a>
     <a id="tfClassics">典籍 · 古文</a>
   </nav>
 </aside>
@@ -3958,6 +3961,7 @@ function buildLab(){
         <button class="btn small" data-act="rubric" data-id="${c.id}"><span>查看评分细则</span></button>
         <button class="btn small" data-act="ref" data-id="${c.id}"><span>查看参考要点</span></button>
         <button class="btn small ghost" data-act="prompt" data-id="${c.id}"><span>生成 AI 批改提示词</span></button><button class="btn small ghost" data-act="aigrade" data-id="${c.id}"><span>AI 批改（直连）</span></button>
+        <a class="btn small ghost" href="yansuan.html?bazi=${encodeURIComponent(c.bazi)}" target="_blank" style="border-color:rgba(var(--gold-rgb),.4);color:var(--gold);"><span>✦ 在验算室中深度验算 →</span></a>
       </div>
       <div class="prompt-box" id="pb-${c.id}">
         <label>批改提示词（复制到任意大模型对话中即可获得按细则的评分）</label>

@@ -16,7 +16,8 @@ PAGES = [
     'ziping.html',
     'xlr.html',
     'liuren.html',
-    'liuyao.html'
+    'liuyao.html',
+    'yansuan.html'
 ]
 
 COMMON_HEAD = """<meta charset="utf-8">
