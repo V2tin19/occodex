@@ -308,6 +308,14 @@ body.daylight .pop-coin-token {
   border-color: var(--c-turmeric);
   box-shadow: 0 10px 28px rgba(229, 164, 26, 0.45), inset 0 0 14px rgba(229, 164, 26, 0.35);
 }
+.pop-coin-token.flip-action {
+  animation: coin-flip-3d 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+@keyframes coin-flip-3d {
+  0% { transform: scale(1) rotateY(0deg); }
+  50% { transform: scale(1.3) rotateY(180deg); }
+  100% { transform: scale(1.15) rotateY(360deg) rotate(6deg); }
+}
 .pop-coin-hole {
   width: 30%;
   height: 30%;
@@ -442,6 +450,319 @@ body.daylight .yarrow-cloth-backing {
   height: 2px;
   background: rgba(184, 40, 24, 0.55);
   pointer-events: none;
+}
+
+/* ------------------------------------------------------------
+   千禧周礼粗野主义台头与八卦罗盘仪 (Cyber-Brutalist Occult Header & Luopan)
+   ------------------------------------------------------------ */
+.brutal-header-wrap {
+  background: #151820;
+  border: 2px solid var(--c-yarrow);
+  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.85);
+  padding: 22px 24px;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 2;
+}
+body.daylight .brutal-header-wrap {
+  background: #faf5ea;
+  border-color: #8c641b;
+  box-shadow: 5px 5px 0px rgba(90, 60, 20, 0.35);
+}
+.brutal-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.brutal-title-box {
+  flex: 1;
+  min-width: 240px;
+}
+.brutal-id {
+  font-family: var(--serif);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--c-turmeric);
+  letter-spacing: 0.22em;
+  margin-bottom: 6px;
+}
+.brutal-h1 {
+  font-family: var(--serif);
+  font-size: clamp(24px, 4.5vw, 34px);
+  color: var(--paper);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.25;
+  margin: 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+body.daylight .brutal-h1 {
+  color: #1a150e;
+  text-shadow: none;
+}
+
+/* 令人迷惑的八卦天心流转罗盘仪 (Surreal Bagua Luopan) */
+.occult-luopan-stage {
+  width: 104px;
+  height: 104px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.occult-luopan-outer {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px dashed var(--c-yarrow);
+  box-shadow: 0 0 16px rgba(196, 150, 56, 0.25), inset 0 0 12px rgba(196, 150, 56, 0.15);
+  animation: occult-spin 36s linear infinite;
+}
+.occult-luopan-stage:hover .occult-luopan-outer {
+  animation-duration: 10s;
+  border-color: var(--c-turmeric);
+}
+.luopan-gua-ring {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.gua-mark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--c-yarrow-light);
+  line-height: 1;
+  text-shadow: 0 0 5px rgba(229, 164, 26, 0.6);
+  user-select: none;
+}
+body.daylight .gua-mark {
+  color: #8c641b;
+  text-shadow: none;
+}
+.gua-mark.g-qian { transform: translate(-50%, -50%) rotate(0deg) translateY(-40px); }
+.gua-mark.g-dui  { transform: translate(-50%, -50%) rotate(45deg) translateY(-40px); }
+.gua-mark.g-li   { transform: translate(-50%, -50%) rotate(90deg) translateY(-40px); }
+.gua-mark.g-zhen { transform: translate(-50%, -50%) rotate(135deg) translateY(-40px); }
+.gua-mark.g-xun  { transform: translate(-50%, -50%) rotate(180deg) translateY(-40px); }
+.gua-mark.g-kan  { transform: translate(-50%, -50%) rotate(225deg) translateY(-40px); }
+.gua-mark.g-gen  { transform: translate(-50%, -50%) rotate(270deg) translateY(-40px); }
+.gua-mark.g-kun  { transform: translate(-50%, -50%) rotate(315deg) translateY(-40px); }
+
+.occult-luopan-inner {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1.5px solid var(--c-cinnabar);
+  background: radial-gradient(circle, #201314 0%, #100b0c 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(184, 40, 24, 0.45);
+  animation: occult-spin-rev 24s linear infinite;
+}
+body.daylight .occult-luopan-inner {
+  background: radial-gradient(circle, #fdedeb 0%, #f7d5d0 100%);
+}
+.occult-taiji-core {
+  font-size: 22px;
+  line-height: 1;
+  color: var(--c-turmeric);
+  animation: occult-pulse 3s ease-in-out infinite;
+  user-select: none;
+}
+
+@keyframes occult-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes occult-spin-rev {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+@keyframes occult-pulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(229,164,26,0.3)); }
+  50% { transform: scale(1.14); filter: drop-shadow(0 0 8px rgba(229,164,26,0.8)); }
+}
+
+/* ------------------------------------------------------------
+   黄宣朱砂符带跑马灯 (Taoist Talisman Marquee - Web 1.0 Esoteric Ticker)
+   ------------------------------------------------------------ */
+.talisman-marquee {
+  width: 100%;
+  overflow: hidden;
+  background: var(--c-turmeric);
+  color: #120e06;
+  border-top: 2.5px solid var(--c-cinnabar);
+  border-bottom: 2.5px solid var(--c-cinnabar);
+  padding: 6px 0;
+  margin: 14px 0 22px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  user-select: none;
+}
+body.daylight .talisman-marquee {
+  background: #f0ab1c;
+  color: #1a1005;
+  border-color: #a32212;
+  box-shadow: 0 3px 12px rgba(180, 50, 20, 0.2);
+}
+.talisman-marquee-track {
+  display: flex;
+  white-space: nowrap;
+  width: max-content;
+  animation: talisman-scroll 35s linear infinite;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 13.5px;
+  letter-spacing: 0.16em;
+}
+.talisman-marquee:hover .talisman-marquee-track {
+  animation-play-state: paused;
+}
+@keyframes talisman-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ------------------------------------------------------------
+   方术推演总机索引矩阵 (Raw Brutalist BBS Matrix - Inspired by ytd2 & moon-soft)
+   ------------------------------------------------------------ */
+.brutal-console-box {
+  background: #151820;
+  border: 2px solid var(--c-yarrow);
+  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.85);
+  margin: 18px 0 26px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+body.daylight .brutal-console-box {
+  background: #faf5ea;
+  border-color: #8c641b;
+  box-shadow: 5px 5px 0px rgba(90, 60, 20, 0.35);
+}
+.brutal-box-header {
+  background: #1c212c;
+  border-bottom: 2px solid var(--c-yarrow);
+  padding: 9px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-family: var(--serif);
+  font-size: 13.5px;
+  color: var(--paper);
+}
+body.daylight .brutal-box-header {
+  background: #ede3ce;
+  border-bottom-color: #8c641b;
+  color: #1a150e;
+}
+.status-blink {
+  color: #4cd964;
+  display: inline-block;
+  margin-right: 6px;
+  animation: status-flicker 1.4s infinite;
+}
+@keyframes status-flicker {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.15; transform: scale(0.85); }
+}
+.brutal-badge {
+  font-family: monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  background: rgba(0,0,0,0.4);
+  padding: 2px 8px;
+  border-radius: 2px;
+  color: var(--c-turmeric);
+  border: 1px solid rgba(229, 164, 26, 0.3);
+}
+.brutal-link-matrix {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(196, 150, 56, 0.3);
+}
+@media (max-width: 800px) {
+  .brutal-link-matrix { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .brutal-link-matrix { grid-template-columns: 1fr; }
+}
+.brutal-link-cell {
+  background: #151820;
+  padding: 14px 16px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: all 0.18s ease;
+  position: relative;
+}
+body.daylight .brutal-link-cell {
+  background: #faf5ea;
+}
+.brutal-link-cell:hover {
+  background: #202634;
+  box-shadow: inset 0 0 0 2px var(--c-turmeric);
+}
+body.daylight .brutal-link-cell:hover {
+  background: #f4ecdc;
+  box-shadow: inset 0 0 0 2px #8c641b;
+}
+.brutal-link-cell.featured {
+  background: #1b1517;
+  border-left: 3px solid var(--c-cinnabar);
+}
+body.daylight .brutal-link-cell.featured {
+  background: #fdf5f3;
+  border-left: 3px solid var(--c-cinnabar);
+}
+.cell-code {
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--c-turmeric);
+  letter-spacing: 0.1em;
+}
+.cell-name {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--paper);
+  letter-spacing: 0.08em;
+}
+body.daylight .cell-name {
+  color: #1a150e;
+}
+.cell-desc {
+  font-size: 12px;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+.cell-go {
+  margin-top: 6px;
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--c-yarrow);
+  letter-spacing: 0.15em;
+  display: inline-flex;
+  align-items: center;
+}
+.brutal-link-cell:hover .cell-go {
+  color: var(--c-turmeric-bright);
+  transform: translateX(4px);
 }
 
 /* 桑皮粗纸与拼贴卡片 (Archaic Collage Card) */

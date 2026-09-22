@@ -24,24 +24,9 @@ body{
 }
 ::selection{background:rgba(var(--gold-rgb),.30)}
 
-/* —— 材质层：油墨噪点 + 暗角 —— */
-.grain{position:fixed;inset:0;z-index:9;pointer-events:none;opacity:var(--grain-op);mix-blend-mode:var(--grain-blend)}
-.vignette{position:fixed;inset:0;z-index:8;pointer-events:none;
+/* —— 材质层：暗角 —— */
+.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;
   background:radial-gradient(120% 90% at 50% 8%,transparent 30%,rgba(0,0,0,.55) 100%)}
-
-/* —— 背景装饰：细线圈 + 公式涂鸦（疏密 8:2，大量留白） —— */
-.ornament{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.ring{position:absolute;border:1px solid rgba(var(--gold-rgb),.10);border-radius:50%}
-.ring.a{width:640px;height:640px;left:50%;top:-190px;margin-left:-320px;animation:spin 150s linear infinite}
-.ring.b{width:430px;height:430px;left:50%;top:-90px;margin-left:-215px;border-style:dashed;
-  border-color:rgba(var(--lit-rgb),.055);animation:spin 210s linear infinite reverse}
-.ring.c{width:900px;height:900px;left:50%;bottom:-560px;margin-left:-450px;border-color:rgba(var(--gold-rgb),.05)}
-.formula{position:absolute;font-family:var(--serif);font-style:italic;
-  color:rgba(var(--lit-rgb),.05);font-size:13px;letter-spacing:.06em;white-space:nowrap}
-.f1{top:16%;right:-10px;transform:rotate(90deg);transform-origin:right top}
-.f2{bottom:22%;left:-6px;transform:rotate(-90deg);transform-origin:left top}
-.f3{top:52%;right:6px;font-size:11px}
-@keyframes spin{to{transform:rotate(360deg)}}
 
 /* —— 版式骨架 —— */
 .wrap{max-width:960px;margin:0 auto;padding:0 var(--gut);position:relative;z-index:2}
@@ -518,30 +503,90 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
 <main id="main">
 <section id="portal" class="on">
   <div class="wrap">
-    <div class="ch-head">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
-        <span class="turmeric-tag">易为物理 · 变为体 · 衡为用</span>
-        <span class="cinnabar-seal">时物文理</span>
-        <div class="yarrow-tallies" title="大衍之数五十 · 蓍草筹策">
-          <span></span><span></span><span></span><span></span><span class="hi"></span>
-          <span></span><span></span><span></span><span></span><span class="hi"></span>
-          <span></span><span></span><span></span><span></span><span class="hi"></span>
-          <span></span><span></span><span></span><span></span><span class="hi"></span>
-          <span></span><span></span><span></span><span></span><span class="hi"></span>
+    <!-- 千禧周礼粗野主义 · 研习总坛台头与旋转八卦罗盘仪 -->
+    <div class="brutal-header-wrap crop-mark">
+      <div class="brutal-top-bar">
+        <div class="brutal-title-box">
+          <div class="brutal-id"><span class="status-blink">●</span> SYS.OCC-2000 // 周礼方术 · 研习总坛</div>
+          <h1 class="brutal-h1">神秘学手册 · 方士秘卷</h1>
+          <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;">
+            <span class="turmeric-tag small">变易为体 · 衡为用</span>
+            <span class="cinnabar-seal">大衍四十九</span>
+            <span style="font-family:monospace;font-size:11px;color:var(--text-3);align-self:center;">OFFLINE · 离线推演</span>
+          </div>
+        </div>
+        <!-- 令人迷惑的古老推演律 · 先天八卦天心罗盘仪 -->
+        <div class="occult-luopan-stage" title="先天八卦天心流转仪 · 令人迷惑的古老推演律">
+          <div class="occult-luopan-outer">
+            <div class="luopan-gua-ring">
+              <span class="gua-mark g-qian" title="乾 ☰">☰</span>
+              <span class="gua-mark g-dui" title="兑 ☱">☱</span>
+              <span class="gua-mark g-li" title="离 ☲">☲</span>
+              <span class="gua-mark g-zhen" title="震 ☳">☳</span>
+              <span class="gua-mark g-xun" title="巽 ☴">☴</span>
+              <span class="gua-mark g-kan" title="坎 ☵">☵</span>
+              <span class="gua-mark g-gen" title="艮 ☶">☶</span>
+              <span class="gua-mark g-kun" title="坤 ☷">☷</span>
+            </div>
+          </div>
+          <div class="occult-luopan-inner">
+            <div class="occult-taiji-core">☯</div>
+          </div>
         </div>
       </div>
-      <div class="kick">OCCODEX // MYSTERIUM HANDBOOK · 上古周礼数理与气机拼贴古卷</div>
-      <h1 style="letter-spacing:.12em">神秘学手册</h1>
-      <p class="lede" style="font-size:15px;line-height:1.85;">“愚人以天地文理圣，我以时物文理哲。”一本从黄土层中发掘出的、带有上古巫史气血与千禧波普拼贴感的数智古卷。以变易为体，以气机为本，以通关为用；不问它是什么，只问它在怎么变；不补缺了什么，只通堵在哪里。</p>
-      <div class="meta" style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap;">
-        <span class="turmeric-tag small">木 · 生发</span>
-        <span class="turmeric-tag small">火 · 宣散</span>
-        <span class="turmeric-tag small">土 · 承载</span>
-        <span class="turmeric-tag small">金 · 收敛</span>
-        <span class="turmeric-tag small">水 · 闭藏</span>
-        <span style="font-size:11px;color:var(--text-3);margin-left:auto;">大衍五十其用四十九 · 本地离线研习</span>
+    </div>
+
+    <!-- 黄宣朱砂符带跑马灯 (Web 1.0 Talisman Ticker) -->
+    <div class="talisman-marquee" aria-hidden="true">
+      <div class="talisman-marquee-track">
+        <span>☯ 乾坤定位 · 山泽通气 · 雷风相薄 · 水火不相射 · 天机动处看冲合 · 不补其缺只通其滞 · 大衍之数五十其用四十有九 · 离火九运气机周流 ☯ 乾坤定位 · 山泽通气 · 雷风相薄 · 水火不相射 · 天机动处看冲合 · 不补其缺只通其滞 · 大衍之数五十其用四十有九 · 离火九运气机周流 ☯</span>
       </div>
-      <div class="rule">✦</div>
+    </div>
+
+    <!-- 方术推演总机 · 研习站台索引 (Raw Brutalist Matrix - ytd2 & moon-soft) -->
+    <div class="brutal-console-box crop-mark">
+      <div class="brutal-box-header">
+        <div><span class="status-blink">●</span> <strong>【方术推演总机 · 研习站台索引】</strong></div>
+        <span class="brutal-badge">NET.OCC // V2.0-BRUTAL</span>
+      </div>
+      <div class="brutal-link-matrix">
+        <a href="yansuan.html" class="brutal-link-cell featured">
+          <span class="cell-code">[LAB · 验算]</span>
+          <span class="cell-name">演易验算室</span>
+          <span class="cell-desc">四柱八字通关断点与动态旺衰调参</span>
+          <span class="cell-go">ENTER →</span>
+        </a>
+        <a href="ziping.html" class="brutal-link-cell">
+          <span class="cell-code">[东玄 · 命]</span>
+          <span class="cell-name">子平八字</span>
+          <span class="cell-desc">四册廿八章 · 识字到局面流转</span>
+          <span class="cell-go">ENTER →</span>
+        </a>
+        <a href="liuyao.html" class="brutal-link-cell">
+          <span class="cell-code">[东玄 · 卜]</span>
+          <span class="cell-name">六爻学堂</span>
+          <span class="cell-desc">三钱摇掷 · 纳甲世应与动爻变卦</span>
+          <span class="cell-go">ENTER →</span>
+        </a>
+        <a href="xlr.html" class="brutal-link-cell">
+          <span class="cell-code">[东玄 · 卜]</span>
+          <span class="cell-name">小六壬 · 马前课</span>
+          <span class="cell-desc">掐指微课 · 式占极简完整样本</span>
+          <span class="cell-go">ENTER →</span>
+        </a>
+        <a href="liuren.html" class="brutal-link-cell">
+          <span class="cell-code">[东玄 · 卜]</span>
+          <span class="cell-name">六壬进阶</span>
+          <span class="cell-desc">三传九宗门 · 毕法赋精读与课例</span>
+          <span class="cell-go">ENTER →</span>
+        </a>
+        <a href="#portalFullChrono" class="brutal-link-cell">
+          <span class="cell-code">[东玄 · 历]</span>
+          <span class="cell-name">全息双轨星历</span>
+          <span class="cell-desc">干支逆流与东西星历全息参详</span>
+          <span class="cell-go">SCROLL ↓</span>
+        </a>
+      </div>
     </div>
 
     <!-- 逆流时钟与实时时标终端 -->
@@ -903,6 +948,9 @@ function initLiuYaoSandbox() {
       });
 
       token.addEventListener('click', () => {
+        token.classList.remove('flip-action');
+        void token.offsetWidth;
+        token.classList.add('flip-action');
         activateCoin();
         if (window.MysticAudio) {
           window.MysticAudio.coin(Math.random() * 0.4 + 0.85);
