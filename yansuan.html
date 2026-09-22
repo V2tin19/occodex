@@ -737,6 +737,99 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
+/* 全局容器居中约束 */
+.wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* 昼夜主题切换浮动按钮 */
+.theme-btn {
+  position: fixed;
+  top: 14px;
+  right: 18px;
+  z-index: 99;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: var(--hair-soft);
+  background: var(--bg-card);
+  color: var(--gold);
+  font-family: var(--serif);
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .25s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+.theme-btn:hover {
+  border-color: var(--gold);
+  transform: scale(1.06);
+}
+
+/* 昼间模式 (素绢水墨朱砂) 高级适配 */
+body.daylight .console-card,
+body.daylight .pillar-card,
+body.daylight .ded-card,
+body.daylight .dayun-ladder-wrap,
+body.daylight .aux-indicators-bar,
+body.daylight .history-drawer {
+  background: var(--bg-card);
+  border-color: rgba(40, 36, 30, 0.15);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+body.daylight .p-picker-col,
+body.daylight .dayun-col,
+body.daylight .strength-score-box,
+body.daylight .history-entry-card {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(40, 36, 30, 0.12);
+}
+body.daylight .p-select-group select,
+body.daylight .console-meta-item select,
+body.daylight .console-meta-item input,
+body.daylight #rawBaziInput,
+body.daylight #solarDate,
+body.daylight #solarTime {
+  background: #fdfbf7;
+  color: var(--paper);
+  border-color: rgba(40, 36, 30, 0.22);
+}
+body.daylight .mode-pill {
+  border-color: rgba(40, 36, 30, 0.2);
+  color: var(--text2);
+}
+body.daylight .mode-pill.on {
+  background: rgba(var(--gold-rgb), 0.12);
+  border-color: var(--gold);
+  color: #7d6014;
+}
+body.daylight .pillar-card.is-dm {
+  background: linear-gradient(180deg, rgba(201, 162, 39, 0.15) 0%, rgba(236, 229, 214, 0.95) 100%);
+}
+body.daylight .ss-gauge::after {
+  background: var(--bg-card);
+}
+body.daylight .d-tab {
+  color: var(--text2);
+}
+body.daylight .d-tab.active {
+  color: #8d7420;
+  border-color: var(--gold);
+  background: rgba(var(--gold-rgb), 0.12);
+}
+body.daylight .p-nayin-badge {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--paper);
+  border-color: rgba(40, 36, 30, 0.15);
+}
+body.daylight .classics-echo-box {
+  background: rgba(201, 162, 39, 0.06);
+}
 </style>
 </head>
 <body>
@@ -760,7 +853,9 @@ body {
   </div>
 </nav>
 
-<div class="wrap" style="max-width:1100px;padding:0 24px;">
+<button class="theme-btn" id="themeBtn" title="切换昼夜模式">昼</button>
+
+<div class="wrap" style="max-width:1100px;margin:0 auto;padding:0 24px;">
 
   <!-- 页面导语 -->
   <div class="ch-head" style="margin-top:28px;">
@@ -1078,6 +1173,7 @@ body {
 <!-- 引入本地核心库 (零外链、零外部CDN) -->
 <script src="js/lib/occ-storage.js"></script>
 <script src="js/lib/mystic-ui.js"></script>
+<script src="occ-theme.js"></script>
 
 <script>
 /* ============================================================
@@ -2113,6 +2209,27 @@ ${radar.length === 0 ? '气象安和，干支无冲害。' : radar.map(r => `✦
   $('#btnOpenHistory').addEventListener('click', openHistory);
   $('#btnCloseHistory').addEventListener('click', closeHistory);
   $('#historyVeil').addEventListener('click', closeHistory);
+
+  // 昼夜主题联动
+  const themeBtn = $('#themeBtn');
+  function updateThemeBtnText() {
+    if (!themeBtn) return;
+    const isDay = document.body.classList.contains('daylight');
+    themeBtn.textContent = isDay ? '夜' : '昼';
+    themeBtn.title = isDay ? '切换到夜间模式' : '切换到昼间模式';
+  }
+  if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+      if (window.OccTheme && typeof window.OccTheme.cycleTheme === 'function') {
+        window.OccTheme.cycleTheme();
+      } else {
+        document.body.classList.toggle('daylight');
+      }
+      updateThemeBtnText();
+    });
+    window.addEventListener('occ-theme-change', updateThemeBtnText);
+    setTimeout(updateThemeBtnText, 60);
+  }
 
   // 初始化执行
   initSelects();
