@@ -358,26 +358,48 @@ label{display:block;font-size:11.5px;letter-spacing:.26em;color:var(--text-3);ma
 .wxbar .n{width:44px;text-align:right;color:var(--text-3)}
 .pp-note{font-size:13px;color:var(--text-2);margin-top:14px}
 
-/* —— 课程总览 —— */
+/* —— 课程总览 (周礼波普拼贴风) —— */
 .toc{margin-top:34px;display:grid;gap:26px}
-.toc-ghead{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid rgba(var(--gold-rgb),.35);
-  padding-bottom:8px;margin-bottom:12px}
-.tg-title{font-family:var(--serif);font-size:16px;letter-spacing:.2em;color:var(--paper)}
+.toc-group {
+  margin-bottom: 26px;
+  background: var(--bg-card);
+  border: var(--hair);
+  border-radius: 2px;
+  padding: 18px 20px;
+  position: relative;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+  transition: all 0.25s ease;
+}
+.toc-group::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--c-cinnabar), var(--c-turmeric), transparent);
+  opacity: 0.8;
+}
+.toc-group:hover {
+  border-color: rgba(var(--gold-rgb), 0.55);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35);
+}
+.toc-ghead{display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(var(--gold-rgb),.3);
+  padding-bottom:10px;margin-bottom:14px;flex-wrap:wrap;}
+.tg-title{font-family:var(--serif);font-size:16.5px;letter-spacing:.16em;color:var(--paper);font-weight:600}
 .tg-sub{font-size:11px;letter-spacing:.14em;color:var(--text-3)}
-.tg-stat{margin-left:auto;font-size:11px;letter-spacing:.2em;color:var(--gold)}
-.toc-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:8px}
+.tg-stat{margin-left:auto;font-size:11px;letter-spacing:.16em;color:var(--gold)}
+.toc-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
 .toc-list a{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;
-  border:var(--hair-soft);border-left:2px solid rgba(var(--gold-rgb),.35);padding:10px 14px;
-  text-decoration:none;background:var(--cell-bg);transition:border-color .25s,background .25s}
-.toc-list a:hover{border-color:rgba(var(--gold-rgb),.55);border-left-color:var(--gold);
-  background:var(--cell-bg-2)}
-.tr-no{font-family:var(--serif);font-size:10px;letter-spacing:.24em;color:var(--gold-dim);white-space:nowrap}
-.tr-main{min-width:0;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-.tr-tt{font-family:var(--serif);font-size:15px;color:var(--paper);letter-spacing:.1em;white-space:nowrap}
-.tr-ds{font-size:11.5px;color:var(--text-2);line-height:1.5}
-.toc-list .st{font-size:9.5px;letter-spacing:.24em;color:var(--text-3);white-space:nowrap}
+  border:var(--hair-soft);border-left:3px solid var(--gold-dim);padding:12px 16px;
+  text-decoration:none;background:rgba(0,0,0,0.2);transition:all .25s ease}
+body.daylight .toc-list a{background:rgba(0,0,0,0.03)}
+.toc-list a:hover{border-color:var(--gold);border-left-color:var(--c-turmeric);
+  background:rgba(var(--gold-rgb), 0.08);transform:translateX(2px)}
+.tr-no{font-family:var(--serif);font-size:10.5px;letter-spacing:.2em;color:var(--gold);white-space:nowrap}
+.tr-main{min-width:0;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.tr-tt{font-family:var(--serif);font-size:15.5px;color:var(--paper);letter-spacing:.08em;white-space:nowrap;font-weight:500}
+.tr-ds{font-size:12px;color:var(--text-2);line-height:1.6}
+.toc-list .st{font-size:10px;letter-spacing:.16em;color:var(--gold);white-space:nowrap}
 a.toc-row-static{opacity:.62;cursor:default}
-/* 旧目录卡样式已由行式目录取代 */
 .toc .st.done{color:var(--wx-mu)}
 .stat-row{display:flex;gap:34px;flex-wrap:wrap;margin-top:26px}
 .stat-row .s b{font-family:var(--serif);font-size:26px;color:var(--gold);font-weight:500;display:block}
@@ -569,10 +591,28 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
 <section id="portal" class="on">
   <div class="wrap">
     <div class="ch-head">
-      <div class="kick">OCCODEX // MYSTERIUM HANDBOOK · 交互研习版</div>
-      <h1 style="letter-spacing:.1em">神秘学手册</h1>
-      <p class="lede">一本可以交互学习的命理与神秘学教科书。每门课从零开始，配练习场、案例馆与古籍检索；学习进度保存在本机。</p>
-      <div class="meta"><span>东玄（山·医·命·相·卜）</span><span>西玄（赫尔密斯传统）</span><span>课程制 · 陆续开设</span></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
+        <span class="turmeric-tag">易为物理 · 变为体 · 衡为用</span>
+        <span class="cinnabar-seal">时物文理</span>
+        <div class="yarrow-tallies" title="大衍之数五十 · 蓍草筹策">
+          <span></span><span></span><span></span><span></span><span class="hi"></span>
+          <span></span><span></span><span></span><span></span><span class="hi"></span>
+          <span></span><span></span><span></span><span></span><span class="hi"></span>
+          <span></span><span></span><span></span><span></span><span class="hi"></span>
+          <span></span><span></span><span></span><span></span><span class="hi"></span>
+        </div>
+      </div>
+      <div class="kick">OCCODEX // MYSTERIUM HANDBOOK · 上古周礼数理与气机拼贴古卷</div>
+      <h1 style="letter-spacing:.12em">神秘学手册</h1>
+      <p class="lede" style="font-size:15px;line-height:1.85;">“愚人以天地文理圣，我以时物文理哲。”一本从黄土层中发掘出的、带有上古巫史气血与千禧波普拼贴感的数智古卷。以变易为体，以气机为本，以通关为用；不问它是什么，只问它在怎么变；不补缺了什么，只通堵在哪里。</p>
+      <div class="meta" style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap;">
+        <span class="turmeric-tag small">木 · 生发</span>
+        <span class="turmeric-tag small">火 · 宣散</span>
+        <span class="turmeric-tag small">土 · 承载</span>
+        <span class="turmeric-tag small">金 · 收敛</span>
+        <span class="turmeric-tag small">水 · 闭藏</span>
+        <span style="font-size:11px;color:var(--text-3);margin-left:auto;">大衍五十其用四十九 · 本地离线研习</span>
+      </div>
       <div class="rule">✦</div>
     </div>
 
@@ -580,14 +620,23 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     <div id="portalChrono"></div>
 
     <div class="toc-group">
-      <div class="toc-ghead"><span class="tg-title">术数推演中枢 · 实验沙盒</span><span class="tg-sub">验算参详</span><span class="tg-stat" style="color:var(--gold)">开放使用</span></div>
+      <div class="toc-ghead">
+        <span class="tg-title">术数推演中枢 · 实验沙盒</span>
+        <span class="turmeric-tag small">气机通关</span>
+        <span class="tg-stat" style="color:var(--gold)">开放使用</span>
+      </div>
       <div class="toc-list">
-        <a href="yansuan.html"><span class="tr-no">LAB · 验算</span><span class="tr-main"><span class="tr-tt">演易验算室（四柱八字深度参详台）</span><span class="tr-ds">输入任意八字，系统即刻执行：格局定格、得令得地得势量化旺衰、刑冲会合雷达、调候喜忌、大运排盘与经典古籍互证。支持后续扩展六爻与六壬。</span></span><span class="st" style="color:var(--gold)">进入验算室 →</span></a>
+        <a href="yansuan.html"><span class="tr-no">LAB · 验算</span><span class="tr-main"><span class="tr-tt">演易验算室（四柱八字深度参详台）</span><span class="tr-ds">输入任意八字，系统即刻执行：气机走向、通关断点识别、格局定格、得令得地得势量化旺衰、冲合优先雷达、调候喜忌与大运顺逆实时调参。</span></span><span class="st" style="color:var(--gold)">进入验算室 →</span></a>
       </div>
     </div>
 
     <div class="toc-group">
-      <div class="toc-ghead"><span class="tg-title">东玄 · 命</span><span class="tg-sub">推命体系</span><span class="tg-stat">1 / 4 门课开放</span></div>
+      <div class="toc-ghead">
+        <span class="tg-title">东玄 · 命</span>
+        <span class="cinnabar-seal" style="font-size:10px;padding:2px 6px;">出厂设置</span>
+        <span class="tg-sub">偏性与结构</span>
+        <span class="tg-stat">1 / 4 门课开放</span>
+      </div>
       <div class="toc-list">
         <a href="ziping.html"><span class="tr-no">东玄 · 命</span><span class="tr-main"><span class="tr-tt">子平学堂（八字 · 子平法）</span><span class="tr-ds">四册 · 廿八章完结：识字 → 局面 → 时间 → 人生面向。配排盘、练习场、古例馆、典籍、AI 助教。</span></span><span class="st" style="color:var(--gold)">进入课程 →</span></a>
         <a class="toc-row-static"><span class="tr-no">东玄 · 命</span><span class="tr-main"><span class="tr-tt">紫微斗数</span><span class="tr-ds">规划中——底本调研后开课。</span></span><span class="st">筹备</span></a>
@@ -595,7 +644,12 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
 
     <div class="toc-group">
-      <div class="toc-ghead"><span class="tg-title">东玄 · 卜</span><span class="tg-sub">卜筮体系</span><span class="tg-stat">3 / 5 门课开放</span></div>
+      <div class="toc-ghead">
+        <span class="tg-title">东玄 · 卜</span>
+        <span class="turmeric-tag small">神形二气</span>
+        <span class="tg-sub">时机与动静</span>
+        <span class="tg-stat">3 / 5 门课开放</span>
+      </div>
       <div class="toc-list">
         <a href="xlr.html"><span class="tr-no">东玄 · 卜</span><span class="tr-main"><span class="tr-tt">小六壬 · 马前课</span><span class="tr-ds">已开放：袖珍体验课。掐指即得的"式占"最小完整样本——理解六壬思维的免费入口。</span></span><span class="st" style="color:var(--gold)">进入课程 →</span></a>
         <a href="liuren.html"><span class="tr-no">东玄 · 卜</span><span class="tr-main"><span class="tr-tt">六壬学堂（大六壬）· 进阶</span><span class="tr-ds">进阶课程 · 建设中（建议先学六爻再回来）：源流 → 起课基础 → 四课 → 三传九宗门 → 天将十二神 → 课体 → 毕法精读 → 占类分科。配起课推演室、断案课例馆（149 则）。</span></span><span class="st" style="color:var(--gold)">进入课程 →</span></a>
@@ -605,7 +659,11 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
 
     <div class="toc-group">
-      <div class="toc-ghead"><span class="tg-title">西玄 · 赫尔密斯传统</span><span class="tg-sub">Western Esotericism</span><span class="tg-stat">规划中</span></div>
+      <div class="toc-ghead">
+        <span class="tg-title">西玄 · 赫尔密斯传统</span>
+        <span class="tg-sub">Western Esotericism</span>
+        <span class="tg-stat">规划中</span>
+      </div>
       <div class="toc-list">
         <a class="toc-row-static"><span class="tr-no">西玄</span><span class="tr-main"><span class="tr-tt">塔罗</span><span class="tr-ds">课程大纲调研中（22 张大阿卡纳为主线的结构草案已立）。</span></span><span class="st">筹备</span></a>
         <a class="toc-row-static"><span class="tr-no">西玄</span><span class="tr-main"><span class="tr-tt">炼金术</span><span class="tr-ds">规划中——偏知识科普形态，与推演体系课型不同。</span></span><span class="st">筹备</span></a>
@@ -613,10 +671,13 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
     </div>
 
     <!-- 演易交互台：六爻·三钱演易 -->
-    <div class="card crop-mark" style="margin-top:36px">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-        <h3 style="margin-bottom:0"><span class="zh-no">演易</span>三钱演易 · 纳甲筮法交互台</h3>
-        <span class="tech-chip"><span class="dot"></span>I-CHING // SIMULATOR</span>
+    <div class="collage-card crop-mark" style="margin-top:36px;padding:26px 28px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
+        <h3 style="margin-bottom:0;display:flex;align-items:center;gap:10px;">
+          <span class="turmeric-tag small">演易</span>
+          <span style="font-family:var(--serif);font-size:20px;letter-spacing:.08em;">三钱演易 · 纳甲筮法交互台</span>
+        </h3>
+        <span class="cinnabar-seal">大衍遗法</span>
       </div>
       <p>以三枚开元通宝摇掷六次，自下而上建立初爻至上爻。老阳/老阴为动爻，自动演化变卦：</p>
       <div class="coin-stage" id="lyCoinStage">

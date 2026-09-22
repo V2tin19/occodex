@@ -912,11 +912,25 @@ body.daylight .classics-echo-box {
 
 <div class="wrap" style="max-width:1100px;margin:0 auto;padding:0 24px;">
 
-  <!-- 页面导语 -->
+  <!-- 页面导语与易学物理宣言 -->
   <div class="ch-head" style="margin-top:28px;">
-    <div class="kick">VERIFICATION & RECKONING ENGINE · 术数推演沙盒</div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
+      <span class="turmeric-tag">易为物理 · 变为体 · 衡为用</span>
+      <span class="cinnabar-seal">气机验算台</span>
+      <div class="yarrow-tallies" title="大衍之数五十 · 蓍草筹策">
+        <span></span><span></span><span></span><span></span><span class="hi"></span>
+        <span></span><span></span><span></span><span></span><span class="hi"></span>
+        <span></span><span></span><span></span><span></span><span class="hi"></span>
+        <span></span><span></span><span></span><span></span><span class="hi"></span>
+        <span></span><span></span><span></span><span></span><span class="hi"></span>
+      </div>
+    </div>
+    <div class="kick">VERIFICATION & RECKONING ENGINE · 上古周礼气机推演沙盒</div>
     <h1 style="font-family:var(--serif);font-size:32px;letter-spacing:.12em;margin:8px 0;">演易验算室</h1>
-    <p class="sub">格物穷理，按规矩成方圆。输入四柱八字，系统即刻执行多层经典验算：原局盘象、得令得地得势量化旺衰、子平格局判定、刑冲会合雷达、穷通调候参详、大运顺逆排演与传世赋文印证。</p>
+    <p class="sub" style="font-size:14.5px;color:var(--text2);line-height:1.85;">
+      “愚人以天地文理圣，我以时物文理哲。”不问它是何物质，只问气机在如何流转：是生发、宣散，还是承载、收敛、闭藏？
+      系统秉承<b>“冲合优先于生克”、“通堵不补缺”与“变易辰土”</b>之学理，对命局出厂设置与大运实时调参展开九层动态气机验算。
+    </p>
     <div class="rule">✦</div>
   </div>
 
@@ -1969,6 +1983,36 @@ body.daylight .classics-echo-box {
       }
     });
 
+    // 变易优先：辰土之变（水库同化 vs 燥化制水）
+    if (bZhis.includes(4)) {
+      const isWaterDominant = (chart.m[1] === 11 || chart.m[1] === 0 || bZhis.includes(0) || bZhis.includes(11));
+      const isFireEarthDominant = (chart.m[1] === 5 || chart.m[1] === 6 || chart.m[1] === 7 || bZhis.includes(6));
+      if (isWaterDominant) {
+        items.unshift({
+          type: 'harmony',
+          tag: '变易 · 辰土同化',
+          desc: '【辨辰土之变】辰为湿土水库，局中水势浩大，辰中癸水同化不能制水，反顺水之性助其奔流。'
+        });
+      } else if (isFireEarthDominant) {
+        items.unshift({
+          type: 'harmony',
+          tag: '变易 · 辰土转燥',
+          desc: '【辨辰土之变】局中火土当权，烘烤辰中癸水，辰土由湿转燥，方有坚实承载、砥柱制水之功。'
+        });
+      }
+    }
+
+    // 冲合优先：辨合能解冲、冲能破合
+    const hasHe = items.some(it => it.tag.includes('合') || it.tag.includes('会'));
+    const hasChong = items.some(it => it.tag.includes('冲'));
+    if (hasHe && hasChong) {
+      items.unshift({
+        type: 'harmony',
+        tag: '冲合优先',
+        desc: '【三合＞六合＞冲】合能解冲，冲能破合。局中刑冲与会合互见，气机得会合之神引渡，可去其间阻，化战克为生息。'
+      });
+    }
+
     return items;
   }
 
@@ -2055,10 +2099,26 @@ body.daylight .classics-echo-box {
       }
     }
 
+    // 通关思维：两神对峙，找断点通堵（非机械补缺）
+    let tongGuanNote = '';
+    const wxP = strength.wxPct;
+    if (wxP['木'] >= 25 && wxP['土'] >= 25) {
+      tongGuanNote = (wxP['火'] > 10) ? '【通关得通】木土两强对峙，局中得【火】引通关（木生火、火生土），相邀入洞房，断点得接！' : '【通关阻隔】木土两神相争，局中缺【火】引气通关，气机受阻，急需大运补火通堵。';
+    } else if (wxP['火'] >= 25 && wxP['金'] >= 25) {
+      tongGuanNote = (wxP['土'] > 10) ? '【通关得通】火金两相战克，局中得【土】引通关（火生土、土生金），和解兵戈，通堵化祥！' : '【通关阻隔】火金两神相战，局中缺【土】通关引气，火烈金熔，急需大运引土化和。';
+    } else if (wxP['土'] >= 25 && wxP['水'] >= 25) {
+      tongGuanNote = (wxP['金'] > 10) ? '【通关得通】土水两相战克，局中得【金】引通关（土生金、金生水），流通润下！' : '【通关阻隔】土水两神激战，局中缺【金】通关，水土浑浊，待大运金气导通。';
+    } else if (wxP['金'] >= 25 && wxP['木'] >= 25) {
+      tongGuanNote = (wxP['水'] > 10) ? '【通关得通】金木两刚交战，局中得【水】引通关（金生水、水生木），化肃杀为仁德！' : '【通关阻隔】金木两刚对峙，局中缺【水】调解通关，易有折伤之虑。';
+    } else if (wxP['水'] >= 25 && wxP['火'] >= 25) {
+      tongGuanNote = (wxP['木'] > 10) ? '【通关得通】水火未济，局中得【木】引通关（水生木、木生火），转水火未济为既济之功！' : '【通关阻隔】水火两不相让，局中缺【木】通关，急需岁运木气引渡调和。';
+    }
+
     const advice = `
+      ✦ <strong>通关思维（通堵不补缺）：</strong>${tongGuanNote || '局中气机大致环流，未见尖锐之两神截断式对峙。'}<br>
       ✦ <strong>利于方向：</strong>${yongShen.includes('火') ? '南方' : yongShen.includes('水') ? '北方' : yongShen.includes('木') ? '东方' : yongShen.includes('金') ? '西方' : '中央/四季交接'}。<br>
-      ✦ <strong>调适色谱：</strong>${yongShen.includes('火') ? '朱红、赤紫' : yongShen.includes('水') ? '墨黑、藏蓝' : yongShen.includes('木') ? '青绿、翠竹' : yongShen.includes('金') ? '白练、金银' : '土黄、驼褐'}。<br>
-      ✦ <strong>处事修养：</strong>以喜用为镜，抑其太旺、补其不及。顺运居安思危，逆运韬光养晦。
+      ✦ <strong>调适色谱：</strong>${yongShen.includes('火') ? '真朱砂红、赤紫' : yongShen.includes('水') ? '松烟焦墨、玄黑' : yongShen.includes('木') ? '艾草苍青、翠竹' : yongShen.includes('金') ? '青铜白练、赤金' : '蓍草枯黄、姜黄法布'}。<br>
+      ✦ <strong>处事修养：</strong>“变为体，衡为用”。命是出厂设置，运是实时调参。身体是命与运博弈的实时结果，顺运居安思危，逆运韬光养晦。
     `;
 
     return { climateTitle, climateDesc, badgeText, yongShen, xiShen, jiShen, advice };
@@ -2081,7 +2141,7 @@ body.daylight .classics-echo-box {
     const isForward = isMale === isYangYear;
 
     const dirTxt = isForward ? '顺排大运' : '逆排大运';
-    const dirWhy = `${isYangYear ? '阳' : '阴'}年${isMale ? '乾造（男）' : '坤造（女）'} → 依法${dirTxt}`;
+    const dirWhy = `${isYangYear ? '阳' : '阴'}年${isMale ? '乾造（男）' : '坤造（女）'} → 依法${dirTxt}（命为出厂设置 · 运为实时调参）`;
     $('#txtDayunDir').textContent = dirWhy;
 
     const startAge = 4;

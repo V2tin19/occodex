@@ -30,124 +30,249 @@
 }
 
 /* ------------------------------------------------------------
-   1. THEME 1: 极夜秘卷低长调 (默认)
+   1. 易学物理与气机色彩符号学 (Semiotics of Qi & Geochemical Pigments)
+   蓍草枯金 / 姜黄法布 / 殷墟朱砂 / 周原青铜 / 桑皮粗麻 / 松烟焦墨
    ------------------------------------------------------------ */
 :root {
   --serif: "Playfair Display", "Noto Serif SC", "Songti SC", "STSong", "SimSun", Georgia, serif;
   --sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Source Han Sans CN", -apple-system, sans-serif;
 
-  /* 基础暗色 - 纯粹深邃的炭黑油墨底 */
-  --bg: #0d0f14;
-  --bg-subtle: #141720;
-  --bg-card: #13161e;
-  --bg-card-hover: #181c26;
-  --nav-bg: rgba(13, 15, 20, 0.94);
-  --card-grad: linear-gradient(180deg, #151822 0%, #11131a 100%);
+  /* 核心地质与草木矿物色彩 (Geochemical Tokens) */
+  --c-yarrow: #c49638;        /* 蓍草枯金：大衍之数，五旬蓍策 */
+  --c-yarrow-light: #e2b762;
+  --c-yarrow-dim: #8a641a;
+  --c-turmeric: #e5a41a;      /* 雄黄/姜黄法布：纯正大火正阳之布 */
+  --c-turmeric-bright: #f5b62b;
+  --c-cinnabar: #b82818;      /* 研磨真朱砂：祭誓通神，决疑之印 */
+  --c-cinnabar-deep: #7d170a;
+  --c-cinnabar-glow: rgba(184, 40, 24, 0.35);
+  --c-verdigris: #3b6051;     /* 青铜古绿：沉睡三千年之碱式碳酸铜 */
+  --c-verdigris-light: #52806e;
+  --c-carbon: #101216;        /* 松烟焦墨：玄冥闭藏之幽深 */
+  --c-carbon-deep: #08090b;
+  --c-loess: #ebe1ce;         /* 殷墟黄土/桑皮原纸：坤厚承载 */
+  --c-dust: rgba(196, 150, 56, 0.14);
+
+  /* 主题基底 (Night - 松烟焦墨玄境) */
+  --bg: #0c0e12;
+  --bg-subtle: #14171e;
+  --bg-card: #151820;
+  --bg-card-hover: #1a1e28;
+  --nav-bg: rgba(12, 14, 18, 0.95);
+  --card-grad: linear-gradient(180deg, #171a22 0%, #101217 100%);
 
   /* 墨阶与文字 */
-  --paper: #ece5d6;
-  --paper-2: #d6cdbc;
-  --text: #e2dcd0;
-  --text2: #aba494;
-  --text3: #827b6d;
+  --paper: #eee5d4;           /* 未染桑皮白 */
+  --paper-2: #d6caa8;
+  --text: #e2d7c0;
+  --text2: #aba088;
+  --text3: #7c725c;
 
-  /* 9味关键强调色 (低长调中的光) */
-  --gold: #c9a227;
-  --gold-dim: #8d7420;
-  --gold-glow: rgba(201, 162, 39, 0.35);
-  --gold-rgb: 201, 162, 39;
-  --lit-rgb: 226, 220, 208;
-  --amber: #d8722f;
-  --rust: #a84232;
-  --jade: #4e8265;
-  --celadon: #5b7f95;
+  /* 易学主要强调色 */
+  --gold: var(--c-yarrow);
+  --gold-dim: var(--c-yarrow-dim);
+  --gold-glow: rgba(196, 150, 56, 0.3);
+  --gold-rgb: 196, 150, 56;
+  --lit-rgb: 226, 215, 192;
+  --amber: var(--c-turmeric);
+  --rust: var(--c-cinnabar);
+  --jade: var(--c-verdigris);
+  --celadon: #4b748c;
 
-  /* 五行灵光色相 */
-  --wx-mu: #6aa872;
-  --wx-huo: #d46547;
-  --wx-tu: #b89255;
-  --wx-jin: #b0ada4;
-  --wx-shui: #5d8ab5;
+  /* 五行动态气机色 (非静态物质，乃变化动势) */
+  --wx-mu: #529668;           /* 木·生发向上 (草木苍青) */
+  --wx-huo: #c93b26;          /* 火·宣散化明 (矿物朱砂) */
+  --wx-tu: #c49638;           /* 土·承载冲和 (蓍草黄土) */
+  --wx-jin: #9ba8a2;          /* 金·收敛肃杀 (青铜霜白) */
+  --wx-shui: #4d7a9e;         /* 水·闭藏润下 (幽潭渊水) */
 
-  /* 发丝线与边框 */
-  --hair: 1px solid rgba(201, 162, 39, 0.24);
-  --hair-soft: 1px solid rgba(226, 220, 208, 0.10);
-  --hair-bright: 1px solid rgba(201, 162, 39, 0.6);
+  /* 边框与发丝线 */
+  --hair: 1px solid rgba(196, 150, 56, 0.28);
+  --hair-soft: 1px solid rgba(226, 215, 192, 0.10);
+  --hair-bright: 1px solid rgba(196, 150, 56, 0.7);
 
-  /* 材质与动效 */
-  --grain-op: 0.055;
-  --grain-blend: overlay;
+  /* 动效与质感 */
   --ease-mystic: cubic-bezier(0.19, 1, 0.22, 1);
-  --font-serif: "Playfair Display", "Didot", "Noto Serif SC", "Songti SC", Georgia, serif;
-  --font-sans: "Noto Sans SC", "Source Han Sans CN", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-serif: var(--serif);
+  --font-sans: var(--sans);
 }
 
 /* ------------------------------------------------------------
-   2. THEME 2: 炎国宣纸与朱砂 (body.daylight) - 纯正水墨宣纸质感，杜绝生硬白渐变
+   2. THEME: 桑皮黄土与朱砂丹青 (body.daylight) - 粗粝纸境
    ------------------------------------------------------------ */
 body.daylight {
-  --bg: #f4efe4;
-  --bg-subtle: #eae3d2;
-  --bg-card: #ece5d6;
-  --bg-card-hover: #f0e9dc;
-  --nav-bg: rgba(244, 239, 228, 0.95);
-  --card-grad: linear-gradient(180deg, #eee7d9 0%, #e8e1d0 100%);
+  --bg: #f4ecdf;              /* 粗粝黄土桑皮纸底，温润如泥 */
+  --bg-subtle: #eae0cf;
+  --bg-card: #faf4e8;
+  --bg-card-hover: #fdfaf2;
+  --nav-bg: rgba(244, 236, 223, 0.96);
+  --card-grad: linear-gradient(180deg, #fbf7ee 0%, #f0e6d4 100%);
 
-  --paper: #28241e;
-  --paper-2: #484135;
-  --text: #383229;
-  --text2: #635b4c;
-  --text3: #8e8470;
+  --paper: #221d17;           /* 浓焦松烟墨 */
+  --paper-2: #3f372d;
+  --text: #342d24;
+  --text2: #635848;
+  --text3: #8a7c68;
 
-  --gold: #9e3626;       /* 主强调 朱砂古印 */
-  --gold-dim: #846820;   /* 赭石 */
-  --gold-glow: rgba(158, 54, 38, 0.25);
-  --gold-rgb: 158, 54, 38;
-  --lit-rgb: 56, 50, 41;
-  --amber: #b05c2a;
-  --rust: #8d281a;
-  --jade: #3b7454;
-  --celadon: #3c5b6b;
+  --gold: #966718;            /* 经年老蓍草 */
+  --gold-dim: #754e0c;
+  --gold-glow: rgba(150, 103, 24, 0.22);
+  --gold-rgb: 150, 103, 24;
+  --lit-rgb: 52, 45, 36;
+  --amber: #b56a16;           /* 熟赭 */
+  --rust: #a12818;            /* 朱砂生色 */
+  --jade: #2d5444;            /* 青铜深斑 */
+  --celadon: #2c4d61;
 
-  --wx-mu: #1b7340;      /* 生机翠竹绿 */
-  --wx-huo: #c8321a;     /* 明润朱砂火 */
-  --wx-tu: #a06318;      /* 琥珀暖香土 */
-  --wx-jin: #4e5661;     /* 霜雪冷钢金 */
-  --wx-shui: #1565c0;    /* 澄澈深海蓝 */
+  --wx-mu: #1b7340;           /* 木·青翠拔挺 */
+  --wx-huo: #c22914;          /* 火·纯赤朱砂 */
+  --wx-tu: #a06318;           /* 土·老山檀金 */
+  --wx-jin: #48545e;          /* 金·寒刃冷铁 */
+  --wx-shui: #165b99;         /* 水·沧海澄净 */
 
-  --hair: 1px solid rgba(158, 54, 38, 0.26);
-  --hair-soft: 1px solid rgba(56, 50, 41, 0.12);
-  --hair-bright: 1px solid rgba(158, 54, 38, 0.7);
+  --hair: 1px solid rgba(150, 103, 24, 0.26);
+  --hair-soft: 1px solid rgba(52, 45, 36, 0.12);
+  --hair-bright: 1px solid rgba(150, 103, 24, 0.7);
+}
 
-  --grain-op: 0.045;
-  --grain-blend: multiply;
+/* 全局尘土颗粒与手工纸纤维质感层 (Dust & Soil Fiber Texture) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='dustFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.8  0 0 0 0 0.65  0 0 0 0 0.4  0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23dustFilter)'/%3E%3C/svg%3E");
+  opacity: 0.65;
+  mix-blend-mode: overlay;
+}
+body.daylight::before {
+  opacity: 0.52;
+  mix-blend-mode: multiply;
 }
 
 /* ------------------------------------------------------------
-   通用视觉组件与装饰类
+   3. 周礼波普拼贴组件系统 (Pop-Ritual Collage Toolkit)
    ------------------------------------------------------------ */
-/* 战术/切角卡片 */
-.tactical-box {
+
+/* 桑皮粗纸与拼贴卡片 (Archaic Collage Card) */
+.collage-card {
   position: relative;
   background: var(--bg-card);
+  border: var(--hair);
+  border-radius: 2px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  transition: all 0.3s var(--ease-mystic);
+}
+.collage-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--c-cinnabar), var(--c-turmeric), var(--c-yarrow));
+  opacity: 0.85;
+}
+.collage-card:hover {
+  border-color: var(--c-turmeric);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+  transform: translateY(-2px);
+}
+
+/* 姜黄/雄黄法布标识 (Turmeric Ritual Cloth Tag) */
+.turmeric-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--c-turmeric);
+  color: #1a160d;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  padding: 3px 8px;
+  border-radius: 1px;
+  box-shadow: 0 2px 8px rgba(229, 164, 26, 0.35);
+  user-select: none;
+}
+.turmeric-tag.small {
+  font-size: 9.5px;
+  padding: 1px 6px;
+}
+
+/* 殷墟矿物朱砂印戳 (Cinnabar Seal Chop) */
+.cinnabar-seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--c-cinnabar);
+  color: var(--c-cinnabar);
+  font-family: var(--serif);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  padding: 3px 9px;
+  border-radius: 2px;
+  background: rgba(184, 40, 24, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(184, 40, 24, 0.15);
+  transform: rotate(-1.5deg);
+  user-select: none;
+  transition: transform 0.2s ease;
+}
+.cinnabar-seal:hover {
+  transform: rotate(0deg) scale(1.04);
+}
+.cinnabar-seal.round {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  padding: 0;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.15;
+}
+
+/* 大衍五十蓍草策筹纹样 (50 Yarrow Stalks Rhythmic Tallies) */
+.yarrow-tallies {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 14px;
+  opacity: 0.45;
+  user-select: none;
+}
+.yarrow-tallies span {
+  display: inline-block;
+  width: 1.5px;
+  height: 100%;
+  background: var(--c-yarrow);
+  border-radius: 1px;
+}
+.yarrow-tallies span.hi {
+  background: var(--c-cinnabar);
+  height: 120%;
+}
+
+/* 气机导通与通关流线 (Qi Conduit & Flow Indicator) */
+.qi-conduit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 2px;
+  font-size: 12.5px;
+  background: rgba(0, 0, 0, 0.2);
   border: var(--hair-soft);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: all 0.35s var(--ease-mystic);
+}
+.qi-conduit.open {
+  border-left: 3px solid var(--c-turmeric);
+  background: rgba(229, 164, 26, 0.06);
+}
+.qi-conduit.blocked {
+  border-left: 3px solid var(--c-cinnabar);
+  background: rgba(184, 40, 24, 0.06);
 }
 
-body.tactical .tactical-box,
-body.tactical .card {
-  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
-  border: none;
-  box-shadow: inset 0 0 0 1px rgba(0, 195, 255, 0.2);
-}
-body.tactical .tactical-box:hover,
-body.tactical .card:hover {
-  box-shadow: inset 0 0 0 1px rgba(229, 169, 40, 0.5), 0 8px 24px rgba(0, 195, 255, 0.1);
-}
-
-/* Art Deco 标角 (Crop Marks) */
+/* 周礼金石标角 (Ritual Bronze Inscription Crop Marks) */
 .crop-mark {
   position: relative;
 }
@@ -156,8 +281,8 @@ body.tactical .card:hover {
   position: absolute;
   top: -1px;
   left: -1px;
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   border-top: 1.5px solid var(--gold);
   border-left: 1.5px solid var(--gold);
   pointer-events: none;
@@ -167,59 +292,12 @@ body.tactical .card:hover {
   position: absolute;
   bottom: -1px;
   right: -1px;
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   border-bottom: 1.5px solid var(--gold);
   border-right: 1.5px solid var(--gold);
   pointer-events: none;
 }
-
-/* 朱砂古印 (Cinnabar Stamp) */
-.stamp-seal {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid var(--gold);
-  color: var(--gold);
-  font-family: var(--font-serif);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  padding: 4px 10px;
-  border-radius: 3px;
-  text-transform: uppercase;
-  user-select: none;
-  box-shadow: inset 0 0 0 1px rgba(var(--gold-rgb), 0.2);
-}
-.stamp-seal.circular {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  padding: 0;
-  font-size: 12px;
-  line-height: 1.2;
-  text-align: center;
-}
-@keyframes stampThud {
-  0% { transform: scale(2.2) rotate(-8deg); opacity: 0; }
-  60% { transform: scale(0.92) rotate(2deg); opacity: 1; }
-  100% { transform: scale(1) rotate(0); opacity: 1; }
-}
-.stamp-animate {
-  animation: stampThud 0.45s var(--ease-mystic) forwards;
-}
-
-/* 战术芯片与坐标标签 (Tactical Chips) */
-.tech-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  font-family: var(--font-sans);
-  color: var(--gold);
-  background: rgba(var(--gold-rgb), 0.08);
-  border: 1px solid rgba(var(--gold-rgb), 0.3);
   padding: 2px 8px;
   text-transform: uppercase;
 }
