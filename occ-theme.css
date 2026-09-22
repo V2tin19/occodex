@@ -67,6 +67,8 @@
   --text: #e2d7c0;
   --text2: #aba088;
   --text3: #7c725c;
+  --text-2: var(--text2);
+  --text-3: var(--text3);
 
   /* 易学主要强调色 */
   --gold: var(--c-yarrow);
@@ -78,6 +80,16 @@
   --rust: var(--c-cinnabar);
   --jade: var(--c-verdigris);
   --celadon: #4b748c;
+
+  /* 继承与兼容别名 (统一收归 occ-theme 控制) */
+  --ink: var(--bg);
+  --ink-2: var(--bg-subtle);
+  --ink-3: var(--bg-card);
+  --ink-4: var(--bg-card-hover);
+  --cell-bg: rgba(20, 23, 30, 0.65);
+  --cell-bg-2: rgba(24, 28, 36, 0.85);
+  --grain-blend: screen;
+  --grain-op: 0.85;
 
   /* 五行动态气机色 (非静态物质，乃变化动势) */
   --wx-mu: #529668;           /* 木·生发向上 (草木苍青) */
@@ -113,16 +125,27 @@ body.daylight {
   --text: #342d24;
   --text2: #635848;
   --text3: #8a7c68;
+  --text-2: var(--text2);
+  --text-3: var(--text3);
 
   --gold: #966718;            /* 经年老蓍草 */
   --gold-dim: #754e0c;
   --gold-glow: rgba(150, 103, 24, 0.22);
   --gold-rgb: 150, 103, 24;
   --lit-rgb: 52, 45, 36;
-  --amber: #b56a16;           /* 熟赭 */
+  --amber: #c47712;           /* 浓姜黄 */
   --rust: #a12818;            /* 朱砂生色 */
   --jade: #2d5444;            /* 青铜深斑 */
   --celadon: #2c4d61;
+
+  --ink: var(--bg);
+  --ink-2: var(--bg-subtle);
+  --ink-3: var(--bg-card);
+  --ink-4: var(--bg-card-hover);
+  --cell-bg: rgba(250, 244, 232, 0.7);
+  --cell-bg-2: rgba(244, 236, 223, 0.9);
+  --grain-blend: multiply;
+  --grain-op: 0.88;
 
   --wx-mu: #1b7340;           /* 木·青翠拔挺 */
   --wx-huo: #c22914;          /* 火·纯赤朱砂 */
@@ -135,25 +158,225 @@ body.daylight {
   --hair-bright: 1px solid rgba(150, 103, 24, 0.7);
 }
 
-/* 全局尘土颗粒与手工纸纤维质感层 (Dust & Soil Fiber Texture) */
-body::before {
+/* 全局尘土颗粒与黄土桑皮纸纤维质感层 (Tangible Dust & Raw Fiber Overlay) */
+body::before, .grain {
   content: "";
   position: fixed;
   inset: 0;
   z-index: 999;
   pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='dustFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.8  0 0 0 0 0.65  0 0 0 0 0.4  0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23dustFilter)'/%3E%3C/svg%3E");
-  opacity: 0.65;
-  mix-blend-mode: overlay;
+  background-image: 
+    radial-gradient(circle at 50% 12%, rgba(200, 150, 56, 0.14) 0%, transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cfilter id='dust'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.85 0 0 0 0 0.70 0 0 0 0 0.45 0 0 0 0 0.38 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23dust)' fill='%23000'/%3E%3C/svg%3E");
+  opacity: 0.85;
+  mix-blend-mode: screen;
 }
-body.daylight::before {
-  opacity: 0.52;
+body.daylight::before, body.daylight .grain {
+  background-image: 
+    radial-gradient(circle at 50% 12%, rgba(160, 110, 30, 0.10) 0%, transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cfilter id='dust'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.60' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.30 0 0 0 0 0.22 0 0 0 0 0.15 0 0 0 0 0.45 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23dust)' fill='%23fff'/%3E%3C/svg%3E");
+  opacity: 0.90;
   mix-blend-mode: multiply;
 }
 
 /* ------------------------------------------------------------
    3. 周礼波普拼贴组件系统 (Pop-Ritual Collage Toolkit)
    ------------------------------------------------------------ */
+
+/* 周礼波普24铜钱矩阵展示带 (24-Coin Archaic Pop Mosaic Banner) */
+.coin-pop-banner {
+  background: var(--bg-card);
+  border: var(--hair);
+  border-radius: 2px;
+  padding: 22px 24px;
+  margin: 24px 0 28px;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+.coin-pop-banner::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--c-cinnabar), var(--c-turmeric), var(--c-yarrow));
+}
+.coin-pop-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: var(--hair-soft);
+}
+.coin-pop-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 12px;
+  margin: 18px 0 14px;
+}
+@media (max-width: 900px) {
+  .coin-pop-grid { grid-template-columns: repeat(6, 1fr); gap: 10px; }
+}
+@media (max-width: 600px) {
+  .coin-pop-grid { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+}
+.pop-coin-token {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #3d5e50 0%, #1e332a 55%, #101c17 100%);
+  border: 2px solid #5a8573;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), inset 0 0 10px rgba(90, 133, 115, 0.45);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.28s cubic-bezier(0.19, 1, 0.22, 1);
+  user-select: none;
+}
+body.daylight .pop-coin-token {
+  background: radial-gradient(circle at 35% 35%, #46695a 0%, #2b4539 60%, #1a2c24 100%);
+  border-color: #649680;
+  box-shadow: 0 4px 12px rgba(40, 50, 45, 0.25), inset 0 0 8px rgba(100, 150, 130, 0.35);
+}
+.pop-coin-token:hover, .pop-coin-token.active {
+  transform: scale(1.15) rotate(6deg);
+  border-color: var(--c-turmeric);
+  box-shadow: 0 10px 28px rgba(229, 164, 26, 0.45), inset 0 0 14px rgba(229, 164, 26, 0.35);
+}
+.pop-coin-hole {
+  width: 30%;
+  height: 30%;
+  background: var(--bg);
+  border: 1.5px solid rgba(100, 150, 130, 0.7);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.9);
+}
+.pop-coin-char {
+  position: absolute;
+  font-family: var(--serif);
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #c8e6da;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  line-height: 1;
+}
+.pop-coin-char.top { top: 5px; }
+.pop-coin-char.bottom { bottom: 5px; }
+.pop-coin-char.left { left: 5px; }
+.pop-coin-char.right { right: 5px; }
+@media (max-width: 600px) {
+  .pop-coin-char { font-size: 9px; }
+  .pop-coin-char.top { top: 3px; }
+  .pop-coin-char.bottom { bottom: 3px; }
+  .pop-coin-char.left { left: 3px; }
+  .pop-coin-char.right { right: 3px; }
+}
+
+.coin-ticker-box {
+  background: rgba(0, 0, 0, 0.25);
+  border: var(--hair-soft);
+  border-radius: 2px;
+  padding: 10px 14px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text);
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+body.daylight .coin-ticker-box {
+  background: rgba(255, 255, 255, 0.4);
+}
+.coin-ticker-label {
+  font-family: var(--serif);
+  font-weight: 700;
+  color: var(--c-turmeric);
+  white-space: nowrap;
+}
+
+/* 大衍五十·蓍草筹策案 (50-Yarrow Stalks Divination Board) */
+.yarrow-board {
+  background: var(--bg-card);
+  border: var(--hair);
+  border-radius: 2px;
+  padding: 20px 24px;
+  margin: 20px 0 32px;
+  position: relative;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+.yarrow-board::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--c-turmeric), var(--c-yarrow), var(--c-cinnabar));
+}
+.yarrow-cloth-backing {
+  background: linear-gradient(135deg, rgba(229, 164, 26, 0.12) 0%, rgba(196, 150, 56, 0.05) 50%, rgba(184, 40, 24, 0.04) 100%);
+  border: 1px dashed rgba(229, 164, 26, 0.35);
+  border-radius: 2px;
+  padding: 16px 20px;
+  margin: 14px 0;
+  position: relative;
+}
+body.daylight .yarrow-cloth-backing {
+  background: linear-gradient(135deg, rgba(229, 164, 26, 0.16) 0%, rgba(196, 150, 56, 0.08) 50%, rgba(184, 40, 24, 0.05) 100%);
+  border-color: rgba(196, 150, 56, 0.5);
+}
+.yarrow-stalks-display {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 3.5px;
+  height: 76px;
+  padding: 10px 0 8px;
+  position: relative;
+  overflow-x: auto;
+}
+.yarrow-stalk {
+  width: 3.8px;
+  background: linear-gradient(180deg, #edd29a 0%, #c49638 50%, #8a641a 100%);
+  border-radius: 1.5px;
+  transition: all 0.25s ease;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+  cursor: pointer;
+}
+.yarrow-stalk:hover {
+  background: #f5b62b;
+  transform: translateY(-8px);
+  box-shadow: 0 6px 12px rgba(229, 164, 26, 0.5);
+}
+.yarrow-stalk.tai-chi {
+  background: linear-gradient(180deg, #ff8570 0%, #b82818 60%, #7d170a 100%);
+  margin-right: 22px;
+  box-shadow: 0 2px 8px rgba(184, 40, 24, 0.5);
+}
+.yarrow-stalk.tai-chi::after {
+  content: "太极";
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--c-cinnabar);
+  font-family: var(--serif);
+  white-space: nowrap;
+}
+.yarrow-ribbon {
+  position: absolute;
+  bottom: 24px;
+  left: 32px;
+  right: 12px;
+  height: 2px;
+  background: rgba(184, 40, 24, 0.55);
+  pointer-events: none;
+}
 
 /* 桑皮粗纸与拼贴卡片 (Archaic Collage Card) */
 .collage-card {
@@ -237,19 +460,19 @@ body.daylight::before {
   align-items: center;
   gap: 3px;
   height: 14px;
-  opacity: 0.45;
+  opacity: 0.75;
   user-select: none;
 }
 .yarrow-tallies span {
   display: inline-block;
-  width: 1.5px;
+  width: 1.8px;
   height: 100%;
   background: var(--c-yarrow);
   border-radius: 1px;
 }
 .yarrow-tallies span.hi {
   background: var(--c-cinnabar);
-  height: 120%;
+  height: 130%;
 }
 
 /* 气机导通与通关流线 (Qi Conduit & Flow Indicator) */

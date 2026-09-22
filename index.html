@@ -6,53 +6,13 @@
 <meta name="theme-color" content="#0d0e11">
 <title>神秘学手册 · 东西方术数与星历研习指南 | OCCODEX</title>
 <meta name="description" content="传统文化知识学习工具：从阴阳五行、天干地支、十二时辰到四柱排盘，配合客观题练习与经典断例训练。">
-<link rel="stylesheet" href="occ-theme.css">
+<link rel="stylesheet" href="occ-theme.css?v=pop-ritual-v3">
 <style>
 
 /* ============================================================
-   「9味」DESIGN TOKENS —— 沿用《9味-审美提取与交接文档.md》
-   低长调 / 低饱和80% + 高饱和点缀10% / 泛黄米白 / 油墨噪点 / 发丝线
+   页面版式与局部变量（全局色彩/质感/五行统一继承自 occ-theme.css）
    ============================================================ */
 :root{
-  --ink:      #0d0e11;
-  --ink-2:    #14161b;
-  --ink-3:    #1b1e25;
-  --ink-4:    #23262e;
-  --moss:     #4c5648;
-  --umber:    #6b5942;
-  --gold:     #c9a227;
-  --gold-dim: #8d7420;
-  --amber:    #d8722f;
-  --rust:     #8f3b2c;
-  --paper:    #e6dfcf;
-  --paper-2:  #cfc7b4;
-  --text:     #e0dac9;
-  --text-2:   #bbb5a6;
-  --text-3:   #928c7d;
-
-  /* 五行配色（低饱和，适配暗底） */
-  --wx-mu:  #6f9e6f;  /* 木 */
-  --wx-huo: #c26b45;  /* 火 */
-  --wx-tu:  #b08d57;  /* 土 */
-  --wx-jin: #a8a49b;  /* 金 */
-  --wx-shui:#5f7f9e;  /* 水 */
-
-  --serif:"Playfair Display","Didot","Noto Serif SC","Songti SC","STSong","SimSun",Georgia,serif;
-  --sans:"Noto Sans SC","Source Han Sans CN","PingFang SC","Microsoft YaHei",-apple-system,sans-serif;
-
-  
-  /* —— 主题派生变量（昼间模式在 body.daylight 中整体覆盖）—— */
-  --gold-rgb: 201,162,39;
-  --lit-rgb:  215,209,196;
-  --card-grad: linear-gradient(180deg,rgba(27,30,37,.5),rgba(20,22,27,.35));
-  --cell-bg:   rgba(20,22,27,.4);
-  --cell-bg-2: rgba(20,22,27,.5);
-  --nav-bg:    rgba(13,14,17,.88);
-  --grain-blend: overlay;
-  --grain-op: .055;
-
-  --hair:1px solid rgba(var(--gold-rgb),.22);
-  --hair-soft:1px solid rgba(var(--lit-rgb),.10);
   --gut:22px;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -452,40 +412,8 @@ footer .colophon{margin-top:20px;font-family:var(--serif);font-size:10.5px;lette
 }
 
 /* ============================================================
-   昼间模式 ·「宣纸与墨」
-   参照：舟味中国风活动（画中人/将进酒 的宣纸-水墨-朱砂语言）
-        + 9味 浅色弹窗结构（浅纸60% / 米橙30% / 深点缀10%）
-   原则：亮而收敛——米白纸底、墨阶文字、小面积朱砂点睛
+   昼间模式 · 局部细节微调（色彩统一继承自 occ-theme.css）
    ============================================================ */
-body.daylight{
-  --ink:      #f3eee3;   /* 底色 宣纸米白 */
-  --ink-2:    #faf6ec;   /* 纸面 */
-  --ink-3:    #ece5d3;
-  --ink-4:    #e0d7c1;
-  --gold:     #9e4030;   /* 主强调 朱砂（降饱和） */
-  --gold-dim: #8a6d1d;   /* 赭金：印章线与题花 */
-  --amber:    #4e686c;   /* 次强调 黛青 */
-  --rust:     #7a2e22;
-  --paper:    #3b3731;   /* 标题 浓墨 */
-  --paper-2:  #5c564b;
-  --text:     #3e382e;   /* 正文 墨阶一（加深） */
-  --text-2:   #5c5545;   /* 墨阶二 */
-  --text-3:   #867d67;   /* 墨阶三 */
-  --gold-rgb: 158,64,48;
-  --lit-rgb:  59,55,49;
-  --card-grad: linear-gradient(180deg,rgba(255,252,244,.65),rgba(247,241,227,.4));
-  --cell-bg:   rgba(255,252,244,.55);
-  --cell-bg-2: rgba(255,252,244,.8);
-  --nav-bg:    rgba(243,238,227,.9);
-  --grain-blend: multiply;
-  --grain-op: .045;
-  /* 五行 · 昼间（加深保证对比） */
-  --wx-mu:  #3f7a43;
-  --wx-huo: #b0502f;
-  --wx-tu:  #8a6a34;
-  --wx-jin: #6e6a60;
-  --wx-shui:#3d6288;
-}
 body.daylight .vignette{background:radial-gradient(120% 90% at 50% 8%,transparent 40%,rgba(148,124,74,.16) 100%)}
 body.daylight .ring{border-color:rgba(158,64,48,.10)}
 body.daylight .formula{color:rgba(59,55,49,.07)}
@@ -618,6 +546,47 @@ body.daylight .wx-info .rel strong,body.daylight .card p strong,body.daylight .c
 
     <!-- 逆流时钟与实时时标终端 -->
     <div id="portalChrono"></div>
+
+    <!-- 周礼波普 · 二十四铢青铜钱阵 (Archaic Pop Matrix) -->
+    <div class="coin-pop-banner crop-mark">
+      <div class="coin-pop-header">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <span class="cinnabar-seal">二十四铢</span>
+          <strong style="font-family:var(--serif);font-size:15px;color:var(--paper);letter-spacing:.15em;">周礼波普 · 方孔青铜钱阵</strong>
+          <span class="turmeric-tag small">气机全息映射</span>
+        </div>
+        <span style="font-size:11px;color:var(--text-3);letter-spacing:.08em;">[ 悬停翻转 · 点击击响青铜金石 ]</span>
+      </div>
+      <div class="coin-pop-grid" id="popCoinGrid">
+        <!-- 24 枚青铜古币由 JS 动态装配 -->
+      </div>
+      <div class="coin-ticker-box" id="coinDetailTicker">
+        <span class="coin-ticker-label">【二十四铢青铜钱阵】</span>
+        <span id="coinDetailText">悬停或点击任意方孔圆钱，即时激活古钱金石气机与对应易学物理象意。</span>
+      </div>
+    </div>
+
+    <!-- 大衍五十 · 蓍草筹策案 (50-Yarrow Stalks Divination Board) -->
+    <div class="yarrow-board crop-mark">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:12px;">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <span class="turmeric-tag">大衍之数五十 · 其用四十有九</span>
+          <span class="cinnabar-seal">四营三变</span>
+          <strong style="font-family:var(--serif);font-size:15px;color:var(--paper);letter-spacing:.15em;">蓍草筹策案</strong>
+        </div>
+        <button class="chi-btn" id="btnYarrowCast" style="border-color:var(--c-turmeric);color:var(--c-turmeric);font-weight:600;">✦ 蓍草一变推衍</button>
+      </div>
+      <div class="yarrow-cloth-backing">
+        <div class="yarrow-stalks-display" id="yarrowDisplay">
+          <!-- 50 根阴干蓍草物理筹策 -->
+        </div>
+        <div class="yarrow-ribbon"></div>
+      </div>
+      <div class="coin-ticker-box" id="yarrowDetailTicker" style="margin-top:10px;">
+        <span class="coin-ticker-label" style="color:var(--c-yarrow);">【大衍筮法】</span>
+        <span id="yarrowDetailText">“大衍之数五十，其用四十有九。分而为二以象两仪，挂一以象三，揲之以四以象四时，归奇于扐以象闰。”点击上方按钮推演。</span>
+      </div>
+    </div>
 
     <div class="toc-group">
       <div class="toc-ghead">
@@ -830,7 +799,128 @@ function initLiuYaoSandbox() {
   }
 }
 
+  // ------------------------------------------------------------
+  // 周礼波普：二十四铢青铜钱阵与大衍五十蓍草交互系统
+  // ------------------------------------------------------------
+  const COIN_DATA = [
+    { t:"开", r:"元", b:"通", l:"宝", title:"开元通宝 · 通宝之祖", desc:"周流不息，奠定方孔圆钱千年数律尺度，象征事物流转之起点。" },
+    { t:"周", r:"易", b:"大", l:"卜", title:"周易大卜 · 筮法元始", desc:"春官宗伯掌三易之法：一曰连山，二曰归藏，三曰周易。大衍由此出。" },
+    { t:"大", r:"衍", b:"五", l:"十", title:"大衍五十 · 天地之数", desc:"大衍之数五十，其用四十有九。挂一以象三，揲之以四以象四时。" },
+    { t:"变", r:"易", b:"为", l:"体", title:"变易为体 · 变动不居", desc:"易者变也。事物唯一不变者即变化本体，气机周流，无一刻凝滞。" },
+    { t:"衡", r:"为", b:"用", l:"之", title:"衡为用之 · 动态自洽", desc:"平衡非静态死寂之目标，乃变化激烈冲荡中呈现之瞬时自洽表象。" },
+    { t:"气", r:"机", b:"取", l:"象", title:"气机取象 · 观物成章", desc:"五行非五物，乃五种生发、宣散、承载、收敛、闭藏之正在发生动势。" },
+    { t:"冲", r:"合", b:"优", l:"先", title:"冲合优先 · 造化机先", desc:"天机动处看冲合。冲为激发离断，合为羁绊化育，先于静旺静衰。" },
+    { t:"通", r:"关", b:"引", l:"渡", title:"通关引渡 · 寻其断点", desc:"不问缺什么，但问气滞何处。找断点不找缺口，一字引渡全盘皆活。" },
+    { t:"辰", r:"土", b:"之", l:"变", title:"辰土之变 · 水土枢机", desc:"逢申子会则水盛，遇戌冲则火旺，见酉合而金凝。随气而化，无常形。" },
+    { t:"时", r:"物", b:"文", l:"理", title:"时物文理 · 阴符神契", desc:"愚人以天地文理圣，我以时物文理哲。于万物生灭变理中洞见常数。" },
+    { t:"乾", r:"健", b:"坤", l:"顺", title:"乾健坤顺 · 阴阳定序", desc:"乾道变化各正性命，坤厚载物德合无疆。天地设位，而易行乎其中。" },
+    { t:"日", r:"月", b:"盈", l:"昃", title:"日月盈昃 · 辰宿列张", desc:"日往则月来，月往则日来，日月相推而明生焉。寒暑相推而岁成焉。" },
+    { t:"五", r:"星", b:"从", l:"行", title:"五星从行 · 纬象交辉", desc:"岁镇荧惑太白辰，七政循天，阴阳五气在地成形，在天成象。" },
+    { t:"六", r:"十", b:"花", l:"甲", title:"六十花甲 · 干支历律", desc:"十干十二支，奇偶相合，穷天地之变，纪岁月日时之气数。" },
+    { t:"冬", r:"至", b:"一", l:"阳", title:"冬至一阳 · 复卦初萌", desc:"先王以至日闭关，商旅不行，后不省方。极阴之中，纯阳内伏。" },
+    { t:"夏", r:"至", b:"一", l:"阴", title:"夏至一阴 · 姤卦始生", desc:"天地相遇，品物咸章。日烈火炽之极，阴气潜伏于渊泉之下。" },
+    { t:"天", r:"地", b:"交", l:"泰", title:"天地交泰 · 气交感应", desc:"坤上乾下，天气下降，地气上升，天地交而万物通也。" },
+    { t:"水", r:"火", b:"既", l:"济", title:"水火既济 · 终始相续", desc:"坎水润下，离火炎上，水火交融相克相生，事虽成而变化未已。" },
+    { t:"雷", r:"风", b:"相", l:"薄", title:"雷风相薄 · 震巽宣畅", desc:"雷以动之，风以散之，雨以润之，日以烜之，造化因声色而成形。" },
+    { t:"山", r:"泽", b:"通", l:"气", title:"山泽通气 · 艮兑感通", desc:"山高泽下，气脉相穿；损益盈虚，与时偕行。" },
+    { t:"纳", r:"甲", b:"配", l:"易", title:"纳甲配易 · 象数参同", desc:"干支六亲，管辖六十四卦。爻发于几微，应于天地之机。" },
+    { t:"生", r:"克", b:"乘", l:"侮", title:"生克乘侮 · 生机消长", desc:"五行生发亢盛则乘，弱衰不支则侮。动态调和，无永久胜者。" },
+    { t:"出", r:"厂", b:"调", l:"参", title:"出厂调参 · 命局运途", desc:"八字是底层硬编码（出厂设置），大运流年是实时调参，此物理也。" },
+    { t:"神", r:"明", b:"探", l:"微", title:"神明探微 · 研几探赜", desc:"极深而研几，通天下之志，断天下之疑，周易大卜之真谛也。" }
+  ];
+
+  function initPopCoins() {
+    const grid = document.getElementById('popCoinGrid');
+    const tickerText = document.getElementById('coinDetailText');
+    const tickerBox = document.getElementById('coinDetailTicker');
+    if (!grid) return;
+
+    grid.innerHTML = COIN_DATA.map((c, i) => `
+      <div class="pop-coin-token" data-idx="${i}" title="${c.title}">
+        <div class="pop-coin-hole"></div>
+        <span class="pop-coin-char top">${c.t}</span>
+        <span class="pop-coin-char right">${c.r}</span>
+        <span class="pop-coin-char bottom">${c.b}</span>
+        <span class="pop-coin-char left">${c.l}</span>
+      </div>
+    `).join('');
+
+    grid.querySelectorAll('.pop-coin-token').forEach(token => {
+      const idx = parseInt(token.getAttribute('data-idx'), 10);
+      const coin = COIN_DATA[idx];
+
+      const activateCoin = () => {
+        grid.querySelectorAll('.pop-coin-token').forEach(t => t.classList.remove('active'));
+        token.classList.add('active');
+        if (tickerBox && tickerText) {
+          tickerBox.querySelector('.coin-ticker-label').textContent = `【${coin.title}】`;
+          tickerText.textContent = coin.desc;
+        }
+      };
+
+      token.addEventListener('mouseenter', () => {
+        activateCoin();
+        if (window.MysticAudio) window.MysticAudio.tick(1600);
+      });
+
+      token.addEventListener('click', () => {
+        activateCoin();
+        if (window.MysticAudio) {
+          window.MysticAudio.coin(Math.random() * 0.4 + 0.85);
+        }
+      });
+    });
+  }
+
+  function initYarrowBoard() {
+    const display = document.getElementById('yarrowDisplay');
+    const btn = document.getElementById('btnYarrowCast');
+    const txt = document.getElementById('yarrowDetailText');
+    if (!display) return;
+
+    let stalksHtml = '<div class="yarrow-stalk tai-chi" title="太极虚设不用，挂一以象三"></div>';
+    for (let i = 2; i <= 50; i++) {
+      const h = 56 + ((i * 19) % 18);
+      stalksHtml += `<div class="yarrow-stalk" style="height:${h}px;" title="蓍策第 ${i} 根"></div>`;
+    }
+    display.innerHTML = stalksHtml;
+
+    if (btn) {
+      btn.addEventListener('click', function() {
+        if (window.MysticAudio) {
+          window.MysticAudio.paper();
+          setTimeout(() => window.MysticAudio.bell(659.25), 160);
+        }
+        const stalks = display.querySelectorAll('.yarrow-stalk:not(.tai-chi)');
+        stalks.forEach(s => {
+          s.style.transform = `translateY(-${Math.floor(Math.random() * 10 + 4)}px)`;
+        });
+        setTimeout(() => {
+          stalks.forEach(s => s.style.transform = 'none');
+        }, 400);
+
+        const rand = Math.random() * 16;
+        let yaoText = "";
+        if (rand < 1) {
+          yaoText = "【老阴 · 变数六】╍ ╍ (重动爻，物极必反)";
+        } else if (rand < 6) {
+          yaoText = "【老阳 · 变数九】━━━ (交动爻，纯阳始动)";
+        } else if (rand < 13) {
+          yaoText = "【少阴 · 变数八】╍ ╍ (静爻，柔顺自持)";
+        } else {
+          yaoText = "【少阳 · 变数七】━━━ (静爻，生机萌发)";
+        }
+
+        if (txt) {
+          txt.innerHTML = `四营三变已毕：余策推演得 <strong>${yaoText}</strong>。大衍之理在于“变易为体”，得动爻则观其变卦气机走向。`;
+        }
+      });
+    }
+  }
+
   initLiuYaoSandbox();
+  initPopCoins();
+  initYarrowBoard();
 })();
 </script>
 </body>
