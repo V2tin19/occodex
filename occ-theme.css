@@ -1,8 +1,7 @@
 /* ============================================================
-   occ-theme.css — 神秘学手册 · 视觉引擎与三套沉浸式主题系统
+   occ-theme.css — 神秘学手册 · 视觉引擎与双沉浸式主题系统
    Theme 1: 极夜秘卷低长调 (Midnight Codex - Default)
    Theme 2: 素绢水墨与朱砂 (Rice Paper & Cinnabar - body.daylight)
-   Theme 3: 司岁战术终端 (Sui Tactical HUD - body.tactical)
    ============================================================ */
 
 /* ------------------------------------------------------------
@@ -110,11 +109,11 @@ body.daylight {
   --jade: #3b7454;
   --celadon: #3c5b6b;
 
-  --wx-mu: #387b47;
-  --wx-huo: #ba4729;
-  --wx-tu: #926f2a;
-  --wx-jin: #6b665c;
-  --wx-shui: #37638c;
+  --wx-mu: #1b7340;      /* 生机翠竹绿 */
+  --wx-huo: #c8321a;     /* 明润朱砂火 */
+  --wx-tu: #a06318;      /* 琥珀暖香土 */
+  --wx-jin: #4e5661;     /* 霜雪冷钢金 */
+  --wx-shui: #1565c0;    /* 澄澈深海蓝 */
 
   --hair: 1px solid rgba(158, 54, 38, 0.26);
   --hair-soft: 1px solid rgba(56, 50, 41, 0.12);
@@ -122,47 +121,6 @@ body.daylight {
 
   --grain-op: 0.045;
   --grain-blend: multiply;
-}
-
-/* ------------------------------------------------------------
-   3. THEME 3: 司岁战术终端 (body.tactical)
-   ------------------------------------------------------------ */
-body.tactical {
-  --bg: #06090e;
-  --bg-subtle: #0c1219;
-  --bg-card: #0c131c;
-  --bg-card-hover: #111a26;
-  --nav-bg: rgba(6, 9, 14, 0.95);
-  --card-grad: linear-gradient(180deg, #0e1622 0%, #090e16 100%);
-
-  --paper: #e9f5fc;
-  --paper-2: #c4dbe8;
-  --text: #d8ebf5;
-  --text2: #86a8bc;
-  --text3: #58798c;
-
-  --gold: #e5a928;       /* 战术金标 */
-  --gold-dim: #99701a;
-  --gold-glow: rgba(229, 169, 40, 0.4);
-  --gold-rgb: 229, 169, 40;
-  --lit-rgb: 216, 235, 245;
-  --amber: #ff6f26;
-  --rust: #f23d4c;
-  --jade: #00d68f;       /* 全息绿 */
-  --celadon: #00c3ff;    /* 战术晶蓝 */
-
-  --wx-mu: #00d68f;
-  --wx-huo: #ff5537;
-  --wx-tu: #e5a928;
-  --wx-jin: #c8e1ee;
-  --wx-shui: #00c3ff;
-
-  --hair: 1px solid rgba(229, 169, 40, 0.35);
-  --hair-soft: 1px solid rgba(0, 195, 255, 0.15);
-  --hair-bright: 1px solid rgba(0, 195, 255, 0.8);
-
-  --grain-op: 0.035;
-  --grain-blend: screen;
 }
 
 /* ------------------------------------------------------------
@@ -302,27 +260,32 @@ body.tactical .card:hover {
 .wx-badge.jin { color: var(--wx-jin); border-color: rgba(176, 173, 164, 0.4); background: rgba(176, 173, 164, 0.08); }
 .wx-badge.shui { color: var(--wx-shui); border-color: rgba(93, 138, 181, 0.4); background: rgba(93, 138, 181, 0.08); }
 
-/* 控制浮动面板 (Theme & Sound HUD Bar) */
+/* 控制浮动面板 (Theme & Sound HUD Bar) - 置于右下角，杜绝与顶部主导航冲突 */
 .occ-hud-bar {
   position: fixed;
-  top: 14px;
-  right: 16px;
-  z-index: 100;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
   display: flex;
   align-items: center;
   gap: 8px;
   background: var(--nav-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: var(--hair);
-  padding: 4px 6px;
-  border-radius: 24px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-  transition: border-color 0.3s ease;
+  padding: 5px 8px;
+  border-radius: 28px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  transition: all 0.3s ease;
+}
+body.daylight .occ-hud-bar {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(158, 54, 38, 0.28);
+  box-shadow: 0 6px 24px rgba(40, 36, 30, 0.12);
 }
 .occ-hud-btn {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: var(--hair-soft);
   background: transparent;
@@ -331,7 +294,7 @@ body.tactical .card:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 15px;
   transition: all 0.25s var(--ease-mystic);
 }
 .occ-hud-btn:hover {
@@ -341,27 +304,32 @@ body.tactical .card:hover {
 }
 .occ-hud-btn.active {
   color: var(--paper);
-  background: rgba(var(--gold-rgb), 0.2);
+  background: rgba(var(--gold-rgb), 0.18);
   border-color: var(--gold);
 }
 .occ-hud-sep {
   width: 1px;
   height: 18px;
-  background: rgba(var(--lit-rgb), 0.15);
+  background: rgba(var(--lit-rgb), 0.18);
 }
 
 @media (max-width: 640px) {
   .occ-hud-bar {
-    top: 10px;
-    right: 10px;
+    bottom: 16px;
+    right: 16px;
     gap: 4px;
-    padding: 3px 4px;
+    padding: 3px 5px;
   }
   .occ-hud-btn {
-    width: 30px;
-    height: 30px;
-    font-size: 12px;
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
   }
+}
+
+/* 全局隐藏旧版各页面零散的主题按钮，统一由右下角 HUD 控制台接管 */
+.theme-btn {
+  display: none !important;
 }
 
 /* ------------------------------------------------------------

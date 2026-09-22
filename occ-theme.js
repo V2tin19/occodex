@@ -1,33 +1,33 @@
 /**
- * occ-theme.js — 跨页面统一多主题与 HUD 控制台
- * 支持三套主题循环切换：'night' (秘卷玄奥) / 'day' (素绢水墨朱砂) / 'tactical' (司岁战术终端)
+ * occ-theme.js — 跨页面统一昼夜双主题与 HUD 控制台
+ * 支持极夜秘卷（夜间）与素绢水墨（昼间）全局二元切换
  * 支持 Web Audio 微音效一键静音/开启动态指示
  */
 (function(global) {
   'use strict';
 
   const STORAGE_KEY = 'occ_theme';
-  const THEMES = ['night', 'day', 'tactical'];
+  const THEMES = ['night', 'day'];
   const THEME_NAMES = {
-    night: '极夜秘卷低长调',
-    day: '素绢水墨朱砂',
-    tactical: '司岁战术终端'
+    night: '极夜秘卷 (夜间)',
+    day: '素绢水墨 (昼间)'
   };
 
   function getTheme() {
-    return localStorage.getItem(STORAGE_KEY) || 'night';
+    const t = localStorage.getItem(STORAGE_KEY);
+    return (t === 'day') ? 'day' : 'night';
   }
 
   function applyTheme(theme) {
-    if (!THEMES.includes(theme)) theme = 'night';
+    if (theme !== 'day') theme = 'night';
     const body = document.body;
     if (!body) return;
 
-    body.classList.remove('daylight', 'tactical');
+    body.classList.remove('tactical'); // 清理历史遗留样式
     if (theme === 'day') {
       body.classList.add('daylight');
-    } else if (theme === 'tactical') {
-      body.classList.add('tactical');
+    } else {
+      body.classList.remove('daylight');
     }
 
     localStorage.setItem(STORAGE_KEY, theme);
@@ -39,8 +39,7 @@
 
   function cycleTheme() {
     const cur = getTheme();
-    const idx = THEMES.indexOf(cur);
-    const next = THEMES[(idx + 1) % THEMES.length];
+    const next = (cur === 'day') ? 'night' : 'day';
     applyTheme(next);
     if (window.MysticAudio) {
       window.MysticAudio.click();
@@ -51,14 +50,9 @@
   function updateHudUI(curTheme) {
     const themeBtn = document.getElementById('occThemeBtn');
     if (themeBtn) {
-      themeBtn.title = '当前主题：' + THEME_NAMES[curTheme] + ' (点击切换)';
-      if (curTheme === 'day') {
-        themeBtn.innerHTML = '☀';
-      } else if (curTheme === 'tactical') {
-        themeBtn.innerHTML = '⬡';
-      } else {
-        themeBtn.innerHTML = '☽';
-      }
+      const isDay = (curTheme === 'day');
+      themeBtn.title = isDay ? '当前：素绢水墨 (点击切换为夜间模式)' : '当前：极夜秘卷 (点击切换为昼间模式)';
+      themeBtn.innerHTML = isDay ? '☀' : '☽';
     }
 
     const soundBtn = document.getElementById('occSoundBtn');

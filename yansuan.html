@@ -773,7 +773,6 @@ body {
 
 /* 昼间模式 (素绢水墨朱砂) 高级适配 */
 body.daylight .console-card,
-body.daylight .pillar-card,
 body.daylight .ded-card,
 body.daylight .dayun-ladder-wrap,
 body.daylight .aux-indicators-bar,
@@ -782,6 +781,72 @@ body.daylight .history-drawer {
   border-color: rgba(40, 36, 30, 0.15);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
 }
+
+/* 原局四柱卡片：昼间素雅白底与温润金边，杜绝暗黑发灰 */
+body.daylight .pillar-card {
+  background: #ffffff;
+  border: 1px solid rgba(190, 150, 60, 0.28);
+  box-shadow: 0 4px 18px rgba(50, 40, 30, 0.05);
+}
+body.daylight .pillar-card:hover {
+  border-color: rgba(190, 150, 60, 0.6);
+  box-shadow: 0 6px 24px rgba(190, 150, 60, 0.14);
+}
+body.daylight .pillar-card.is-dm {
+  background: linear-gradient(180deg, #ffffff 0%, #fffcf2 100%);
+  border: 1.5px solid #c9a227;
+  box-shadow: 0 4px 22px rgba(201, 162, 39, 0.2);
+}
+
+/* 核心修复：消除昼间四柱大字的暗黑阴影，字体字色明润纯净 */
+body.daylight .p-char-stem,
+body.daylight .p-char-branch {
+  text-shadow: none !important;
+  filter: none !important;
+  font-weight: 600;
+}
+body.daylight .p-char-stem[data-wx="木"], body.daylight .p-char-branch[data-wx="木"] { color: #1b7340 !important; }
+body.daylight .p-char-stem[data-wx="火"], body.daylight .p-char-branch[data-wx="火"] { color: #c8321a !important; }
+body.daylight .p-char-stem[data-wx="土"], body.daylight .p-char-branch[data-wx="土"] { color: #a06318 !important; }
+body.daylight .p-char-stem[data-wx="金"], body.daylight .p-char-branch[data-wx="金"] { color: #4e5661 !important; }
+body.daylight .p-char-stem[data-wx="水"], body.daylight .p-char-branch[data-wx="水"] { color: #1565c0 !important; }
+
+body.daylight .p-tag {
+  color: #7a705e;
+}
+body.daylight .pillar-card.is-dm .p-tag {
+  color: #9e3626;
+  font-weight: 600;
+}
+body.daylight .p-god-top {
+  color: #484135;
+  font-weight: 500;
+}
+body.daylight .p-nayin-badge {
+  background: #f4efe4;
+  color: #28241e;
+  border-color: rgba(40, 36, 30, 0.15);
+}
+body.daylight .p-stage-pill {
+  color: #846820;
+}
+body.daylight .p-cg-list {
+  border-top-color: rgba(40, 36, 30, 0.12);
+  color: #554e42;
+}
+
+body.daylight .p-picker-col {
+  background: #ffffff;
+  border: 1px solid rgba(40, 36, 30, 0.12);
+}
+body.daylight .p-picker-col.is-daymaster {
+  background: #fffcf5;
+  border-color: rgba(201, 162, 39, 0.6);
+}
+body.daylight .p-picker-title {
+  color: #846820;
+}
+
 body.daylight .p-picker-col,
 body.daylight .dayun-col,
 body.daylight .strength-score-box,
@@ -808,9 +873,6 @@ body.daylight .mode-pill.on {
   border-color: var(--gold);
   color: #7d6014;
 }
-body.daylight .pillar-card.is-dm {
-  background: linear-gradient(180deg, rgba(201, 162, 39, 0.15) 0%, rgba(236, 229, 214, 0.95) 100%);
-}
 body.daylight .ss-gauge::after {
   background: var(--bg-card);
 }
@@ -821,11 +883,6 @@ body.daylight .d-tab.active {
   color: #8d7420;
   border-color: var(--gold);
   background: rgba(var(--gold-rgb), 0.12);
-}
-body.daylight .p-nayin-badge {
-  background: rgba(0, 0, 0, 0.05);
-  color: var(--paper);
-  border-color: rgba(40, 36, 30, 0.15);
 }
 body.daylight .classics-echo-box {
   background: rgba(201, 162, 39, 0.06);
@@ -852,8 +909,6 @@ body.daylight .classics-echo-box {
     <a href="liuren.html" class="occ-nav-link">大六壬</a>
   </div>
 </nav>
-
-<button class="theme-btn" id="themeBtn" title="切换昼夜模式">昼</button>
 
 <div class="wrap" style="max-width:1100px;margin:0 auto;padding:0 24px;">
 
@@ -1551,8 +1606,8 @@ body.daylight .classics-echo-box {
           <div class="p-tag">${c.name}</div>
           <div class="p-god-top" style="color:${c.isDm ? 'var(--gold)' : 'var(--text-2)'}">${tenGod}</div>
           <div class="p-chars">
-            <span class="p-char-stem" style="color:${WX_COLORS[gWx]}">${gName}</span>
-            <span class="p-char-branch" style="color:${WX_COLORS[zWx]}">${zName}</span>
+            <span class="p-char-stem" data-wx="${gWx}" style="color:${WX_COLORS[gWx]}">${gName}</span>
+            <span class="p-char-branch" data-wx="${zWx}" style="color:${WX_COLORS[zWx]}">${zName}</span>
           </div>
           <div class="p-nayin-badge">${nayin}</div>
           <div class="p-stage-pill">长生运：${lifeStage}</div>
