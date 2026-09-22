@@ -158,12 +158,12 @@ body.daylight {
   --hair-bright: 1px solid rgba(150, 103, 24, 0.7);
 }
 
-/* 全局尘土颗粒与黄土桑皮纸纤维质感层 (Tangible Dust & Raw Fiber Overlay) */
+/* 全局尘土颗粒与黄土桑皮纸纤维质感层 (作为底层背景，绝不覆盖文字与卡片) */
 body::before, .grain {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: 999;
+  z-index: 0; /* 放置在底层背景，文字在其上方 */
   pointer-events: none;
   background-image: 
     radial-gradient(circle at 50% 12%, rgba(200, 150, 56, 0.14) 0%, transparent 70%),
@@ -172,6 +172,7 @@ body::before, .grain {
   mix-blend-mode: screen;
 }
 body.daylight::before, body.daylight .grain {
+  z-index: 0;
   background-image: 
     radial-gradient(circle at 50% 12%, rgba(160, 110, 30, 0.10) 0%, transparent 70%),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cfilter id='dust'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.60' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.30 0 0 0 0 0.22 0 0 0 0 0.15 0 0 0 0 0.45 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23dust)' fill='%23fff'/%3E%3C/svg%3E");
@@ -179,27 +180,86 @@ body.daylight::before, body.daylight .grain {
   mix-blend-mode: multiply;
 }
 
+/* 核心内容容器：全部位于背景之上，且背景 100% 不透明，确保文字清晰养眼 */
+.wrap, main, section, nav.occ-master-header, footer {
+  position: relative;
+  z-index: 2;
+}
+
+/* 框体全部设为 100% 实底不透明，如同一块古人厚实法布或坚实宣纸案台 */
+.card, .collage-card, .coin-pop-banner, .yarrow-board, 
+.toc-group, .ch-head, .keypoints, .note, .tbl-scroll, 
+.drawer, .sum-card, .prompt-box, .sc-p, .pillar, .gcell {
+  background-color: #151820;
+  opacity: 1;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+}
+
+body.daylight .card, body.daylight .collage-card, 
+body.daylight .coin-pop-banner, body.daylight .yarrow-board, 
+body.daylight .toc-group, body.daylight .ch-head, 
+body.daylight .keypoints, body.daylight .note, 
+body.daylight .drawer, body.daylight .sum-card {
+  background-color: #faf5ea;
+  opacity: 1;
+  box-shadow: 0 4px 18px rgba(60, 48, 32, 0.08);
+}
+
+/* 字体稳健厚重与古拙书风 (不偏细，更有金石分量) */
+body {
+  font-weight: 450;
+  font-size: 15px;
+  line-height: 1.86;
+  letter-spacing: 0.025em;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4, .ch-head h1, .tg-title, .tr-tt {
+  font-family: var(--serif);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+/* 金石凿刻与非四平八稳的有机刀法按钮 (Chiseled & Asymmetric Archaic Buttons) */
+.btn, .chi-btn, .theme-btn {
+  font-family: var(--serif);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  border-radius: 2px 7px 3px 6px; /* 不对称手工切角，破除四平八稳 */
+  box-shadow: 2px 3px 0px rgba(0, 0, 0, 0.45);
+  transition: all 0.22s var(--ease-mystic);
+}
+.btn:hover, .chi-btn:hover {
+  transform: translateY(-2px) rotate(-0.5deg);
+  box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.6);
+  border-color: var(--c-turmeric);
+}
+.btn:active, .chi-btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
 /* ------------------------------------------------------------
    3. 周礼波普拼贴组件系统 (Pop-Ritual Collage Toolkit)
    ------------------------------------------------------------ */
 
-/* 周礼波普24铜钱矩阵展示带 (24-Coin Archaic Pop Mosaic Banner) */
+/* 周礼波普24铜钱矩阵展示带 (古人朱砂祭坛红布底衬) */
 .coin-pop-banner {
-  background: var(--bg-card);
-  border: var(--hair);
-  border-radius: 2px;
-  padding: 22px 24px;
+  background: #181113; /* 深朱砂漆布实底，杜绝透光 */
+  border: 1.5px solid rgba(184, 40, 24, 0.45);
+  border-top: 4px solid var(--c-cinnabar);
+  border-radius: 3px 8px 4px 7px;
+  padding: 24px 26px;
   margin: 24px 0 28px;
   position: relative;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
-  overflow: hidden;
+  z-index: 2;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55), inset 0 0 40px rgba(184, 40, 24, 0.08);
 }
-.coin-pop-banner::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--c-cinnabar), var(--c-turmeric), var(--c-yarrow));
+body.daylight .coin-pop-banner {
+  background: #fdf5f3;
+  border: 1.5px solid rgba(184, 40, 24, 0.35);
+  border-top: 4px solid var(--c-cinnabar);
+  box-shadow: 0 6px 22px rgba(184, 40, 24, 0.1);
 }
 .coin-pop-header {
   display: flex;
@@ -225,10 +285,11 @@ body.daylight::before, body.daylight .grain {
 }
 .pop-coin-token {
   aspect-ratio: 1;
+  min-height: 48px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 35%, #3d5e50 0%, #1e332a 55%, #101c17 100%);
   border: 2px solid #5a8573;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), inset 0 0 10px rgba(90, 133, 115, 0.45);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55), inset 0 0 10px rgba(90, 133, 115, 0.45);
   position: relative;
   display: flex;
   align-items: center;
@@ -250,7 +311,7 @@ body.daylight .pop-coin-token {
 .pop-coin-hole {
   width: 30%;
   height: 30%;
-  background: var(--bg);
+  background: #181113;
   border: 1.5px solid rgba(100, 150, 130, 0.7);
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.9);
 }
@@ -339,6 +400,7 @@ body.daylight .yarrow-cloth-backing {
 }
 .yarrow-stalk {
   width: 3.8px;
+  height: 64px;
   background: linear-gradient(180deg, #edd29a 0%, #c49638 50%, #8a641a 100%);
   border-radius: 1.5px;
   transition: all 0.25s ease;
@@ -346,6 +408,10 @@ body.daylight .yarrow-cloth-backing {
   box-shadow: 0 2px 5px rgba(0,0,0,0.4);
   cursor: pointer;
 }
+.yarrow-stalk:nth-child(2n) { height: 59px; }
+.yarrow-stalk:nth-child(3n) { height: 68px; }
+.yarrow-stalk:nth-child(5n) { height: 71px; }
+.yarrow-stalk:nth-child(7n) { height: 57px; }
 .yarrow-stalk:hover {
   background: #f5b62b;
   transform: translateY(-8px);
